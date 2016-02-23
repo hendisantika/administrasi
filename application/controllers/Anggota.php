@@ -440,6 +440,10 @@ class Anggota extends CI_Controller {
     public function ganti_foto() {
         $this->load->view('ganti_foto');
     }
+    
+    public function ganti_foto2() {
+        $this->load->view('ganti_foto2');
+    }
 
     public function update_data_pendidikan() {
         // Data Pendidikan
