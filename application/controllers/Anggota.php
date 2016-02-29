@@ -18,6 +18,7 @@ class Anggota extends CI_Controller {
         $config['max_size'] = '1024';
         $config['remove_spaces'] = 'TRUE';
 
+        $this->session->userdata('logged_in');
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $this->upload->do_upload('foto');

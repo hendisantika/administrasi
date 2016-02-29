@@ -11,7 +11,7 @@ class Profil extends CI_Controller {
         parent::__construct();
 
         date_default_timezone_set('Asia/Jakarta');
-
+        $this->session->userdata('logged_in');
         if ($this->session->status_login != 'logged_in') {
             redirect('auth');
         }
