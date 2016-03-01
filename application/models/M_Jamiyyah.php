@@ -97,7 +97,7 @@ class M_Jamiyyah extends CI_Model {
     }
 
     function cek_pj($kd_pj) {
-        $param = array('kd_pj' => $kd_pj);
+        $param = array('tbl_data_jamaah.kd_pj' => $kd_pj);
         $this->db->select('tbl_data_jamaah.kd_pj, tbl_data_jamaah.kd_pc, tbl_data_jamaah.kd_pd, tbl_data_jamaah.kd_pw, tbl_data_jamaah.nama_jamaah, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
         wilayah_kecamatan.nama as kecamatan, wilayah_desa.nama as desa,  tbl_data_jamaah.latitude, tbl_data_jamaah.longitude, tbl_data_jamaah.musyjam_terakhir, tbl_data_jamaah.ketua_pj, tbl_data_jamaah.sekretaris, tbl_data_jamaah.bendahara,
         tbl_data_jamaah.jml_anggota, tbl_data_jamaah.alamat, tbl_data_jamaah.foto');
