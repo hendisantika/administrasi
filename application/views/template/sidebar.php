@@ -47,9 +47,6 @@
                 <ul class="treeview-menu">
                     <li><a href="<?php echo base_url('anggota');?>"><i class="fa fa-user-plus"></i> Input Data Anggota</a></li>
                     <li><a href="<?php echo base_url('anggota/lihat_anggota');?>"><i class="glyphicon glyphicon-eye-open"></i> Lihat Data Anggota</a></li>
-                    <li><a href="<?php echo base_url('jamiyyah');?>"><i class="glyphicon glyphicon-eye-open"></i> Tes Lookup</a></li>
-                    <li><a href="<?php echo base_url('anggota/ganti_foto');?>"><i class="glyphicon glyphicon-eye-open"></i> Ganti Foto</a></li>
-                    <li><a href="<?php echo base_url('anggota/ganti_foto2');?>"><i class="glyphicon glyphicon-eye-open"></i> Ganti Foto2</a></li>
                 </ul>
             </li>
             <?php if ($this->session->level == 'admin') { ?>
@@ -79,7 +76,6 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('jamiyyah/tab');?>"><i class="fa fa-circle-o"></i> Tabs</a></li>
                     <li><a href="<?php echo base_url('profil/lihat_pj');?>"><i class="fa fa-circle-o"></i> Pimpinan Jama'ah (PJ)</a></li>
                     <li><a href="<?php echo base_url('profil/lihat_pc');?>"><i class="fa fa-circle-o"></i> Pimpinan Cabang (PC)</a></li>
                     <li><a href="<?php echo base_url('profil/lihat_pd');?>"><i class="fa fa-circle-o"></i> Pimpinan Daerah (PD)</a></li>
