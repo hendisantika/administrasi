@@ -50,7 +50,6 @@ class M_Jamiyyah extends CI_Model {
     }
 
     function lihat_pj_per_pc($kd_pc) {
-        $param = array('tbl_data_jamaah.kd_pc' => $kd_pc);
         $query = $this->db->query("SELECT tbl_data_jamaah.kd_pj, tbl_data_jamaah.kd_pc, tbl_data_jamaah.kd_pd, tbl_data_jamaah.kd_pw, tbl_data_jamaah.nama_jamaah, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_data_jamaah.latitude, tbl_data_jamaah.longitude, tbl_data_jamaah.musyjam_terakhir, tbl_data_jamaah.ketua_pj, tbl_data_jamaah.sekretaris, tbl_data_jamaah.bendahara,
         tbl_data_jamaah.jml_anggota, tbl_data_jamaah.foto, tbl_data_jamaah.alamat
@@ -62,9 +61,9 @@ class M_Jamiyyah extends CI_Model {
         INNER JOIN wilayah_kecamatan 
         ON tbl_data_jamaah.kecamatan = wilayah_kecamatan.id 
         INNER JOIN wilayah_desa
-        ON tbl_data_jamaah.desa = wilayah_desa.id;");
-//        ON tbl_data_jamaah.desa = wilayah_desa.id where tbl_data_jamaah.kd_pc' = '$kd_pc';");
-        $this->db->where($param);
+        ON tbl_data_jamaah.desa = wilayah_desa.id
+        where tbl_data_jamaah.kd_pc = '$kd_pc'");
+//        echo $this->db->last_query();exit;
         return $query->result();
 //        return $this->db->get();
     }
