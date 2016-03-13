@@ -221,8 +221,8 @@ class User extends CI_Controller {
                 'no_telpon' => $no_telpon,
                 'last_updated' => date('Y-m-d H:i:sa'),
                 'level' => 'user',
-                'alamat' => $alamat,
-                'foto' => $foto
+                'alamat' => $alamat
+//                'foto' => $foto
             );
 //            print_r($data); die();
             $this->m_user->update($npa, $data);
