@@ -5,8 +5,6 @@ class Auth extends CI_Controller {
     function __construct() {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
-        session_destroy();
-        session_start();
         $this->load->model(array('m_user', 'm_dashboard1', 'm_jamiyyah'));
         if ($this->session->set_userdata('username')) {
             redirect('dashboard1');
