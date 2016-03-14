@@ -180,20 +180,43 @@ class User extends CI_Controller {
         }
     }
     
+    public function edit_foto() {
+        $data['provinsi']   = $this->m_wilayah->get_all_provinsi();
+        $data['kabupaten']  = $this->m_wilayah->get_all_kabupaten();
+        $data['kecamatan']  = $this->m_wilayah->get_all_kecamatan();
+        $data['deso']       = $this->m_wilayah->get_all_desa();
+        $data['path']       = base_url('assets');
+
+        $npa = $this->uri->segment(3);
+        if ($npa == NULL) {
+            redirect('user/lihat_user');
+        }
+
+        if (isset($_POST['submit'])) {
+            $this->m_user->post();
+            redirect('user');
+        } else {
+            $dt = $this->m_user->edit($npa);
+            $data['npa'] = $dt->npa;
+            $data['username'] = $dt->username;
+            $data['password'] = $dt->password;
+            $data['nama'] = $dt->nama;
+            $data['pw'] = $dt->pw;
+            $data['pd'] = $dt->pd;
+            $data['pc'] = $dt->pc;
+            $data['desa'] = $dt->desa;
+            $data['pj'] = $dt->pj;
+            $data['email'] = $dt->email;
+            $data['no_telpon'] = $dt->no_telpon;
+            $data['alamat'] = $dt->alamat;
+            $data['level'] = $dt->level;
+            $data['foto'] = $dt->foto;
+            $this->load->view('edit_foto_user', $data);
+        }
+    }
+    
     public function update() {
-//        if(isset($_POST['submit'])){
-        if (isset($_POST['submit']) && $_FILES['foto']) {
-            $config['upload_path'] = './assets/foto/users';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-            $config['max_size'] = '1024';
-            $config['remove_spaces'] = 'TRUE';
-
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            $this->upload->do_upload('foto');
-//            $foto = $this->upload->data('full_path');
-            $foto = $this->upload->data('file_name');
-
+        if (isset($_POST['submit'])) {
             $npa = $this->input->post('npa');
             $username = $this->input->post('username');
             $password = $this->input->post('password');
@@ -222,10 +245,40 @@ class User extends CI_Controller {
                 'last_updated' => date('Y-m-d H:i:sa'),
                 'level' => 'user',
                 'alamat' => $alamat
-//                'foto' => $foto
             );
 //            print_r($data); die();
             $this->m_user->update($npa, $data);
+//            $this->load->view('lihat_user');
+            redirect('user/lihat_user');
+        }else{
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
+            die();
+        }
+        
+    }
+    
+    public function update_foto() {
+        if (isset($_POST['submit']) && $_FILES['foto']) {
+            $config['upload_path'] = './assets/foto/users';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['max_size'] = '1024';
+            $config['remove_spaces'] = 'TRUE';
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            $this->upload->do_upload('foto');
+//            $foto = $this->upload->data('full_path');
+            $foto = $this->upload->data('file_name');
+            $npa = $this->input->post('npa');
+            
+            $data = array(
+                'npa'           => $npa,
+                'last_updated'  => date('Y-m-d H:i:sa'),
+                'foto'          => $foto
+            );
+//            print_r($data); die();
+            $this->m_user->update_foto($npa, $data);
 //            $this->load->view('lihat_user');
             redirect('user/lihat_user');
         }else{
@@ -261,6 +314,13 @@ class User extends CI_Controller {
             }
         }
     }
+    
+    public function delete() {
+        $npa = $this->uri->segment(3);
+        $this->m_user->delete($npa);
+        redirect('user/lihat_user');
+        
+    }  
 
 }
 
