@@ -164,6 +164,7 @@ class Anggota extends CI_Controller {
             );
 
             // Data Pendidikan
+            $pendidikan = $this->input->post('pendidikan');
             $nama_sd = $this->input->post('nama_sd');
             $lulus_sd = $this->input->post('lulus_sd');
             $nama_smp = $this->input->post('nama_smp');
@@ -190,6 +191,7 @@ class Anggota extends CI_Controller {
             $jurusan_s3 = $this->input->post('jurusan_s3');
             $data_pendidikan = array(
                 'npa' => $npa,
+                'pendidikan' => $pendidikan,
                 'nama_sd' => $nama_sd,
                 'lulus_sd' => $lulus_sd,
                 'nama_smp' => $nama_smp,
@@ -372,6 +374,30 @@ class Anggota extends CI_Controller {
             $this->load->view('edit_anggota', $data);
         }
     }
+    public function edit_foto() {
+        $npa = $this->uri->segment(3);
+        if ($npa == NULL) {
+            redirect('anggota/lihat_anggota');
+        }
+
+//        if (isset($_POST['submit'])) {
+//            $this->m_anggota->post();
+//            redirect('user');
+//        }
+        else {
+//            echo $npa; die;
+            $data['record'] = $this->m_anggota->cekNpa($npa)->row_array();
+
+            $dt = $this->m_anggota->edit($npa);
+//            $dt = $this->m_anggota->cekNpa($npa);
+            // Data Pribadi
+            $data['npa']    = $dt->npa;
+            $data['nama']   = $dt->nama;
+            $data['foto']   = $dt->foto;
+
+            $this->load->view('edit_foto_anggota', $data);
+        }
+    }
 
     public function update() {
         // Data Pribadi
@@ -435,6 +461,36 @@ class Anggota extends CI_Controller {
             echo '<br>';
             print_r($data_pribadi);
             die();
+        }
+    }
+    public function update_foto() {
+        // Data Pribadi
+       if (isset($_POST['submit']) && $_FILES['foto']) {
+            $config['upload_path'] = './assets/foto/anggota';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['max_size'] = '1024';
+            $config['remove_spaces'] = 'TRUE';
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            $this->upload->do_upload('foto');
+            $foto = $this->upload->data('file_name');
+            $npa = $this->input->post('npa');
+            
+            $data = array(
+                'npa'           => $npa,
+                'last_updated'  => date('Y-m-d H:i:sa'),
+                'foto'          => $foto
+            );
+//            print_r($data); die();
+            $this->m_anggota->update_foto($npa, $data);
+//            $this->load->view('lihat_user');
+            redirect('anggota/lihat_anggota');
+        }else{
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
+//            die();
+            redirect('anggota/lihat_anggota');
         }
     }
 
