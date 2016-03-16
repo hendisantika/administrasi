@@ -117,14 +117,35 @@ class M_user extends CI_Model {
     function update($npa, $data) {
         $this->db->where("npa", $npa);
         $this->db->update("tbl_user", $data);
+//        $query = $this->db->query("SELECT tbl_user.id, tbl_user.npa, tbl_user.username, tbl_user.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
+//        wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_user.pj, tbl_user.email, tbl_user.no_telpon, tbl_user.alamat, tbl_user.reg_date,
+//        tbl_user.last_login, tbl_user.level, tbl_user.foto
+//        FROM tbl_user
+//        INNER JOIN wilayah_provinsi
+//        ON tbl_user.pw = wilayah_provinsi.id
+//        INNER JOIN wilayah_kabupaten 
+//        ON tbl_user.pd = wilayah_kabupaten.id
+//        INNER JOIN wilayah_kecamatan 
+//        ON tbl_user.pc = wilayah_kecamatan.id 
+//        INNER JOIN wilayah_desa
+//        ON tbl_user.desa = wilayah_desa.id;");
+//        return $query->result();
+    }
+    
+    function update_foto($npa, $data) {
+//        $sql = "UPDATE tbl_user set foto = '$foto' where npa = '$npa'";
+//        $this->db->query($sql);
+        
+        $this->db->where('npa', $npa);
+        $this->db->update('tbl_user', $data); 
     }
 
     function simpan($info) {
         $this->db->insert("tbl_user", $info);
     }
 
-    function hapus($kode) {
-        $this->db->where("id", $kode);
+    function delete($npa) {
+        $this->db->where("npa", $npa);
         $this->db->delete("tbl_user");
     }
 
