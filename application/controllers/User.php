@@ -8,7 +8,7 @@ class User extends CI_Controller {
     function __construct() {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
-        
+
 //       $this->session->userdata('logged_in');
 //        if($this->session->status_login != 'logged_in'){
 //            redirect('auth');
@@ -71,7 +71,8 @@ class User extends CI_Controller {
     }
 
     function post() {
-        if (isset($_POST['submit']) && $_FILES['foto']) {
+//        if (isset($_POST['submit']) && $_FILES['foto']) {
+        if (isset($_POST['submit'])) {
             $config['upload_path'] = './assets/foto/users';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size'] = '1024';
@@ -145,11 +146,11 @@ class User extends CI_Controller {
     }
 
     function edit() {
-        $data['provinsi']   = $this->m_wilayah->get_all_provinsi();
-        $data['kabupaten']  = $this->m_wilayah->get_all_kabupaten();
-        $data['kecamatan']  = $this->m_wilayah->get_all_kecamatan();
-        $data['deso']       = $this->m_wilayah->get_all_desa();
-        $data['path']       = base_url('assets');
+        $data['provinsi'] = $this->m_wilayah->get_all_provinsi();
+        $data['kabupaten'] = $this->m_wilayah->get_all_kabupaten();
+        $data['kecamatan'] = $this->m_wilayah->get_all_kecamatan();
+        $data['deso'] = $this->m_wilayah->get_all_desa();
+        $data['path'] = base_url('assets');
 
         $npa = $this->uri->segment(3);
         if ($npa == NULL) {
@@ -179,42 +180,21 @@ class User extends CI_Controller {
             $this->load->view('edit_user', $data);
         }
     }
-    
-    public function edit_foto() {
-        $data['provinsi']   = $this->m_wilayah->get_all_provinsi();
-        $data['kabupaten']  = $this->m_wilayah->get_all_kabupaten();
-        $data['kecamatan']  = $this->m_wilayah->get_all_kecamatan();
-        $data['deso']       = $this->m_wilayah->get_all_desa();
-        $data['path']       = base_url('assets');
 
+    public function edit_foto() {
         $npa = $this->uri->segment(3);
         if ($npa == NULL) {
             redirect('user/lihat_user');
-        }
-
-        if (isset($_POST['submit'])) {
-            $this->m_user->post();
-            redirect('user');
         } else {
             $dt = $this->m_user->edit($npa);
             $data['npa'] = $dt->npa;
             $data['username'] = $dt->username;
-            $data['password'] = $dt->password;
             $data['nama'] = $dt->nama;
-            $data['pw'] = $dt->pw;
-            $data['pd'] = $dt->pd;
-            $data['pc'] = $dt->pc;
-            $data['desa'] = $dt->desa;
-            $data['pj'] = $dt->pj;
-            $data['email'] = $dt->email;
-            $data['no_telpon'] = $dt->no_telpon;
-            $data['alamat'] = $dt->alamat;
-            $data['level'] = $dt->level;
             $data['foto'] = $dt->foto;
             $this->load->view('edit_foto_user', $data);
         }
     }
-    
+
     public function update() {
         if (isset($_POST['submit'])) {
             $npa = $this->input->post('npa');
@@ -250,16 +230,15 @@ class User extends CI_Controller {
             $this->m_user->update($npa, $data);
 //            $this->load->view('lihat_user');
             redirect('user/lihat_user');
-        }else{
+        } else {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
             die();
         }
-        
     }
-    
+
     public function update_foto() {
-        if (isset($_POST['submit']) && $_FILES['foto']) {
+        if (isset($_POST['submit']) && $_FILES['foto'] || $_FILES['upload']) {
             $config['upload_path'] = './assets/foto/users';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size'] = '1024';
@@ -271,24 +250,23 @@ class User extends CI_Controller {
 //            $foto = $this->upload->data('full_path');
             $foto = $this->upload->data('file_name');
             $npa = $this->input->post('npa');
-            
+
             $data = array(
-                'npa'           => $npa,
-                'last_updated'  => date('Y-m-d H:i:sa'),
-                'foto'          => $foto
+                'npa' => $npa,
+                'last_updated' => date('Y-m-d H:i:sa'),
+                'foto' => $foto
             );
 //            print_r($data); die();
             $this->m_user->update_foto($npa, $data);
 //            $this->load->view('lihat_user');
             redirect('user/lihat_user');
-        }else{
+        } else {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
             die();
         }
-        
     }
-    
+
     public function cek_akun() {
         // allow only Ajax request    
         if ($this->input->is_ajax_request()) {
@@ -296,31 +274,30 @@ class User extends CI_Controller {
             $npa = $this->input->post('npa');
             $email = $this->input->post('email');
             // check in database - table name : tbl_users  , Field name in the table : email
-            if (!empty($npa)){
+            if (!empty($npa)) {
                 if (!$this->form_validation->is_unique($npa, 'tbl_user.npa')) {
                     // set the json object as output                 
                     $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'NPA tsb sudah ada! Harap input NPA yg lain!')));
-                }elseif($this->form_validation->is_unique($npa, 'tbl_user.npa')){
+                } elseif ($this->form_validation->is_unique($npa, 'tbl_user.npa')) {
                     $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'NPA tsb dapat digunakan!')));
                 }
             }
-            if(!empty($email)){
+            if (!empty($email)) {
                 if (!$this->form_validation->is_unique($email, 'tbl_user.email')) {
                     // set the json object as output                 
                     $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'Alamat email tsb sudah terdaftar. Harap input alamat email yg lain!')));
-                }elseif ($this->form_validation->is_unique($email, 'tbl_user.email')){
+                } elseif ($this->form_validation->is_unique($email, 'tbl_user.email')) {
                     $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'Alamat email tsb dapat digunakan!')));
                 }
             }
         }
     }
-    
+
     public function delete() {
         $npa = $this->uri->segment(3);
         $this->m_user->delete($npa);
         redirect('user/lihat_user');
-        
-    }  
+    }
 
 }
 
