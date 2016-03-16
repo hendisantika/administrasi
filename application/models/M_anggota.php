@@ -81,6 +81,11 @@ class M_Anggota extends CI_Model {
         $this->db->where("npa", $npa);
         $this->db->update("tbl_anggota", $data_pribadi);
     }
+    
+    public function update_foto($npa, $data) {
+        $this->db->where('npa', $npa);
+        $this->db->update('tbl_anggota', $data); 
+    }
 
     public function update2($npa, $data_pribadi, $data_keluarga, $data_orangtua, $data_pendidikan, $data_organisasi, $data_keterampilan) {
         $this->db->set('a.firstname', 'Pekka');
