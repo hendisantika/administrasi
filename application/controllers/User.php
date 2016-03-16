@@ -35,7 +35,6 @@ class User extends CI_Controller {
     }
 
     function add_ajax_kab($id_prov) {
-//        $query = $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
         $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
         $this->db->order_by("nama", "asc");
         $query = $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
@@ -71,9 +70,7 @@ class User extends CI_Controller {
     }
 
     function post() {
-//        if (isset($_POST['submit']) && $_FILES['foto']) {
-        if (isset($_POST['submit'])) {
-            $config['upload_path'] = './assets/foto/users';
+         $config['upload_path'] = './assets/foto/users';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size'] = '1024';
             $config['remove_spaces'] = 'TRUE';
@@ -81,9 +78,7 @@ class User extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             $this->upload->do_upload('foto');
-//            $foto = $this->upload->data('full_path');
-            $foto = $this->upload->data('file_name');
-
+            
             $npa = $this->input->post('npa');
             $username = $this->input->post('username');
             $password = $this->input->post('password');
@@ -96,7 +91,13 @@ class User extends CI_Controller {
             $email = $this->input->post('email');
             $no_telpon = $this->input->post('no_telpon');
             $alamat = $this->input->post('alamat');
-
+            
+            $foto = $this->upload->data('file_name');
+            
+        if (isset($_POST['submit']) && ($_FILES['foto']["size"] != 0)) {
+//        if (isset($_POST['submit'])) {
+           
+//            $foto = $this->upload->data('full_path');
             $data = array(
                 'npa' => $npa,
                 'nama' => $nama,
@@ -114,6 +115,37 @@ class User extends CI_Controller {
                 'alamat' => $alamat,
                 'foto' => $foto
             );
+//            print_r('Ada Fotonya');
+//            echo "<br>";
+//            print_r($data); die();
+            $this->m_user->simpan($data);
+            $this->load->view('result');
+//            redirect('auth');
+        } else if (isset($_POST['submit']) && ($_FILES['foto']["size"] == 0)) {
+//        if (isset($_POST['submit'])) {
+           
+//            $foto = $this->upload->data('full_path');
+            $foto = 'avatar.png';
+
+            $data = array(
+                'npa' => $npa,
+                'nama' => $nama,
+                'username' => $username,
+                'password' => $password,
+                'pw' => $prov,
+                'pd' => $kab,
+                'pc' => $kec,
+                'desa' => $des,
+                'pj' => $pj,
+                'email' => $email,
+                'no_telpon' => $no_telpon,
+                'reg_date' => date('Y-m-d H:i:sa'),
+                'level' => 'user',
+                'alamat' => $alamat,
+                'foto' => 'avatar.png'
+            );
+//            print_r('Gak Ada Fotonya');
+//            echo "<br>";
 //            print_r($data); die();
             $this->m_user->simpan($data);
             $this->load->view('result');
