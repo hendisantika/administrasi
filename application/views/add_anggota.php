@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label for="pw" class="col-sm-2 control-label">PW</label>
                     <div class="col-sm-3">
-                        <select name="pw" class="form-control" id="provinsi">
+                        <select name="pw" class="form-control" id="provinsi" required>
                             <option>- Pilih Provinsi -</option>
                             <?php
                             foreach ($provinsi as $prov) {
@@ -91,7 +91,7 @@
                     </div>
                     <label for="pd" class="col-sm-2 control-label">PD</label>
                     <div class="col-sm-5">
-                        <select name="pd" class="form-control" id="kabupaten">
+                        <select name="pd" class="form-control" id="kabupaten" required>
                             <option value=''>- Pilih Kabupaten -</option>
                         </select>
                     </div>
@@ -99,13 +99,13 @@
                 <div class="form-group">
                     <label for="pc" class="col-sm-2 control-label">PC</label>
                     <div class="col-sm-3">
-                        <select name="pc" class="form-control" id="kecamatan">
+                        <select name="pc" class="form-control" id="kecamatan" required>
                             <option>- Pilih  Kecamatan -</option>
                         </select>
                     </div>
                     <label for="desa" class="col-sm-2 control-label">Desa</label>
                     <div class="col-sm-5">
-                        <select name="des" class="form-control" id="desa">
+                        <select name="des" class="form-control" id="desa" required>
                             <option>- Pilih Desa -</option>
                         </select>
                     </div>
