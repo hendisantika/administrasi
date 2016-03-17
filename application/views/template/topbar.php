@@ -32,6 +32,7 @@
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <img src="<?php echo base_url('assets/admin_lte/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+                                                    <!--<img src="<?php echo base_url('assets/foto/users/'.$this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">-->
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -44,6 +45,7 @@
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <img src="<?php echo base_url('assets/admin_lte/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image">
+                                                    <!--<img src="<?php echo base_url('assets/foto/users/'.$this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">-->
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
