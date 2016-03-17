@@ -1,6 +1,39 @@
 <?php $this->load->view('template/header'); ?>
 <?php $this->load->view('template/topbar'); ?>
 
+<style>
+    .tutorialWrapper{
+     width: 100%;
+   }
+   .tutorialWrapper form{
+     background-color: #ffc;
+     border: 1px solid #cc9;
+     padding: 10px;
+     font-family: verdana;
+     width: 75%;
+     font-size: 1em;
+   }
+   .fieldWrapper{
+     margin: 2px 0 2px 0;
+     padding: 2;
+   }
+   .tutorialWrapper label{
+     float: left;
+     text-align: right;
+     margin: 0 5px 0 0;
+     width: 30%;
+   }
+   .tutorialWrapper input{
+     width: 200px;
+     border: 1px solid #cc9;
+   }
+   .confirmMessage{
+     margin: 0;
+     padding: 0;
+     font-size: 1em; 
+   }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -43,8 +76,15 @@
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <div class="col-sm-10 fieldWrapper">
+                        <input type="password" class="form-control" id="pass1" name="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Confirmasi Password</label>
+                    <div class="col-sm-10 fieldWrapper">
+                        <input type="password" class="form-control" id="pass2" onkeyup="checkPass(); return false;" name="pass2" placeholder="Password" required>
+                        <span id="confirmMessage" class="confirmMessage"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -56,7 +96,7 @@
                 <div class="form-group">
                     <label for="pw" class="col-sm-2 control-label">PW</label>
                     <div class="col-sm-10">
-                        <select name="prov" class="form-control" id="provinsi">
+                        <select name="prov" class="form-control" id="provinsi" required>
                             <option>- Pilih Provinsi -</option>
                             <?php
                             foreach ($provinsi as $prov) {
@@ -69,7 +109,7 @@
                 <div class="form-group">
                     <label for="pd" class="col-sm-2 control-label">PD</label>
                     <div class="col-sm-10">
-                        <select name="kab" class="form-control" id="kabupaten">
+                        <select name="kab" class="form-control" id="kabupaten" required>
                             <option value=''>- Pilih Kabupaten -</option>
                         </select>
                     </div>
@@ -77,7 +117,7 @@
                 <div class="form-group">
                     <label for="pc" class="col-sm-2 control-label">PC</label>
                     <div class="col-sm-10">
-                        <select name="kec" class="form-control" id="kecamatan">
+                        <select name="kec" class="form-control" id="kecamatan" required>
                             <option>- Pilih  Kecamatan -</option>
                         </select>
                     </div>
@@ -85,7 +125,7 @@
                 <div class="form-group">
                     <label for="desa" class="col-sm-2 control-label">Desa</label>
                     <div class="col-sm-10">
-                        <select name="des" class="form-control" id="desa">
+                        <select name="des" class="form-control" id="desa" required>
                             <option>- Pilih Desa -</option>
                         </select>
                     </div>
@@ -118,7 +158,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleInputFile" class="col-sm-2 control-label">Foto Antum</label>
+                <label class="col-sm-2 control-label">Foto Antum</label>
                 <div class="col-sm-10">
                     <!--<input type="file" id="exampleInputFile" name="foto" size="20" accept="image/">-->
                      <input id="foto" type="file" name="foto" accept="image/*" class="file-loading">
@@ -171,10 +211,7 @@
     });
 </script>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-  
-   <script type="text/javascript">
+ <script type="text/javascript">
     $(document).ready(function() {
         /// make loader hidden in start
     $('#loading').hide();
@@ -205,7 +242,6 @@
             $('#ldgNPA').hide();
             $('#msgNPA').html('').html(response.message).show().delay(4000).fadeOut();
         });
-        
             return false;
         }
     });
@@ -230,6 +266,41 @@
             uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
         });
     });
+</script>
+
+<!--Cek Password-->
+<script type="text/javascript">
+ 
+function checkPass()
+{
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    //Compare the values in the password field 
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match. 
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password 
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords cocok!"
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+//        document.oo.pass2.focus();
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords tidak cocok!"
+    }
+}
+ 
 </script>
 
 <?php $this->load->view('template/footer'); ?>
