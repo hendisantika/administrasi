@@ -217,7 +217,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Range Usia</th>
+                                    <th>Level Pendidikan</th>
                                     <th>Jumlah</th>
                                 </tr>
                             </thead>
@@ -270,7 +270,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Range Usia</th>
+                                    <th>Status</th>
                                     <th>Jumlah</th>
                                 </tr>
                             </thead>
