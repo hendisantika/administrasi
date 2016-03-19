@@ -116,7 +116,7 @@
                             </tr>
                             <tr>
                                 <th width="35%">Keterangan</th>
-                                <td><?php echo $record['keterangan'] ?></td>
+                                <td><?php echo $record['ket_anggota'] ?></td>
                             </tr>
                         </table>
                     </div>
@@ -467,10 +467,6 @@
                             <tr>
                                 <th width="75%">Lokasi</th>
                                 <td><?php echo $record['lokasi'] ?></td>
-                            </tr>
-                            <tr>
-                                <th width="75%">Keterangan</th>
-                                <td><?php echo $record['keterangan'] ?></td>
                             </tr>
                         </table>
                     </div>
