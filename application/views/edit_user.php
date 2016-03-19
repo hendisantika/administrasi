@@ -144,13 +144,6 @@
                             <input type="tel" class="form-control" id="no_telpon" name="no_telpon" value="<?php echo $no_telpon ?>" pattern=".{9,14}" required title="9 to 14 characters" placeholder="Nomor Telpon">
                         </div>
                     </div>
-                   <div class="form-group">
-                        <label for="exampleInputFile" class="col-sm-2 control-label">Foto Antum</label>
-                        <div class="col-sm-10">
-                            <input type="file" id="exampleInputFile" name="foto" size="20" accept="image/" value="<?php echo base_url('/assets/foto/users/' . $foto); ?>">
-                            <p class="help-block">Pilih Foto Avatar antum!</p>
-                        </div>
-                    </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <button type="submit" class="btn btn-block btn-light btn-lg btn-info pull-right" name="submit">Update</button>
