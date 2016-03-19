@@ -654,7 +654,7 @@ $(document).ready(function () {
                 <h4 class="modal-title" id="myModalLabel">Kode PD</h4>
             </div>
             <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
+                <table id="lookupPD" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
                             <th>Kode</th>
@@ -766,6 +766,9 @@ $(document).ready(function () {
 //  tabel lookup npa
     $(function () {
         $("#lookup").dataTable({
+            "scrollX": true
+        });
+        $("#lookupPD").dataTable({
             "scrollX": true
         });
     });
