@@ -2,6 +2,11 @@
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
 
+<style>
+    .pilih:hover{
+        cursor: pointer;
+    }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -30,6 +35,7 @@
                             <table id="data_user" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Foto</th>
                                         <th>NPA</th>
                                         <th>Nama Lengkap</th>
@@ -44,8 +50,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($a as $data_anggota) { ?>
-                                        <tr>
+                                    <?php $no = 1; foreach ($a as $data_anggota) { ?>
+                                        <tr class="pilih">
+                                            <td><?php echo $no; ?></td>
                                             <td><img src="<?php echo base_url('/assets/foto/anggota/' . $data_anggota->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
                                             <td><?php echo $data_anggota->npa; ?></td>
                                             <td><?php echo $data_anggota->nama; ?></td>
@@ -59,7 +66,7 @@
                                             <td>
                                                 <a href="<?php echo site_url() ?>anggota/details/<?php echo $data_anggota->npa; ?>" title="Lihat Detail">
                                                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
-                                                <a href="#" title="Tambah Foto">
+                                                <a href="<?php echo site_url() ?>anggota/edit_foto/<?php echo $data_anggota->npa;?>" title="Tambah/Edit Foto">
                                                     <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
                                                 </a>
                                                 <a href="<?php echo site_url() ?>anggota/edit/<?php echo $data_anggota->npa; ?>" title="Edit Data">
@@ -74,10 +81,11 @@
                                                 <?php } ?>
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php $no++; } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>#</th>
                                         <th>Foto</th>
                                         <th>NPA</th>
                                         <th>Nama Lengkap</th>
@@ -114,11 +122,20 @@
 
 
 <script>
-   $(document).ready(function () {
-       $('#data_user').DataTable({
-           "scrollX": true
-       });
-   });
+//   $(document).ready(function () {
+//       $('#data_user').DataTable({
+//           "scrollX": true
+//       });
+//   });
+    $(document).ready(function() {
+    var table = $('#data_user').DataTable({ "scrollX" : true });
+     
+    $('#data_user tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
+    } );
+} );
 </script>
 
 <?php $this->load->view('template/jscripts'); ?>
