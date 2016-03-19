@@ -64,16 +64,17 @@
                         <li class="active"><a href="#tab_1" data-toggle="tab">Data Monografi</a></li>
                         <li><a href="#tab_2" data-toggle="tab">Data Kejam'iyyahan</a></li>
                         <li><a href="#tab_3" data-toggle="tab">Data Jama'ah</a></li>
-                        <li><a href="#tab_4" data-toggle="tab">Data Keanggotaan</a></li>
-                        <li><a href="#tab_5" data-toggle="tab">Data Deskriptif Anggota</a></li>
-                        <li><a href="#tab_6" data-toggle="tab">Data Pendidikan</a></li>
-                        <li><a href="#tab_7" data-toggle="tab">Data Pekerjaan</a></li>
-                        <li><a href="#tab_8" data-toggle="tab">Data Status Marital</a></li>
-                        <li><a href="#tab_9" data-toggle="tab">Data Kegiatan</a></li>
-                        <li><a href="#tab_10" data-toggle="tab">Data Mubaligh</a></li>
-                        <li><a href="#tab_11" data-toggle="tab">Data Potensi Olahraga & Seni</a></li>
-                        <li><a href="#tab_12" data-toggle="tab">Data Potensi Ekonomi</a></li>
-                        <li><a href="#tab_13" data-toggle="tab">Data Indeks Performa Jam'iyyah</a></li>
+                        <li><a href="#tab_4" data-toggle="tab">Data Indeks Performa Jam'iyyah</a></li>
+                        <li><a href="#tab_5" data-toggle="tab">Data Keanggotaan</a></li>
+                        <li><a href="#tab_6" data-toggle="tab">Data Deskriptif Anggota</a></li>
+                        <li><a href="#tab_7" data-toggle="tab">Data Pendidikan</a></li>
+                        <li><a href="#tab_8" data-toggle="tab">Data Pekerjaan</a></li>
+                        <li><a href="#tab_9" data-toggle="tab">Data Status Marital</a></li>
+                        <li><a href="#tab_10" data-toggle="tab">Data Kegiatan</a></li>
+                        <li><a href="#tab_11" data-toggle="tab">Data Mubaligh</a></li>
+                        <li><a href="#tab_12" data-toggle="tab">Data Potensi Olahraga & Seni</a></li>
+                        <li><a href="#tab_13" data-toggle="tab">Data Potensi Ekonomi</a></li>
+                        
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
@@ -427,7 +428,7 @@
                         </div> <!-- Tab 3 -->
 
                         <!--Tab 4-->
-                        <div class="tab-pane" id="tab_4">
+                        <div class="tab-pane" id="tab_13">
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <div class="dataTable_wrapper">
@@ -499,7 +500,7 @@
                         </div>
 
                         <!-- Indeks Performa Jam'iyyah PC -->
-                        <div class="tab-pane active" id="tab_13">
+                        <div class="tab-pane active" id="tab_4">
                             <div class="box-body">
                                 <img class="img-responsive img-rounded center-block" 
                                      src="<?php echo base_url('/assets/admin_lte/img/pemuda persis.jpg'); ?>" width="150"><br />
@@ -511,7 +512,7 @@
                                         ?></bold></h2>
                                     <h3 align='center'><bold>PEMUDA PERSATUAN ISLAM</bold></h3>
                                     <hr>
-<?php echo form_open_multipart('', array('class' => 'form-horizontal')); ?>
+                                    <?php echo form_open_multipart('', array('class' => 'form-horizontal')); ?>
                                     <h3 align='center'><span class="label label-success col-sm-12">
                                             <i class="fa fa-user"> Indeks Performa Jam'iyyah PC</i>
                                         </span>
@@ -533,7 +534,7 @@
                                                             </div>
                                                         </div>
 
-<?php echo form_open('jamiyyah/save_performa_pc'); ?>
+                                                        <?php echo form_open('jamiyyah/save_performa_pc'); ?>
                                                         <div class="form-group">
                                                             <label for="no_pc" class="col-sm-2 control-label">Nomor PC</label>
                                                             <div class="col-sm-2">
