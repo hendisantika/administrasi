@@ -93,6 +93,8 @@ class User extends CI_Controller {
             $alamat = $this->input->post('alamat');
             
             $foto = $this->upload->data('file_name');
+//            $awal = $this->upload->data('file_name');
+//            $nama_foto = str_replace(" ", "_", $nama."jpg");
             
         if (isset($_POST['submit']) && ($_FILES['foto']["size"] != 0)) {
 //        if (isset($_POST['submit'])) {
