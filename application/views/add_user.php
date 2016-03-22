@@ -71,19 +71,19 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                        <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="15" placeholder="Username" autofocus pattern="[a-zA-Z]+" required title="Silahkan mengisi username minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10 fieldWrapper">
-                        <input type="password" class="form-control" id="pass1" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="pass1" name="password" minlength="6" maxlength="15" placeholder="Password" autofocus pattern="[a-zA-Z]+" required title="Silahkan mengisi password minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Confirmasi Password</label>
                     <div class="col-sm-10 fieldWrapper">
-                        <input type="password" class="form-control" id="pass2" onkeyup="checkPass(); return false;" name="pass2" placeholder="Password" required>
+                        <input type="password" class="form-control" id="pass2" onkeyup="checkPass(); return false;" name="pass2" placeholder="Password" required title="Silahkan mengisi password minimal dengan 6 karakter dan maksimal 15 karakter">
                         <span id="confirmMessage" class="confirmMessage"></span>
                     </div>
                 </div>
@@ -263,7 +263,10 @@
             removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
             uploadClass: "btn btn-info",
             uploadLabel: "Upload",
-            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
+            showUpload: false,
+            overwriteInitial: false,
+            maxFileSize: 2000
         });
     });
 </script>
