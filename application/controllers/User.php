@@ -19,7 +19,7 @@ class User extends CI_Controller {
         $this->load->database();
     }
 
-    function index() {
+    public function index() {
         $data['provinsi'] = $this->m_wilayah->get_all_provinsi();
 
         $data['path'] = base_url('assets');
@@ -70,35 +70,34 @@ class User extends CI_Controller {
     }
 
     function post() {
-         $config['upload_path'] = './assets/foto/users';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-            $config['max_size'] = '1024';
-            $config['remove_spaces'] = 'TRUE';
+        $config['upload_path'] = './assets/foto/users';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['max_size'] = '1024';
+        $config['remove_spaces'] = 'TRUE';
 
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            $this->upload->do_upload('foto');
-            
-            $npa = $this->input->post('npa');
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-            $nama = $this->input->post('nama');
-            $prov = $this->input->post('prov');
-            $kab = $this->input->post('kab');
-            $kec = $this->input->post('kec');
-            $des = $this->input->post('des');
-            $pj = $this->input->post('pj');
-            $email = $this->input->post('email');
-            $no_telpon = $this->input->post('no_telpon');
-            $alamat = $this->input->post('alamat');
-            
-            $foto = $this->upload->data('file_name');
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $this->upload->do_upload('foto');
+
+        $npa = $this->input->post('npa');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        $prov = $this->input->post('prov');
+        $kab = $this->input->post('kab');
+        $kec = $this->input->post('kec');
+        $des = $this->input->post('des');
+        $pj = $this->input->post('pj');
+        $email = $this->input->post('email');
+        $no_telpon = $this->input->post('no_telpon');
+        $alamat = $this->input->post('alamat');
+
+        $foto = $this->upload->data('file_name');
 //            $awal = $this->upload->data('file_name');
 //            $nama_foto = str_replace(" ", "_", $nama."jpg");
-            
+
         if (isset($_POST['submit']) && ($_FILES['foto']["size"] != 0)) {
 //        if (isset($_POST['submit'])) {
-           
 //            $foto = $this->upload->data('full_path');
             $data = array(
                 'npa' => $npa,
@@ -125,7 +124,6 @@ class User extends CI_Controller {
 //            redirect('auth');
         } else if (isset($_POST['submit']) && ($_FILES['foto']["size"] == 0)) {
 //        if (isset($_POST['submit'])) {
-           
 //            $foto = $this->upload->data('full_path');
             $foto = 'avatar.png';
 
@@ -161,7 +159,68 @@ class User extends CI_Controller {
     }
 
     public function forget_password() {
-        $this->load->view('result');
+        $this->load->view('forgot_password');
+    }
+
+    public function kirim_password() {
+        $ci = get_instance();
+        $ci->load->library('email');
+        $config['protocol']     = "smtp";
+        $config['smtp_host']    = "ssl://srv6.niagahoster.com";
+        $config['smtp_port']    = "465";
+        $config['smtp_user']    = "kominfo@pemuda.persis.or.id";
+        $config['smtp_pass']    = "kominfo33";
+        $config['charset']      = "utf-8";
+        $config['mailtype']     = "html";
+        $config['newline']      = "\r\n";
+        $config['wordwrap']     = TRUE;
+
+        $ci->email->initialize($config);
+
+        $npa = $this->input->post('npa');
+        $email = $this->input->post('email');
+        
+        if (isset($_POST['submit'])) {
+            $data = array(
+                'npa'   => $npa,
+                'email' => $email,
+            );
+//            print_r('Cek Data : ');
+//            echo "<br>";
+//            print_r($data); die();
+            $data['forgot'] = $this->m_user->kirim_password($data)->row_array();
+
+            $ci->email->from('kominfo@pemuda.persis.or.id', 'Hendi Santika');
+//            $npa        = $data['forgot']['npa'];
+//            $nama       = $data['forgot']['nama'];
+            $alamat     = $data['forgot']['email'];
+//            $password   = $data['forgot']['password'];
+//            $url        = base_url();
+            
+            $body = $this->load->view('email_body.php', $data, TRUE);
+
+            $list = array('hendisantika@yahoo.co.id', $alamat);
+            $ci->email->to($list);
+            $ci->email->subject('Lupa Password');
+            $ci->email->message($body);
+            
+            $this->email->send();
+            $this->load->view('kirim_password', $data);
+
+//            print_r("Ini Hasil query nya : ");
+//            echo "<br>";
+//            print_r($data);
+//            echo "NPA           : " . $npa; echo "<br>";
+//            echo "Nama Lengkap  : " . $nama; echo "<br>";
+//            echo "Alamat Email  : " . $email; echo "<br>";
+//            echo "Password      : " . $password; echo "<br>";
+//            die();
+        }else {
+                print_r('Error Kirim Email');
+                echo "<br>";
+                show_error($this->email->print_debugger());
+                die();
+            }
     }
 
     public function details() {
@@ -332,7 +391,7 @@ class User extends CI_Controller {
         $this->m_user->delete($npa);
         redirect('user/lihat_user');
     }
-
+    
 }
 
 ?>
