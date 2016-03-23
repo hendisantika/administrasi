@@ -3,7 +3,7 @@
 class M_user extends CI_Model {
 
     private $table = "tbl_user";
-    
+
     function index() {
 //        $query = $this->db->get('tbl_user');
         $query = $this->db->query("SELECT tbl_user.id, tbl_user.npa, tbl_user.username, tbl_user.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
@@ -20,7 +20,7 @@ class M_user extends CI_Model {
         ON tbl_user.desa = wilayah_desa.id;");
         return $query->result();
     }
-    
+
     function data($param) {
         $query = $this->db->query("SELECT tbl_user.id, tbl_user.npa, tbl_user.username, tbl_user.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_user.pj, tbl_user.email, tbl_user.no_telpon, tbl_user.alamat, tbl_user.reg_date,
@@ -42,15 +42,18 @@ class M_user extends CI_Model {
 //        $query = $this->db->get();
 //        $rowcount = $query->num_rows();
     }
-    
+
     function cek($username, $password) {
         $this->db->where("username", $username);
         $this->db->where("password", $password);
+        $this->db->or_where("email", $username);
+        $this->db->where("password", $password);
+//        $query = $this->db->query("SELECT * from tbl_user where username = '$username'  and password = '$password' or email = '$username'  and password = '$password'"); 
         return $this->db->get("tbl_user");
     }
-    
-    function lihat_user(){
-         return $this->db->get("tbl_user");
+
+    function lihat_user() {
+        return $this->db->get("tbl_user");
     }
 
     function cekKode($kode) {
@@ -76,15 +79,14 @@ class M_user extends CI_Model {
 //        return $this->db->get_where("tbl_anggota", $param);
         return $this->db->get();
     }
-    
-    function get_user($npa)
-    {
+
+    function get_user($npa) {
         $this->db->where('npa', $npa);
         $this->db->from('tbl_user');
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     function edit($npa) {
         $user = $this->db->get_where('tbl_user', array('npa' => $npa))->row();
         return $user;
@@ -98,12 +100,12 @@ class M_user extends CI_Model {
             foreach ($q_cek_login->result() as $qck) {
                 foreach ($q_cek_login->result() as $qad) {
                     $sess_data['logged_in'] = 'anaLoginWebYeuh';
-                    $sess_data['id']        = $qad->no;
-                    $sess_data['npa']       = $qad->username;
-                    $sess_data['username']  = $qad->username;
-                    $sess_data['nama']      = $qad->password;
-                    $sess_data['email']     = $qad->email;
-                    $sess_data['level']     = $qad->hakakses;
+                    $sess_data['id'] = $qad->no;
+                    $sess_data['npa'] = $qad->username;
+                    $sess_data['username'] = $qad->username;
+                    $sess_data['nama'] = $qad->password;
+                    $sess_data['email'] = $qad->email;
+                    $sess_data['level'] = $qad->hakakses;
                     $this->session->set_userdata($sess_data);
                 }
                 redirect('dashboard1');
@@ -131,13 +133,13 @@ class M_user extends CI_Model {
 //        ON tbl_user.desa = wilayah_desa.id;");
 //        return $query->result();
     }
-    
+
     function update_foto($npa, $data) {
 //        $sql = "UPDATE tbl_user set foto = '$foto' where npa = '$npa'";
 //        $this->db->query($sql);
-        
+
         $this->db->where('npa', $npa);
-        $this->db->update('tbl_user', $data); 
+        $this->db->update('tbl_user', $data);
     }
 
     function simpan($info) {
@@ -147,6 +149,13 @@ class M_user extends CI_Model {
     function delete($npa) {
         $this->db->where("npa", $npa);
         $this->db->delete("tbl_user");
+    }
+
+    function kirim_password($data) {
+        $this->db->from("tbl_user");
+        $this->db->where($data);
+        return $this->db->get(); 
+//        echo $this->db->last_query();exit;
     }
 
 }
