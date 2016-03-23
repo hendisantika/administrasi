@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="<?php echo base_url("assets/fonts/fonts.googleapis.com.css"); ?>" />
 
         <!-- ace styles -->
-        <link rel="stylesheet" href="<?php echo base_url("assets/others/ace.min.css"); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url("assets/others/ace2.min.css"); ?>" />
 
         <!--[if lte IE 9]>
         <link rel="stylesheet" href="assets/css/ace-part2.min.css" />
@@ -148,8 +148,6 @@
                                                             </span>
                                                         </label>
                                                     </div>
-
-                                                    <div class="space"></div>
 
                                                     <div class="clearfix">
 
