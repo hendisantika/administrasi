@@ -118,7 +118,7 @@
 
                                             <div class="space-6"></div>
 
-                                            <?php echo form_open('auth/proses'); ?>
+                                            <?php echo form_open('user/kirim_password'); ?>
                                                 <fieldset>
                                                     <?php
                                                     if (validation_errors() || $this->session->flashdata('result_login')) {
@@ -154,7 +154,7 @@
                                                     <div class="clearfix">
 
                                                         <div class="form-group">
-                                                            <button class="width-50 pull-right btn btn-sm btn-primary">
+                                                            <button name="submit" class="width-50 pull-right btn btn-sm btn-primary">
                                                                 <i class="ace-icon fa fa-key"></i>
                                                                 <span class="bigger-110">Kirim Password</span>
                                                             </button>
