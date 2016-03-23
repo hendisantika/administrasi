@@ -44,8 +44,8 @@ class Auth extends CI_Controller {
                     $sess_data['level']     = $qad->level;
                     $sess_data['foto']     = $qad->foto;
                     $sess_data['status_login'] =  'logged_in';
-                    $this->db->where('npa',$sess_data['npa']);
-                    $this->db->update('tbl_user',array('last_login'=>date('Y-m-d H:i:sa')));
+                    $this->db->where('npa', $sess_data['npa']);
+                    $this->db->update('tbl_user', array('last_login'=>date('Y-m-d H:i:sa')));
                     $this->session->set_userdata($sess_data);
                     $sess_data['anggota']   = $this->m_dashboard1->count_anggota();
                     $sess_data['users']     = $this->m_dashboard1->count_users();
