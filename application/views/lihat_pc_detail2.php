@@ -74,7 +74,7 @@
                         <li><a href="#tab_11" data-toggle="tab">Data Mubaligh</a></li>
                         <li><a href="#tab_12" data-toggle="tab">Data Potensi Olahraga & Seni</a></li>
                         <li><a href="#tab_13" data-toggle="tab">Data Potensi Ekonomi</a></li>
-                        
+
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
@@ -389,7 +389,7 @@
                                                                         </a>  
                                                                         <a href="#" title="Hapus Data" 
                                                                            onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
-                                                                                       return false;">
+                                                                                           return false;">
                                                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
                                                                         </a>
                                                                     </td>
@@ -1397,7 +1397,7 @@
                                                                 </div>
                                                             </div><!-- /.box-footer -->
                                                         </div>
-<?php echo form_close(); ?>
+                                                        <?php echo form_close(); ?>
                                                     </div>                    
                                                 </div>
                                             </div>
@@ -1406,6 +1406,89 @@
                             </div>
 
                             <!-- /.tab-content -->
+                        </div>
+
+                        <!-- Data Keanggotaan PC -->
+                        <div class="tab-pane active" id="tab_5">
+                            <section class="content">
+                                <!-- Small boxes (Stat box) -->
+                                <div class="box box-success">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Lihat Data Anggota PC <?php echo $record['pc'] ?></h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <div class="dataTable_wrapper">
+                                                    <table id="data_user" class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Foto</th>
+                                                                <th>Kode PJ</th>
+                                                                <th>Nama Jama'ah</th>
+                                                                <th>PW</th>
+                                                                <th>PD</th>
+                                                                <th>PC</th>
+                                                                <th>Desa</th>
+                                                                <th>Latitude</th>
+                                                                <th>Longitude</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php foreach ($a as $data_jamaah) { ?>
+                                                                <tr>
+                                                                    <td><img src="<?php echo base_url('/assets/foto/pj/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
+                                                                    <td><?php echo $data_jamaah->kd_pj; ?></td>
+                                                                    <td><?php echo $data_jamaah->nama_jamaah; ?></td>
+                                                                    <td><?php echo $data_jamaah->pw; ?></td>
+                                                                    <td><?php echo $data_jamaah->pd; ?></td>
+                                                                    <td><?php echo $data_jamaah->pc; ?></td>
+                                                                    <td><?php echo $data_jamaah->desa; ?></td>
+                                                                    <td><?php echo $data_jamaah->latitude; ?></td>
+                                                                    <td><?php echo $data_jamaah->longitude; ?></td>
+                                                                    <td>
+                                                                        <a href="<?php echo site_url() ?>profil/pj_details/<?php echo $data_jamaah->kd_pj; ?>" title="Lihat Detail">
+                                                                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+                                                                        <a href="#" title="Tambah Foto">
+                                                                            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                                                                        </a>
+                                                                        <a href="<?php echo site_url() ?>profil/pj_edit/<?php echo $data_jamaah->kd_pj; ?>" title="Edit Data">
+                                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>
+                                                                        </a>  
+                                                                        <a href="#" title="Hapus Data" 
+                                                                           onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
+                                                                   return false;">
+                                                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Foto</th>
+                                                                <th>Kode PJ</th>
+                                                                <th>Nama Jama'ah</th>
+                                                                <th>PW</th>
+                                                                <th>PD</th>
+                                                                <th>PC</th>
+                                                                <th>Desa</th>
+                                                                <th>Latitude</th>
+                                                                <th>Longitude</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </tfoot>
+
+                                                    </table>
+                                                </div><!-- box-body -->
+
+                                            </div><!-- box -->
+                                        </div><!-- panel-body -->
+                                    </div> <!-- panel-body  -->
+                                </div> <!-- panel-body --> 
+                            </section><!-- right col -->
+
                         </div>
                         <!-- nav-tabs-custom -->
                     </div>
@@ -1419,7 +1502,7 @@
 
 
 
-<?php echo form_close(); ?>
+    <?php echo form_close(); ?>
 </div><!-- /.box -->
 
 
@@ -1435,14 +1518,14 @@
 
 
 <script>
-                                                                   $(document).ready(function () {
-                                                                       $('#data_pj').DataTable({
-                                                                           "scrollX": true
-                                                                       });
-                                                                       $('#data_pc').DataTable({
-                                                                           "scrollX": true
-                                                                       });
-                                                                   });
+                                                       $(document).ready(function () {
+                                                           $('#data_pj').DataTable({
+                                                               "scrollX": true
+                                                           });
+                                                           $('#data_pc').DataTable({
+                                                               "scrollX": true
+                                                           });
+                                                       });
 </script>
 <?php $this->load->view('template/jscripts'); ?>
 <?php $this->load->view('template/footer'); ?>
