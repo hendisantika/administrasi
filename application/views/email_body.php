@@ -1,4 +1,4 @@
-<body style="background: transparent url(<MY IMAGE>;);">
+<body>
     <table align="center" border="0" cellpadding="0" cellspacing="0" width=700">
         <tbody style="text-wrap:normal;word-wrap:break-word">
             <tr>
