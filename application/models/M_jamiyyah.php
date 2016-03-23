@@ -131,6 +131,7 @@ class M_Jamiyyah extends CI_Model {
         $this->db->join('tbl_data_kejamiyyahan', 'tbl_data_geografis_pc.kd_pc = tbl_data_kejamiyyahan.kd_pc', 'inner');
 //        $this->db->join('tbl_data_jamaah', 'tbl_data_geografis_pc.pc = wilayah_kecamatan.id', 'inner');
         $this->db->where($param);
+//        echo $this->db->last_query();exit;
         return $this->db->get();
     }
 
