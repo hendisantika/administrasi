@@ -320,6 +320,13 @@ class Anggota extends CI_Controller {
         $this->load->vars('a', $data_anggota);
         $this->load->view('lihat_anggota');
     }
+    
+    public function lihat_anggota_pc() {
+        $this->load->model('m_anggota');
+        $data_anggota = $this->m_anggota->lihat_anggota_pc();
+        $this->load->vars('a', $data_anggota);
+        $this->load->view('lihat_anggota');
+    }
 
     public function details() {
         $npa = $this->uri->segment(3);
