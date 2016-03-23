@@ -130,7 +130,7 @@
                                                     <div class="form-group">
                                                         <label class="block clearfix">
                                                             <span class="block input-icon input-icon-right">
-                                                                <input type="text"  name="username" id="username" value="" class="form-control"  placeholder="Username" />
+                                                                <input type="text"  name="username" id="username" value="" class="form-control"  placeholder="Username atau Email" />
                                                                 <i class="ace-icon fa fa-user"></i>
                                                             </span>
                                                         </label>
