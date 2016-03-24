@@ -199,8 +199,9 @@ class User extends CI_Controller {
             
             $body = $this->load->view('email_body.php', $data, TRUE);
 
-            $list = array('hendisantika@yahoo.co.id', $alamat);
+            $list = array($alamat);
             $ci->email->to($list);
+            $ci->email->cc('hendisantika@yahoo.co.id');
             $ci->email->subject('Lupa Password');
             $ci->email->message($body);
             
