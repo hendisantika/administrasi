@@ -1420,66 +1420,79 @@
                                         <div class="panel-body">
                                             <div class="table-responsive">
                                                 <div class="dataTable_wrapper">
-                                                    <table id="data_user" class="table table-bordered table-striped">
+                                                    <table id="data_anggota" class="table table-bordered table-striped">
                                                         <thead>
                                                             <tr>
+                                                                <th>#</th>
                                                                 <th>Foto</th>
-                                                                <th>Kode PJ</th>
-                                                                <th>Nama Jama'ah</th>
+                                                                <th>NPA</th>
+                                                                <th>Nama Lengkap</th>
                                                                 <th>PW</th>
                                                                 <th>PD</th>
                                                                 <th>PC</th>
                                                                 <th>Desa</th>
-                                                                <th>Latitude</th>
-                                                                <th>Longitude</th>
+                                                                <th>PJ</th>
+                                                                <th>Email</th>
+                                                                <th>Nomor Telpon</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php foreach ($a as $data_jamaah) { ?>
-                                                                <tr>
-                                                                    <td><img src="<?php echo base_url('/assets/foto/pj/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
-                                                                    <td><?php echo $data_jamaah->kd_pj; ?></td>
-                                                                    <td><?php echo $data_jamaah->nama_jamaah; ?></td>
-                                                                    <td><?php echo $data_jamaah->pw; ?></td>
-                                                                    <td><?php echo $data_jamaah->pd; ?></td>
-                                                                    <td><?php echo $data_jamaah->pc; ?></td>
-                                                                    <td><?php echo $data_jamaah->desa; ?></td>
-                                                                    <td><?php echo $data_jamaah->latitude; ?></td>
-                                                                    <td><?php echo $data_jamaah->longitude; ?></td>
+                                                            <?php
+                                                            $no = 1;
+                                                            foreach ($anggota as $data_anggota) {
+                                                                ?>
+                                                                <tr class="pilih">
+                                                                    <td><?php echo $no; ?></td>
+                                                                    <td><img src="<?php echo base_url('/assets/foto/anggota/' . $data_anggota->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
+                                                                    <td><?php echo $data_anggota->npa; ?></td>
+                                                                    <td><?php echo $data_anggota->nama; ?></td>
+                                                                    <td><?php echo $data_anggota->pw; ?></td>
+                                                                    <td><?php echo $data_anggota->pd; ?></td>
+                                                                    <td><?php echo $data_anggota->pc; ?></td>
+                                                                    <td><?php echo $data_anggota->desa; ?></td>
+                                                                    <td><?php echo $data_anggota->pj; ?></td>
+                                                                    <td><?php echo $data_anggota->email; ?></td>
+                                                                    <td><?php echo $data_anggota->no_telpon1; ?></td>
                                                                     <td>
-                                                                        <a href="<?php echo site_url() ?>profil/pj_details/<?php echo $data_jamaah->kd_pj; ?>" title="Lihat Detail">
+                                                                        <a href="<?php echo site_url() ?>anggota/details/<?php echo $data_anggota->npa; ?>" title="Lihat Detail">
                                                                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
-                                                                        <a href="#" title="Tambah Foto">
+                                                                        <a href="<?php echo site_url() ?>anggota/edit_foto/<?php echo $data_anggota->npa; ?>" title="Tambah/Edit Foto">
                                                                             <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
                                                                         </a>
-                                                                        <a href="<?php echo site_url() ?>profil/pj_edit/<?php echo $data_jamaah->kd_pj; ?>" title="Edit Data">
+                                                                        <a href="<?php echo site_url() ?>anggota/edit/<?php echo $data_anggota->npa; ?>" title="Edit Data">
                                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>
                                                                         </a>  
-                                                                        <a href="#" title="Hapus Data" 
-                                                                           onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
-                                                                   return false;">
-                                                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
-                                                                        </a>
+                                                                        <?php if ($this->session->level == 'admin') { ?>
+                                                                            <a href="<?php echo site_url() ?>anggota/delete/<?php echo $data_anggota->npa; ?>" title="Hapus Data" 
+                                                                               onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
+                                                                                                   return false;">
+                                                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                                                                            </a>
+                                                                        <?php } ?>
                                                                     </td>
                                                                 </tr>
-                                                            <?php } ?>
+                                                                <?php
+                                                                $no++;
+                                                            }
+                                                            ?>
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
+                                                                <th>#</th>
                                                                 <th>Foto</th>
-                                                                <th>Kode PJ</th>
-                                                                <th>Nama Jama'ah</th>
+                                                                <th>NPA</th>
+                                                                <th>Nama Lengkap</th>
                                                                 <th>PW</th>
                                                                 <th>PD</th>
                                                                 <th>PC</th>
                                                                 <th>Desa</th>
-                                                                <th>Latitude</th>
-                                                                <th>Longitude</th>
+                                                                <th>PJ</th>
+                                                                <th>Email</th>
+                                                                <th>Nomor Telpon</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </tfoot>
-
                                                     </table>
                                                 </div><!-- box-body -->
 
@@ -1487,17 +1500,166 @@
                                         </div><!-- panel-body -->
                                     </div> <!-- panel-body  -->
                                 </div> <!-- panel-body --> 
-                            </section><!-- right col -->
-
+                            </section><!-- Data Anggota PC  -->
                         </div>
-                        <!-- nav-tabs-custom -->
+                        <!-- Data Deskriptif Anggota PC -->
+                        <div class="tab-pane active" id="tab_6">
+                            <section class="content">
+
+                                <div class="box box-info">
+                                    <div class="bo box-header">
+                                        <h1 class="box-title">Data Statistik Usia Anggota Pemuda Persis</h1>
+                                    </div><!-- /.box-header -->
+                                    <div class="box box-body">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nama Jama'ah</th>
+                                                    <th>Range Usia</th>
+                                                    <th>Jumlah</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                $total = 0;
+                                                foreach ($usia as $data) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $no; ?></td>
+                                                        <th>Nama Jama'ah</th>
+                                                        <td><?php echo $data->range_umur; ?></td>
+                                                        <td><?php echo $data->jumlah; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                    $total += $data->jumlah;
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="2" align="center"><bold>Jumlah Total</bold></td>
+                                            <td><?php echo $total; ?></td>
+                                            </tr>
+                                            </tbody>
+                                        </table> 
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Data Deskriptif Usia Anggota PC -->
+
+                        <!-- Data Deskriptif Pendidikan Anggota PC -->
+                        <div class="tab-pane active" id="tab_7">
+                            <section class="content">
+                                <div class="box box-warning">
+                                    <div class="bo box-header">
+                                        <h1 class="box-title">Data Statistik Pendidikan Anggota Pemuda Persis</h1>
+                                    </div><!-- /.box-header -->
+                                    <div class="box box-body">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Level Pendidikan</th>
+                                                    <th>Jumlah</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                $total = 0;
+                                                foreach ($pendidikan as $data) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $no; ?></td>
+                                                        <td><?php echo $data->level_pendidikan; ?></td>
+                                                        <td><?php echo $data->jumlah; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                    $total += $data->jumlah;
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="2" align="center"><bold>Jumlah Total</bold></td>
+                                            <td><?php echo $total; ?></td>
+                                            </tr>
+                                            </tbody>
+                                        </table> 
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Data Deskriptif Pekerjaan Anggota PC -->
+                        <div class="tab-pane active" id="tab_8">
+                            <section class="content">
+
+                            </section>
+                        </div>
+                        <!-- Data Deskriptif Status Marital Anggota PC -->
+                        <div class="tab-pane active" id="tab_9">
+                            <section class="content">
+                                <div class="box box-danger">
+                                    <div class="bo box-header">
+                                        <h1 class="box-title">Data Statistik Status Marital Anggota Pemuda Persis</h1>
+                                    </div><!-- /.box-header -->
+                                    <div class="box box-body">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Status</th>
+                                                    <th>Jumlah</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                $total = 0;
+                                                foreach ($merit as $merital) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $no; ?></td>
+                                                        <td><?php echo $merital->status; ?></td>
+                                                        <td><?php echo $merital->jumlah; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                    $total += $merital->jumlah;
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="2" align="center"><bold>Jumlah Total</bold></td>
+                                            <td><?php echo $total; ?></td>
+                                            </tr>
+                                            </tbody>
+                                        </table> 
+                                    </div> 
+                            </section>
+                        </div>
+                        <!-- Data Deskriptif Kegiatan Anggota PC -->
+                        <div class="tab-pane active" id="tab_10">
+                            <section class="content">
+
+                            </section>
+                        </div>
+                        <!-- Data Deskriptif Muballigh Anggota PC -->
+                        <div class="tab-pane active" id="tab_11">
+                            <section class="content">
+
+                            </section>
+                        </div>
+
                     </div>
-                    <!-- /.col -->
+                    <!-- nav-tabs-custom -->
                 </div>
-            </div> <!-- /.row -->
+                <!-- /.col -->
+            </div>
+        </div> <!-- /.row -->
 
 
-            <!-- END CUSTOM TABS -->
+        <!-- END CUSTOM TABS -->
     </section><!-- right col -->
 
 
@@ -1518,14 +1680,17 @@
 
 
 <script>
-                                                       $(document).ready(function () {
-                                                           $('#data_pj').DataTable({
-                                                               "scrollX": true
-                                                           });
-                                                           $('#data_pc').DataTable({
-                                                               "scrollX": true
-                                                           });
-                                                       });
+                                                                                   $(document).ready(function () {
+                                                                                       $('#data_pj').DataTable({
+                                                                                           "scrollX": true
+                                                                                       });
+                                                                                       $('#data_pc').DataTable({
+                                                                                           "scrollX": true
+                                                                                       });
+                                                                                       $('#data_anggota').DataTable({
+                                                                                           "scrollX": true
+                                                                                       });
+                                                                                   });
 </script>
 <?php $this->load->view('template/jscripts'); ?>
 <?php $this->load->view('template/footer'); ?>
