@@ -112,7 +112,7 @@ class M_Jamiyyah extends CI_Model {
     function cek_pc($kd_pc) {
         $param = array('tbl_data_geografis_pc.kd_pc' => $kd_pc);
         $this->db->select('tbl_data_geografis_pc.kd_pc, tbl_data_geografis_pc.kd_pd, tbl_data_geografis_pc.kd_pw, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
-        wilayah_kecamatan.nama as pc, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pc.latitude, tbl_data_geografis_pc.longitude, tbl_data_geografis_pc.alamat_utama, tbl_data_geografis_pc.alamat_alternatif, tbl_data_geografis_pc.no_kontak, tbl_data_geografis_pc.email,
+        wilayah_kecamatan.nama as pc, tbl_data_geografis_pc.pc as nama_pc, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pc.latitude, tbl_data_geografis_pc.longitude, tbl_data_geografis_pc.alamat_utama, tbl_data_geografis_pc.alamat_alternatif, tbl_data_geografis_pc.no_kontak, tbl_data_geografis_pc.email,
         tbl_data_geografis_pc.luas, tbl_data_geografis_pc.bw_utara, tbl_data_geografis_pc.bw_selatan, tbl_data_geografis_pc.bw_timur, tbl_data_geografis_pc.bw_barat,
         tbl_data_geografis_pc.jarak_dari_ibukota_negara, tbl_data_geografis_pc.jarak_dari_ibukota_provinsi, tbl_data_geografis_pc.jarak_dari_ibukota_kabupaten, tbl_data_geografis_pc.foto,
         tbl_data_kejamiyyahan.penasehat1, tbl_data_kejamiyyahan.penasehat2, tbl_data_kejamiyyahan.penasehat3, tbl_data_kejamiyyahan.penasehat4,   
@@ -136,6 +136,23 @@ class M_Jamiyyah extends CI_Model {
     }
 
     function cek_usia() {
+        $query = $this->db->query("SELECT CASE
+                                      WHEN umur < 20 THEN '< 20'
+                                      WHEN umur BETWEEN 20 and 25 THEN '20 - 25'
+                                      WHEN umur BETWEEN 26 and 30 THEN '26 - 30'
+                                      WHEN umur BETWEEN 31 and 35 THEN '31 - 35'
+                                      WHEN umur >= 35 THEN '> 35'
+                                      WHEN umur IS NULL THEN '(NULL)'
+                                      END as range_umur,
+                                      COUNT(*) AS jumlah
+
+                                      FROM (SELECT npa, nama, tanggal_lahir, TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) AS umur FROM `tbl_anggota`)  as dummy_table
+                                      GROUP BY range_umur
+                                      ORDER BY range_umur;");
+        return $query->result();
+    }
+    
+    function cek_usia_anggota_pc() {
         $query = $this->db->query("SELECT CASE
                                       WHEN umur < 20 THEN '< 20'
                                       WHEN umur BETWEEN 20 and 25 THEN '20 - 25'
@@ -177,7 +194,47 @@ class M_Jamiyyah extends CI_Model {
         return $query->result();
     }
     
+    function cek_pendidikan_anggota_pc() {
+        $query = $this->db->query("SELECT CASE
+                                    WHEN level = 'SD' THEN 'SD'
+                                    WHEN level = 'SMP' THEN 'SMP'
+                                    WHEN level = 'Tsn' THEN 'Tsn'
+                                    WHEN level = 'SMK' THEN 'SMK'
+                                    WHEN level = 'SMA' THEN 'SMA'
+                                    WHEN level = 'MA' THEN 'MA'
+                                    WHEN level = 'STM' THEN 'STM'
+                                    WHEN level = 'Mln' THEN 'Mln'
+                                    WHEN level = 'D1' THEN 'D1'
+                                    WHEN level = 'D2' THEN 'D2'
+                                    WHEN level = 'D3' THEN 'D3'
+                                    WHEN level = 'S1' THEN 'S1'
+                                    WHEN level = 'S2' THEN 'S2'
+                                    WHEN level = 'S3' THEN 'S3'
+                                    WHEN level IS NULL THEN '(NULL)'
+                                    END level_pendidikan,
+                                    COUNT(*) AS jumlah
+
+                                    FROM (SELECT npa, pendidikan as level FROM `tbl_pendidikan`)  as dummy_table
+                                    GROUP BY level;");
+        return $query->result();
+    }
+    
     function cek_status_merital() {
+        $query = $this->db->query("SELECT CASE
+                                    WHEN status = 'Single' THEN 'Single'
+                                    WHEN status = 'Menikah' THEN 'Menikah'
+                                    WHEN status = 'Duda' THEN 'Duda'
+                                    WHEN status IS NULL THEN '(NULL)'
+                                    END as status,
+                                    COUNT(*) AS jumlah
+
+                                    FROM (SELECT npa, status_merital as status FROM `tbl_anggota`)  as dummy_table
+                                    GROUP BY status
+                                    ");
+        return $query->result();
+    }
+    
+    function cek_status_merital_anggota_pc() {
         $query = $this->db->query("SELECT CASE
                                     WHEN status = 'Single' THEN 'Single'
                                     WHEN status = 'Menikah' THEN 'Menikah'
