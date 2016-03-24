@@ -48,7 +48,13 @@ class Profil extends CI_Controller {
         $kd_pc = $this->uri->segment(3);
         $data['record']     = $this->m_jamiyyah->cek_pc($kd_pc)->row_array();
         $data['record2']    = $this->m_jamiyyah->lihat_pj_per_pc($kd_pc);
-        $data['anggota']    = $this->m_anggota->lihat_anggota_pc($kd_pc);
+//        $nama_pc            = $this->m_anggota->lihat_kode_pc($kd_pc);
+        $kd_kec             = $data['record']['nama_pc'];
+        $data['anggota']    = $this->m_anggota->lihat_anggota_pc($kd_kec);
+        $data['usia']       = $this->m_jamiyyah->cek_usia_anggota_pc();
+        $data['pendidikan'] = $this->m_jamiyyah->cek_pendidikan_anggota_pc();
+        $data['merit']      = $this->m_jamiyyah->cek_status_merital_anggota_pc();
+//        print_r($data['usia']);        die();
         $this->load->view('lihat_pc_detail2', $data);
     }
     
