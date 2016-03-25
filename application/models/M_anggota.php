@@ -7,6 +7,23 @@
  */
 class M_Anggota extends CI_Model {
 
+    function get_anggota($q) {
+        $this->db->select('*');
+        $this->db->like('nama', $q);
+        $query = $this->db->get('tbl_anggota');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row) {
+                $new_row['label'] = htmlentities(stripslashes($row['npa']));
+                $new_row['value'] = htmlentities(stripslashes($row['nama']));
+                $new_row['description']=htmlentities(stripslashes($row['nama']));
+                $new_row['pekerjaan']=htmlentities(stripslashes($row['pekerjaan']));
+                $new_row['image'] = htmlentities(stripslashes($row['foto']));
+                $row_set[] = $new_row; //build an array
+            }
+            echo json_encode($row_set); //format the array into json data
+        }
+    }
+
     function simpan($data_pribadi, $data_keluarga, $data_orangtua, $data_pendidikan, $data_organisasi, $data_keterampilan, $data_tafiq) {
         $this->db->insert("tbl_anggota", $data_pribadi);
         $this->db->insert("tbl_keluarga", $data_keluarga);
@@ -33,11 +50,12 @@ class M_Anggota extends CI_Model {
         ON tbl_anggota.desa = wilayah_desa.id;");
         return $query->result();
     }
-    
+
     public function lihat_kode_pc($kd_kec) {
         $query = $this->db->query("SELECT kd_pc, pc, pd, pw FROM tbl_data_geografis_pc where kd_pc = '$kd_kec'");
         return $query->result();
     }
+
     public function lihat_anggota_pc($kd_kec) {
         $query = $this->db->query("SELECT tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status,
@@ -103,10 +121,10 @@ class M_Anggota extends CI_Model {
         $this->db->where("npa", $npa);
         $this->db->update("tbl_anggota", $data_pribadi);
     }
-    
+
     public function update_foto($npa, $data) {
         $this->db->where('npa', $npa);
-        $this->db->update('tbl_anggota', $data); 
+        $this->db->update('tbl_anggota', $data);
     }
 
     public function update2($npa, $data_pribadi, $data_keluarga, $data_orangtua, $data_pendidikan, $data_organisasi, $data_keterampilan) {
@@ -142,37 +160,37 @@ class M_Anggota extends CI_Model {
         $this->db->where(array('npa' => $npa));
         return $this->db->update("tbl_keterampilan", $data_keterampilan);
     }
-    
+
     public function update_data_pendidikan($npa, $data_pendidikan) {
         // Data Pendidikan
         $this->db->where("npa", $npa);
         $this->db->update("tbl_pendidikan", $data_pendidikan);
     }
-    
+
     public function update_data_keluarga($npa, $data_keluarga) {
         // Data Keluarga
         $this->db->where("npa", $npa);
         $this->db->update("tbl_keluarga", $data_keluarga);
     }
-    
+
     public function update_data_orangtua($npa, $data_orangtua) {
         // Data Orangtua
         $this->db->where("npa", $npa);
         $this->db->update("tbl_orangtua", $data_orangtua);
     }
-    
+
     public function update_data_keterampilan($npa, $data_keterampilan) {
         // Data Keterampilan
         $this->db->where("npa", $npa);
         $this->db->update("tbl_keterampilan", $data_keterampilan);
     }
-    
+
     public function update_data_organisasi($npa, $data_organisasi) {
         // Data Organisasi
         $this->db->where("npa", $npa);
         $this->db->update("tbl_organisasi", $data_organisasi);
     }
-    
+
     public function check_email_availablity() {
         $email = trim($this->input->post('email'));
         $email = strtolower($email);
@@ -184,8 +202,8 @@ class M_Anggota extends CI_Model {
         else
             return true;
     }
-    
-    function delete($npa){
+
+    function delete($npa) {
         $this->db->where('npa', $npa);
         $this->db->delete('tbl_anggota');
     }
