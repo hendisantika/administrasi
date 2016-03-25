@@ -31,8 +31,11 @@
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<?php echo base_url('assets/admin_lte/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
-                                                    <!--<img src="<?php echo base_url('assets/foto/users/'.$this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">-->
+                                                    <?php if ($this->session->foto == NULL) { ?>
+                                                        <img src="<?php echo base_url('assets/admin_lte/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+                                                    <?php } else { ?>
+                                                        <img src="<?php echo base_url('assets/foto/users/' . $this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">
+                                                    <?php } ?>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -45,7 +48,7 @@
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <img src="<?php echo base_url('assets/admin_lte/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image">
-                                                    <!--<img src="<?php echo base_url('assets/foto/users/'.$this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">-->
+                                                    <!--<img src="<?php echo base_url('assets/foto/users/' . $this->session->foto); ?>" width="160px" height="160px" class="img-circle" alt="User Image">-->
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -209,24 +212,26 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo base_url('assets/admin_lte/img/avatar5.png'); ?>" class="user-image" alt="User Image">
-                                <!--<span class="hidden-xs">Hendi Santika</span>-->
-                                <span class="hidden-xs"><?php echo $this->session->nama; ?></span>
-                                <!--<span class="hidden-xs"><?php $sess_data['nama']; ?></span>-->
+                                <?php if ($this->session->foto == NULL) { ?>
+                                    <img src="<?php echo base_url('assets/admin_lte/img/avatar5.png'); ?>" class="user-image" alt="User Image">
+                                <?php } else { ?>
+                                    <img src="<?php echo base_url('assets/foto/users/' . $this->session->foto); ?>" class="user-image" alt="User Image">
+                                <?php } ?>
+                                <span class="hidden-xs"><?php echo $this->session->username; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="<?php echo base_url('assets/admin_lte/img/avatar5.png'); ?>" class="img-circle" alt="User Image">
+                                    <?php if ($this->session->foto == NULL) { ?>
+                                        <img src="<?php // echo base_url('assets/admin_lte/img/avatar5.png');    ?>" class="img-circle" alt="User Image">
+                                    <?php } else { ?>
+                                        <img src="<?php echo base_url('assets/foto/users/' . $this->session->foto); ?>" class="img-circle" alt="User Image">
+                                    <?php } ?>
                                     <p>
                                         <!--Hendi Santika - Web Developer-->
-                                        <?php echo $this->session->nama; ?> - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        <?php echo $this->session->username; ?> - Web Developer
+                                        <small>Terdaftar sejak <?php echo $this->session->reg_date; ?></small>
                                     </p>
-<!--                                        <p>
-                                    <?php echo $nama; ?>
-                                        <small>Terdaftar sejak <?php echo $reg_date; ?></small>
-                                    </p>-->
                                 </li>
                                 <!-- Menu Body -->
                                 <li class="user-body">
@@ -243,8 +248,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?php echo site_url() ?>user/details/<?php echo $this->session->npa;?>" class="btn btn-default btn-flat">Profile</a>
-                                        <!--<a href="user/profile/<?php echo $npa; ?>" class="btn btn-default btn-flat">Profile</a>-->
+                                        <a href="<?php echo site_url() ?>user/details/<?php echo $this->session->npa; ?>" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?php echo site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
