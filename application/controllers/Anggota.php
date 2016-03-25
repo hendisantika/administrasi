@@ -41,6 +41,17 @@ class Anggota extends CI_Controller {
         $this->load->view('add_anggota', $data);
     }
 
+    function auto() {
+        $this->load->view('anggota_view');
+    }
+
+    function get_anggota() {
+        if (isset($_GET['term'])) {
+            $q = strtolower($_GET['term']);
+            $this->m_anggota->get_anggota($q);
+        }
+    }
+
     function add_ajax_kab($id_prov) {
 //        $query = $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
         $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
@@ -320,7 +331,7 @@ class Anggota extends CI_Controller {
         $this->load->vars('a', $data_anggota);
         $this->load->view('lihat_anggota');
     }
-    
+
     public function lihat_anggota_pc() {
         $this->load->model('m_anggota');
         $data_anggota = $this->m_anggota->lihat_anggota_pc();
@@ -381,6 +392,7 @@ class Anggota extends CI_Controller {
             $this->load->view('edit_anggota', $data);
         }
     }
+
     public function edit_foto() {
         $npa = $this->uri->segment(3);
         if ($npa == NULL) {
@@ -398,9 +410,9 @@ class Anggota extends CI_Controller {
             $dt = $this->m_anggota->edit($npa);
 //            $dt = $this->m_anggota->cekNpa($npa);
             // Data Pribadi
-            $data['npa']    = $dt->npa;
-            $data['nama']   = $dt->nama;
-            $data['foto']   = $dt->foto;
+            $data['npa'] = $dt->npa;
+            $data['nama'] = $dt->nama;
+            $data['foto'] = $dt->foto;
 
             $this->load->view('edit_foto_anggota', $data);
         }
@@ -470,9 +482,10 @@ class Anggota extends CI_Controller {
             die();
         }
     }
+
     public function update_foto() {
         // Data Pribadi
-       if (isset($_POST['submit']) && $_FILES['foto']) {
+        if (isset($_POST['submit']) && $_FILES['foto']) {
             $config['upload_path'] = './assets/foto/anggota';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size'] = '1024';
@@ -483,17 +496,17 @@ class Anggota extends CI_Controller {
             $this->upload->do_upload('foto');
             $foto = $this->upload->data('file_name');
             $npa = $this->input->post('npa');
-            
+
             $data = array(
-                'npa'           => $npa,
-                'last_updated'  => date('Y-m-d H:i:sa'),
-                'foto'          => $foto
+                'npa' => $npa,
+                'last_updated' => date('Y-m-d H:i:sa'),
+                'foto' => $foto
             );
 //            print_r($data); die();
             $this->m_anggota->update_foto($npa, $data);
 //            $this->load->view('lihat_user');
             redirect('anggota/lihat_anggota');
-        }else{
+        } else {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
 //            die();
@@ -504,7 +517,7 @@ class Anggota extends CI_Controller {
     public function ganti_foto() {
         $this->load->view('ganti_foto');
     }
-    
+
     public function ganti_foto2() {
         $this->load->view('ganti_foto2');
     }
