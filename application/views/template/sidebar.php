@@ -50,7 +50,6 @@
                 <ul class="treeview-menu">
                     <li><a href="<?php echo base_url('anggota'); ?>"><i class="fa fa-user-plus"></i> Input Data Anggota</a></li>
                     <li><a href="<?php echo base_url('anggota/lihat_anggota'); ?>"><i class="glyphicon glyphicon-eye-open"></i> Lihat Data Anggota</a></li>
-                    <li><a href="<?php echo base_url('anggota/auto'); ?>"><i class="glyphicon glyphicon-eye-open"></i> Autocomplete Anggota</a></li>
                 </ul>
             </li>
             <?php if ($this->session->level == 'admin') { ?>
