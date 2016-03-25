@@ -41,10 +41,6 @@ class Anggota extends CI_Controller {
         $this->load->view('add_anggota', $data);
     }
 
-    function auto() {
-        $this->load->view('anggota_view');
-    }
-
     function get_anggota() {
         if (isset($_GET['term'])) {
             $q = strtolower($_GET['term']);
