@@ -38,6 +38,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/timepicker/bootstrap-timepicker.min.css'); ?>">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>">
+        <link href="<?php echo base_url() ?>assets/jQueryUI/jquery-ui.css" rel="stylesheet" type="text/css" />
 
         <!-- File Input-->
 <!--        <link href="<?php echo base_url('assets/fileinput/css/fileinput.css'); ?>" media="all" rel="stylesheet" type="text/css" />
@@ -183,7 +184,7 @@
                 height: 50px;*/
                 position: fixed;
                 right:10px;
-                bottom: 10px;
+                bottom: 40px;
                 /*
                 border-left:15px solid transparent;
                 border-right:15px solid transparent;
