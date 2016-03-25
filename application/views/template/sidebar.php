@@ -1,4 +1,3 @@
-
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -6,11 +5,15 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo base_url('assets/admin_lte/img/avatar5.png'); ?>" class="img-circle" alt="User Image">
+                <?php if ($this->session->foto == NULL) { ?>
+                    <img src="<?php echo base_url('assets/admin_lte/img/avatar5.png'); ?>" class="img-circle" alt="User Image">
+                <?php } else { ?>
+                    <img src="<?php echo base_url('assets/foto/users/' . $this->session->foto); ?>" class="img-circle" alt="User Image">
+                <?php } ?>
             </div>
             <div class="pull-left info">
                 <!--<p>Hendi Santika</p>-->
-                <p><?php echo $this->session->nama; ?></p>
+                <p><?php echo $this->session->username; ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -30,12 +33,12 @@
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> 
-                        <span>Dashboard</span> 
+                    <span>Dashboard</span> 
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="<?php echo base_url('/dashboard1');?>"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="<?php echo base_url('/dashboard2');?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    <li class="active"><a href="<?php echo base_url('/dashboard1'); ?>"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li><a href="<?php echo base_url('/dashboard2'); ?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -45,16 +48,17 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('anggota');?>"><i class="fa fa-user-plus"></i> Input Data Anggota</a></li>
-                    <li><a href="<?php echo base_url('anggota/lihat_anggota');?>"><i class="glyphicon glyphicon-eye-open"></i> Lihat Data Anggota</a></li>
+                    <li><a href="<?php echo base_url('anggota'); ?>"><i class="fa fa-user-plus"></i> Input Data Anggota</a></li>
+                    <li><a href="<?php echo base_url('anggota/lihat_anggota'); ?>"><i class="glyphicon glyphicon-eye-open"></i> Lihat Data Anggota</a></li>
+                    <li><a href="<?php echo base_url('anggota/auto'); ?>"><i class="glyphicon glyphicon-eye-open"></i> Autocomplete Anggota</a></li>
                 </ul>
             </li>
             <?php if ($this->session->level == 'admin') { ?>
-            <li>
-                <a href="<?php echo base_url('user/lihat_user/');?>">
-                    <i class="glyphicon glyphicon-user"></i> <span>Data User</span>
-                </a>
-            </li>
+                <li>
+                    <a href="<?php echo base_url('user/lihat_user/'); ?>">
+                        <i class="glyphicon glyphicon-user"></i> <span>Data User</span>
+                    </a>
+                </li>
             <?php } ?>
             <li class="treeview">
                 <a href="#">
@@ -63,11 +67,11 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('jamiyyah/pj');?>"><i class="fa fa-circle-o"></i> Data Monografi PJ</a></li>
-                    <li><a href="<?php echo base_url('jamiyyah/pc');?>"><i class="fa fa-circle-o"></i> Data Monografi PC</a></li>
-                    <li><a href="<?php echo base_url('jamiyyah/pd');?>"><i class="fa fa-circle-o"></i> Data Monografi PD</a></li>
-                    <li><a href="<?php echo base_url('jamiyyah/performa_pc');?>"><i class="fa fa-circle-o"></i> Indeks Performa PC</a></li>
-                    <li><a href="<?php echo base_url('jamiyyah/performa_pd');?>"><i class="fa fa-circle-o"></i> Indeks Performa PD</a></li>
+                    <li><a href="<?php echo base_url('jamiyyah/pj'); ?>"><i class="fa fa-circle-o"></i> Data Monografi PJ</a></li>
+                    <li><a href="<?php echo base_url('jamiyyah/pc'); ?>"><i class="fa fa-circle-o"></i> Data Monografi PC</a></li>
+                    <li><a href="<?php echo base_url('jamiyyah/pd'); ?>"><i class="fa fa-circle-o"></i> Data Monografi PD</a></li>
+                    <li><a href="<?php echo base_url('jamiyyah/performa_pc'); ?>"><i class="fa fa-circle-o"></i> Indeks Performa PC</a></li>
+                    <li><a href="<?php echo base_url('jamiyyah/performa_pd'); ?>"><i class="fa fa-circle-o"></i> Indeks Performa PD</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -76,9 +80,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('profil/lihat_pj');?>"><i class="fa fa-circle-o"></i> Pimpinan Jama'ah (PJ)</a></li>
-                    <li><a href="<?php echo base_url('profil/lihat_pc');?>"><i class="fa fa-circle-o"></i> Pimpinan Cabang (PC)</a></li>
-                    <li><a href="<?php echo base_url('profil/lihat_pd');?>"><i class="fa fa-circle-o"></i> Pimpinan Daerah (PD)</a></li>
+                    <li><a href="<?php echo base_url('profil/lihat_pj'); ?>"><i class="fa fa-circle-o"></i> Pimpinan Jama'ah (PJ)</a></li>
+                    <li><a href="<?php echo base_url('profil/lihat_pc'); ?>"><i class="fa fa-circle-o"></i> Pimpinan Cabang (PC)</a></li>
+                    <li><a href="<?php echo base_url('profil/lihat_pd'); ?>"><i class="fa fa-circle-o"></i> Pimpinan Daerah (PD)</a></li>
                 </ul>
             </li>
             <li class="treeview">
