@@ -2,49 +2,74 @@
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
 
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/jQuery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/jQueryUI/jquery-ui.js"></script>
+
 <script type="text/javascript">
 // <![CDATA[
-$(document).ready(function () {
-    $(function () {
-        $("#autocomplete").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "<?php echo site_url('autocomplete/suggestions'); ?>",
-                    data: {nama: $("#autocomplete").val()},
-                    dataType: "json",
-                    type: "POST",
-                    success: function (data) {
-                        response(data);
-                    }
-                });
-            },
+    $(document).ready(function () {
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "<?php echo site_url('autocomplete/suggestions'); ?>",
+                        data: {nama: $("#autocomplete").val()},
+                        dataType: "json",
+                        type: "POST",
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+            });
+        });
+        $(function () {
+            $("#autocomplete2").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "<?php echo site_url('autocomplete/suggestions'); ?>",
+                        data: {nama: $("#autocomplete2").val()},
+                        dataType: "json",
+                        type: "POST",
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+            });
         });
     });
-    $(function () {
-        $("#autocomplete2").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "<?php echo site_url('autocomplete/suggestions'); ?>",
-                    data: {nama: $("#autocomplete2").val()},
-                    dataType: "json",
-                    type: "POST",
-                    success: function (data) {
-                        response(data);
-                    }
-                });
-            },
-        });
-    });
-});
 // ]]>
 </script>
 
 <style>
     .pilih1, .pilih2, .pilih3:hover{
         cursor: pointer;
+    }
+    .ui-autocomplete-loading {
+        background: #fff url('../assets/others/loader.gif') right center no-repeat !important;
+    }
+
+    .list_item_container {
+        width:300px;
+        height: 60px;
+        padding: 5px 0;
+    }
+    .image {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        float: left;
+    }
+    .description {
+        font-style: italic;
+        font-size: 0.8em;
+        color: black;
+    }
+    .pekerjaan {
+        font-style: italic;
+        font-size: 0.8em;
+        color: black;
     }
 </style>
 <!-- Content Wrapper. Contains page content -->
@@ -265,167 +290,167 @@ $(document).ready(function () {
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Ketua</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control autocomplete nama" name="ketua" id="autocomplete" placeholder="Nama Ketua" required>
+                        <input type="text" class="form-control" name="ketua" id="nama1" placeholder="Nama Ketua" required>
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Ketua</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_ketua" id="autocomplete2" placeholder="Nama Wakil Ketua">
+                        <input type="text" class="form-control" name="wkl_ketua" id="nama2" placeholder="Nama Wakil Ketua">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Sekretaris</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control autocomplete nama" name="sekretaris" id="autocomplete" placeholder="Sekretaris" required>
+                        <input type="text" class="form-control autocomplete nama" name="sekretaris" id="nama3" placeholder="Sekretaris" required>
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Sekretaris</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_sekretaris" id="autocomplete" placeholder="Wakil Sekretaris">
+                        <input type="text" class="form-control" name="wkl_sekretaris" id="nama4" placeholder="Wakil Sekretaris">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bendahara</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bendahara" placeholder="Bendahara" required>
+                        <input type="text" class="form-control" name="bendahara" id="nama5" placeholder="Bendahara" required>
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bendahara</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bendahara" placeholder="Wakil Bendahara">
+                        <input type="text" class="form-control" name="wkl_bendahara" id="nama6" placeholder="Wakil Bendahara">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Jam'iyyah</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_jamiyyah" placeholder="Bidang Jam'iyyah">
+                        <input type="text" class="form-control" name="bid_jamiyyah" id="nama7" placeholder="Bidang Jam'iyyah">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Jam'iyyah</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_jamiyyah" placeholder="Wakil Bidang Jam'iyyah">
+                        <input type="text" class="form-control" name="wkl_bid_jamiyyah" id="nama8" placeholder="Wakil Bidang Jam'iyyah">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Kaderisasi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_kaderisasi" placeholder="Bidang Kaderisasi">
+                        <input type="text" class="form-control" name="bid_kaderisasi" id="nama9" placeholder="Bidang Kaderisasi">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Kaderisasi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_kaderisasi" placeholder="Bidang Bidang Kaderisasi">
+                        <input type="text" class="form-control" name="wkl_bid_kaderisasi" id="nama10" placeholder="Bidang Bidang Kaderisasi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Administrasi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_administrasi" placeholder="Bidang Administrasi">
+                        <input type="text" class="form-control" name="bid_administrasi" id="nama11" placeholder="Bidang Administrasi">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Administrasi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_administrasi" placeholder="Wakil Bidang Administrasi">
+                        <input type="text" class="form-control" name="wkl_bid_administrasi" id="nama12" placeholder="Wakil Bidang Administrasi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Pendidikan</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_pendidikan" placeholder="Bidang Pendidikan">
+                        <input type="text" class="form-control" name="bid_pendidikan" id="nama13" placeholder="Bidang Pendidikan">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Pendidikan</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_pendidikan" placeholder="Wakil Bidang Pendidikan">
+                        <input type="text" class="form-control" name="wkl_bid_pendidikan" id="nama14" placeholder="Wakil Bidang Pendidikan">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Da’wah</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_dakwah" placeholder="Bidang Da’wah">
+                        <input type="text" class="form-control" name="bid_dakwah" id="nama15" placeholder="Bidang Da’wah">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Da’wah</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_dakwah" placeholder="Wakil Bidang Da’wah">
+                        <input type="text" class="form-control" name="wkl_bid_dakwah" id="nama16" placeholder="Wakil Bidang Da’wah">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bid Humas & Pub</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_humas_publikasi" placeholder="Bid Humas & Pub">
+                        <input type="text" class="form-control" name="bid_humas_publikasi" id="nama17" placeholder="Bid Humas & Pub">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Humas & Pub</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_humas_publikasi" placeholder="Wakil Bidang Humas & Pub">
+                        <input type="text" class="form-control" name="wkl_bid_humas_publikasi" id="nama18" placeholder="Wakil Bidang Humas & Pub">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang H.A.L</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_hal" placeholder="Bidang Hubungan Antar Lembaga">
+                        <input type="text" class="form-control" name="bid_hal" id="nama19" placeholder="Bidang Hubungan Antar Lembaga">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang H.A.L</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_hal" placeholder="Wakil Bidang H.A.L">
+                        <input type="text" class="form-control" name="wkl_bid_hal" id="nama20" placeholder="Wakil Bidang H.A.L">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Olahraga & Seni</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_or_seni" placeholder="Bidang Olahraga & Seni">
+                        <input type="text" class="form-control" name="bid_or_seni" id="nama21" placeholder="Bidang Olahraga & Seni">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Olahraga & Seni</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_or_seni" placeholder="Wakil Bidang Olahraga & Seni">
+                        <input type="text" class="form-control" name="wkl_bid_or_seni" id="nama22" placeholder="Wakil Bidang Olahraga & Seni">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Sosial</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_sosial" placeholder="Bidang Sosial">
+                        <input type="text" class="form-control" name="bid_sosial" id="nama23" placeholder="Bidang Sosial">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Sosial</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_sosial" placeholder="Wakil Bidang Sosial">
+                        <input type="text" class="form-control" name="wkl_bid_sosial" id="nama24" placeholder="Wakil Bidang Sosial">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Bidang Ekonomi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="bid_ekonomi" placeholder="Bidang Ekonomi">
+                        <input type="text" class="form-control" name="bid_ekonomi" id="nama25" placeholder="Bidang Ekonomi">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Wakil Bidang Ekonomi</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="wkl_bid_ekonomi" placeholder="Wakil Bidang Ekonomi">
+                        <input type="text" class="form-control" name="wkl_bid_ekonomi" id="nama26" placeholder="Wakil Bidang Ekonomi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Penasehat 1</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="penasehat1" placeholder="Penasehat 1">
+                        <input type="text" class="form-control" name="penasehat1" id="nama27" placeholder="Penasehat 1">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Penasehat 2</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="penasehat2" placeholder="Penasehat 2">
+                        <input type="text" class="form-control" name="penasehat2" id="nama28" placeholder="Penasehat 2">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Penasehat 3</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="penasehat3" placeholder="Penasehat 3">
+                        <input type="text" class="form-control" name="penasehat3" id="nama29" placeholder="Penasehat 3">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Penasehat 4</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="penasehat4" placeholder="Penasehat 4">
+                        <input type="text" class="form-control" name="penasehat4" id="nama30" placeholder="Penasehat 4">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Pembantu Umum 1</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="pembantu_umum1" placeholder="Pembantu umum 1">
+                        <input type="text" class="form-control" name="pembantu_umum1" id="nama31" placeholder="Pembantu umum 1">
                     </div>
                     <label for="nama_istri" class="col-sm-2 control-label">Pembantu Umum 2</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="pembantu_umum2" placeholder="Pembantu Umum 2">
+                        <input type="text" class="form-control" name="pembantu_umum2" id="nama32" placeholder="Pembantu Umum 2">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nama_istri" class="col-sm-2 control-label">Pembantu Umum 3</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="pembantu_umum3" placeholder="Pembantu Umum 1">
+                        <input type="text" class="form-control" name="pembantu_umum3" id="nama33" placeholder="Pembantu Umum 1">
                     </div>
                 </div>
                 <hr>
@@ -791,8 +816,8 @@ $(document).ready(function () {
 <script src="<?php echo base_url('assets/fileinput/js/fileinput.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/fileinput/js/fileinput_locale_es.js'); ?>" type="text/javascript"></script>
 
-<!-- File Input -->
-<script>
+<!--File Input--> 
+<script type="text/javascript">
     $(document).on('ready', function () {
         $("#foto").fileinput({
             showCaption: false,
@@ -807,6 +832,472 @@ $(document).ready(function () {
             uploadLabel: "Upload",
             uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
         });
+    });
+
+// Script Autocomplete-->
+    $(document).ready(function () {
+        $("#nama1").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama2").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama3").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama4").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama5").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama6").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama7").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama8").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama9").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama10").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama11").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama12").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama13").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama14").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama15").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama16").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama17").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama18").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama19").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama20").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama21").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama22").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama23").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama24").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama25").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama26").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama27").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama28").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama29").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama30").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama31").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama32").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama33").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
     });
 </script>
 
