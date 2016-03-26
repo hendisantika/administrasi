@@ -2,9 +2,37 @@
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
 
+<script type="text/javascript" src="<?php echo base_url() ?>assets/jQuery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/jQueryUI/jquery-ui.js"></script>
+
 <style>
     .pilih1, .pilih2, .pilih3:hover{
         cursor: pointer;
+    }
+    .ui-autocomplete-loading {
+        background: #fff url('../assets/others/loader.gif') right center no-repeat !important;
+    }
+
+    .list_item_container {
+        width:300px;
+        height: 60px;
+        padding: 5px 0;
+    }
+    .image {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        float: left;
+    }
+    .description {
+        font-style: italic;
+        font-size: 0.8em;
+        color: black;
+    }
+    .pekerjaan {
+        font-style: italic;
+        font-size: 0.8em;
+        color: black;
     }
 </style>
 <!-- Content Wrapper. Contains page content -->
@@ -158,19 +186,19 @@
                 <div class="form-group">
                     <label for="ketua_pj" class="col-sm-2 control-label">Ketua PJ</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="ketua_pj" placeholder="Nama Ketua PJ" required> 
+                        <input type="text" class="form-control" name="ketua_pj" id="nama1" placeholder="Nama Ketua PJ" required> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="sekretaris" class="col-sm-2 control-label">Sekretaris</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="sekretaris_pj" placeholder="Nama Sekretaris" required> 
+                        <input type="text" class="form-control" name="sekretaris_pj" id="nama2" placeholder="Nama Sekretaris" required> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bendahara" class="col-sm-2 control-label">Bendahara</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="bendahara_pj" placeholder="Nama Bendahara" required> 
+                        <input type="text" class="form-control" name="bendahara_pj" id="nama3" placeholder="Nama Bendahara" required> 
                     </div>
                 </div>
                 <div class="form-group">
@@ -395,8 +423,56 @@
             removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
             uploadClass: "btn btn-info",
             uploadLabel: "Upload",
-            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
+            showUpload: false,
+            overwriteInitial: false,
+            maxFileSize: 2000,
+            allowedFileTypes: ["image"],
+            allowedFileExtensions: ["jpg", "gif", "png"]
         });
+        
+        $("#nama1").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama2").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
+        $("#nama3").autocomplete({
+            source: "../anggota/get_anggota" // name of controller followed by function
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html = '<a><div class="list_item_container">\n\
+                                                <div class="image"><img src="../assets/foto/anggota/' + item.image + '" width="50px" height="55px"></div>\n\
+                                                <div class="label"><font color="#000000" face="Verdana" style="font-style: bold italic; font-size: 12px;">' + item.label + '</font></div>\n\
+                                                <div class="description">' + item.description + '</div>\n\
+                                                <div class="pekerjaan">' + item.pekerjaan + '</div>\n\
+                                    </div></a>';
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append(inner_html)
+                    .appendTo(ul);
+        };
     });
 </script>
 
