@@ -18,7 +18,7 @@ class Anggota extends CI_Controller {
         $config['max_size'] = '1024';
         $config['remove_spaces'] = 'TRUE';
 
-        $this->session->userdata('logged_in');
+//        $this->session->userdata('logged_in');
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $this->upload->do_upload('foto');
@@ -322,6 +322,9 @@ class Anggota extends CI_Controller {
     }
 
     public function lihat_anggota() {
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
         $this->load->model('m_anggota');
         $data_anggota = $this->m_anggota->lihat_anggota();
         $this->load->vars('a', $data_anggota);
