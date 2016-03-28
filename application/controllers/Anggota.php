@@ -778,5 +778,32 @@ class Anggota extends CI_Controller {
         $this->m_anggota->delete($npa);
         redirect('anggota/lihat_anggota');
     }
+    
+    public function cek_akun() {
+        // allow only Ajax request    
+        if ($this->input->is_ajax_request()) {
+            // grab the email value from the post variable.
+            $npa = $this->input->post('npa');
+            $email = $this->input->post('email');
+            // check in database - table name : tbl_users  , Field name in the table : email
+            if (!empty($npa)) {
+                if (!$this->form_validation->is_unique($npa, 'tbl_anggota.npa')) {
+                    // set the json object as output                 
+                    $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'NPA tsb sudah ada! Harap input NPA yg lain!')));
+                } elseif ($this->form_validation->is_unique($npa, 'tbl_anggota.npa')) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'NPA tsb dapat digunakan!')));
+                }
+            }
+            if (!empty($email)) {
+                if (!$this->form_validation->is_unique($email, 'tbl_anggota.email')) {
+                    // set the json object as output                 
+                    $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'Alamat email tsb sudah terdaftar. Harap input alamat email yg lain!')));
+                } elseif ($this->form_validation->is_unique($email, 'tbl_anggota.email')) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(array('message' => 'Alamat email tsb dapat digunakan!')));
+                }
+            }
+        }
+    }
+
 
 }
