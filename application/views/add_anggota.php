@@ -139,8 +139,8 @@
                     <div class="col-sm-4">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Email">
-                        <label id="message"></label>
-                        <span id="loading"><img src="<?php echo base_url(); ?>assets/others/loader.gif" alt="Ajax Indicator" /></span> </div>
+<!--                        <label id="message"></label>
+                        <span id="loading"><img src="<?php echo base_url(); ?>assets/others/loader.gif" alt="Ajax Indicator" /></span> </div>-->
                     </div>
                     <label for="no_telpon" class="col-sm-1 control-label">Nomor Telepon 1</label>
                     <div class="col-sm-2">
@@ -544,7 +544,7 @@
                 </h3>
                 <hr><br>
                 <div class="form-group">
-                    <label for="level" class="col-sm-2 control-label">Level</label>
+                    <label for="level" class="col-sm-2 control-label">Level TAFIQ</label>
                     <div class="col-sm-3" class="form-control">
                         <select name="level" class="form-control">
                             <option>-- Pilih Level --</option>
@@ -555,32 +555,92 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">TAFIQ I</label>
+                    <label class="col-sm-10"><hr></label>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2 control-label">Dari Tanggal</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
-                            <input type="text" name="mulai" class="form-control" id="tanggal" placeholder="0000-00-00">
+                            <input type="text" name="mulai1" class="form-control" id="tanggal" placeholder="0000-00-00">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </div>
                         </div>
                     </div>
                     <label class="col-sm-2 control-label">Sampai Tanggal</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-2">
                         <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
-                            <input type="text" name="selesai" class="form-control" placeholder="0000-00-00">
+                            <input type="text" name="selesai1" class="form-control" placeholder="0000-00-00">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </div>
                         </div>
                     </div>
+                    <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="lokasi1" placeholder="Lokasi Tafiq"> 
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="lokasi" placeholder="Lokasi Tafiq"> 
+                    <label class="col-sm-2 control-label">TAFIQ II</label>
+                    <label class="col-sm-10"><hr></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Dari Tanggal</label>
+                    <div class="col-sm-2">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                            <input type="text" name="mulai2" class="form-control" id="tanggal" placeholder="0000-00-00">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
                     </div>
+                    <label class="col-sm-2 control-label">Sampai Tanggal</label>
+                    <div class="col-sm-2">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                            <input type="text" name="selesai2" class="form-control" placeholder="0000-00-00">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="lokasi2" placeholder="Lokasi Tafiq"> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">TAFIQ III</label>
+                    <label class="col-sm-10"><hr></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Dari Tanggal</label>
+                    <div class="col-sm-2">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                            <input type="text" name="mulai3" class="form-control" id="tanggal" placeholder="0000-00-00">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label">Sampai Tanggal</label>
+                    <div class="col-sm-2">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                            <input type="text" name="selesai3" class="form-control" placeholder="0000-00-00">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="lokasi3" placeholder="Lokasi Tafiq"> 
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <input type="text" class="form-control" name="ket_tafiq" placeholder="Keterangan"> 
                     </div>
                 </div>
