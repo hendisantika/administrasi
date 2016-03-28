@@ -3,35 +3,35 @@
 
 <style>
     .tutorialWrapper{
-     width: 100%;
-   }
-   .tutorialWrapper form{
-     background-color: #ffc;
-     border: 1px solid #cc9;
-     padding: 10px;
-     font-family: verdana;
-     width: 75%;
-     font-size: 1em;
-   }
-   .fieldWrapper{
-     margin: 2px 0 2px 0;
-     padding: 2;
-   }
-   .tutorialWrapper label{
-     float: left;
-     text-align: right;
-     margin: 0 5px 0 0;
-     width: 30%;
-   }
-   .tutorialWrapper input{
-     width: 200px;
-     border: 1px solid #cc9;
-   }
-   .confirmMessage{
-     margin: 0;
-     padding: 0;
-     font-size: 1em; 
-   }
+        width: 100%;
+    }
+    .tutorialWrapper form{
+        background-color: #ffc;
+        border: 1px solid #cc9;
+        padding: 10px;
+        font-family: verdana;
+        width: 75%;
+        font-size: 1em;
+    }
+    .fieldWrapper{
+        margin: 2px 0 2px 0;
+        padding: 2;
+    }
+    .tutorialWrapper label{
+        float: left;
+        text-align: right;
+        margin: 0 5px 0 0;
+        width: 30%;
+    }
+    .tutorialWrapper input{
+        width: 200px;
+        border: 1px solid #cc9;
+    }
+    .confirmMessage{
+        margin: 0;
+        padding: 0;
+        font-size: 1em; 
+    }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -62,8 +62,7 @@
                 <div class="form-group">
                     <label for="npa" class="col-sm-2 control-label">NPA</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="npa" name="npa" placeholder="NPA" maxlength="7" required>
-                        
+                        <input type="text" class="form-control" id="npa" name="npa" placeholder="NPA" maxlength="7" pattern="[0-9]{2}[.][0-9]{4}" required title="Silahkan mengisi NPA dengan benar. Contoh : 03.1042">
                         <label id="msgNPA"></label>
                         <span id="ldgNP"><img src="<?php echo base_url(); ?>assets/others/loader.gif" alt="Ajax Indicator" /></span>
                     </div>
@@ -71,13 +70,13 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="15" placeholder="Username" autofocus pattern="[a-zA-Z]+" required title="Silahkan mengisi username minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
+                        <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="15" placeholder="Username" autofocus pattern="[a-zA-Z0-9]+" required title="Silahkan mengisi username minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10 fieldWrapper">
-                        <input type="password" class="form-control" id="pass1" name="password" minlength="6" maxlength="15" placeholder="Password" autofocus pattern="[a-zA-Z]+" required title="Silahkan mengisi password minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
+                        <input type="password" class="form-control" id="pass1" name="password" minlength="6" maxlength="15" placeholder="Password" autofocus pattern="[a-zA-Z0-9]+" required title="Silahkan mengisi password minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
                     </div>
                 </div>
                 <div class="form-group">
@@ -161,7 +160,7 @@
                 <label class="col-sm-2 control-label">Foto Antum</label>
                 <div class="col-sm-10">
                     <!--<input type="file" id="exampleInputFile" name="foto" size="20" accept="image/">-->
-                     <input id="foto" type="file" name="foto" accept="image/*" class="file-loading">
+                    <input id="foto" type="file" name="foto" accept="image/*" class="file-loading">
                     <p class="help-block">Pilih Foto Avatar antum!</p>
                 </div>
             </div>
@@ -176,7 +175,7 @@
             </div>
         </div><!-- /.box-body -->
         <div class="box-footer">
-            <button type="reset" class="btn btn-default" onclick="window.location.href='/administrasi/auth'">Batal</button>
+            <button type="reset" class="btn btn-default" onclick="window.location.href = '/administrasi/auth'">Batal</button>
             <button type="submit" class="btn btn-info pull-right" name="submit">Tambah</button>
         </div><!-- /.box-footer -->
         <?php echo form_close(); ?>
@@ -190,63 +189,63 @@
 <script src="<?php echo base_url('assets/fileinput/js/fileinput_locale_es.js'); ?>" type="text/javascript"></script>
 </head>
 <script>
-    $(document).ready(function () {
-        $("#provinsi").change(function () {
-            var url = "<?php echo site_url('user/add_ajax_kab'); ?>/" + $(this).val();
-            $('#kabupaten').load(url);
-            return false;
-        })
+                $(document).ready(function () {
+                    $("#provinsi").change(function () {
+                        var url = "<?php echo site_url('user/add_ajax_kab'); ?>/" + $(this).val();
+                        $('#kabupaten').load(url);
+                        return false;
+                    })
 
-        $("#kabupaten").change(function () {
-            var url = "<?php echo site_url('user/add_ajax_kec'); ?>/" + $(this).val();
-            $('#kecamatan').load(url);
-            return false;
-        })
+                    $("#kabupaten").change(function () {
+                        var url = "<?php echo site_url('user/add_ajax_kec'); ?>/" + $(this).val();
+                        $('#kecamatan').load(url);
+                        return false;
+                    })
 
-        $("#kecamatan").change(function () {
-            var url = "<?php echo site_url('user/add_ajax_des'); ?>/" + $(this).val();
-            $('#desa').load(url);
-            return false;
-        })
-    });
+                    $("#kecamatan").change(function () {
+                        var url = "<?php echo site_url('user/add_ajax_des'); ?>/" + $(this).val();
+                        $('#desa').load(url);
+                        return false;
+                    })
+                });
 </script>
 
- <script type="text/javascript">
-    $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function () {
         /// make loader hidden in start
-    $('#loading').hide();
-    $('#email').blur(function(){
-        var email_val = $("#email").val();
-        var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
-        if(filter.test(email_val)){
-            // show loader
-            $('#loading').show();
-            $.post("<?php echo site_url()?>user/cek_akun", {
-                email: email_val
-            }, function(response){
-                $('#loading').hide();
-                $('#message').html('').html(response.message).show().delay(4000).fadeOut();
-            });
-            return false;
-        }
-    });
-    $('#npa').blur(function(){
-        var npa_val = $("#npa").val();
-        var filter = /([0-9{2}]\.[0-9]{4})$/g;
-        if(filter.test(npa_val)){
-        // show loader
-        $('#ldgNPA').show();
-        $.post("<?php echo site_url()?>user/cek_akun", {
-            npa: npa_val
-        }, function(response){
-            $('#ldgNPA').hide();
-            $('#msgNPA').html('').html(response.message).show().delay(4000).fadeOut();
+        $('#loading').hide();
+        $('#email').blur(function () {
+            var email_val = $("#email").val();
+            var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
+            if (filter.test(email_val)) {
+                // show loader
+                $('#loading').show();
+                $.post("<?php echo site_url() ?>user/cek_akun", {
+                    email: email_val
+                }, function (response) {
+                    $('#loading').hide();
+                    $('#message').html('').html(response.message).show().delay(4000).fadeOut();
+                });
+                return false;
+            }
         });
-            return false;
-        }
+        $('#npa').blur(function () {
+            var npa_val = $("#npa").val();
+            var filter = /([0-9]{2}[.][0-9]{4})$/g;
+            if (filter.test(npa_val)) {
+                // show loader
+                $('#ldgNPA').show();
+                $.post("<?php echo site_url() ?>user/cek_akun", {
+                    npa: npa_val
+                }, function (response) {
+                    $('#ldgNPA').hide();
+                    $('#msgNPA').html('').html(response.message).show().delay(4000).fadeOut();
+                });
+                return false;
+            }
+        });
+
     });
-    
-    });  
 </script>
 
 <!-- File Input -->
@@ -273,37 +272,36 @@
 
 <!--Cek Password-->
 <script type="text/javascript">
- 
-function checkPass()
-{
-    //Store the password field objects into variables ...
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    //Store the Confimation Message Object ...
-    var message = document.getElementById('confirmMessage');
-    //Set the colors we will be using ...
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-    //Compare the values in the password field 
-    //and the confirmation field
-    if(pass1.value == pass2.value){
-        //The passwords match. 
-        //Set the color to the good color and inform
-        //the user that they have entered the correct password 
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = "Passwords cocok!"
-    }else{
-        //The passwords do not match.
-        //Set the color to the bad color and
-        //notify the user.
+
+    function checkPass()
+    {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        //Store the Confimation Message Object ...
+        var message = document.getElementById('confirmMessage');
+        //Set the colors we will be using ...
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        //Compare the values in the password field 
+        //and the confirmation field
+        if (pass1.value == pass2.value) {
+            //The passwords match. 
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password 
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords cocok!"
+        } else {
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
 //        document.oo.pass2.focus();
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Passwords tidak cocok!"
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords tidak cocok!"
+        }
     }
-}
- 
 </script>
 
 <?php $this->load->view('template/footer'); ?>
