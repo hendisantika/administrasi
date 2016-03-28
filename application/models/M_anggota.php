@@ -99,7 +99,9 @@ class M_Anggota extends CI_Model {
                             tbl_pendidikan.nama_s2, tbl_pendidikan.lulus_s2, tbl_pendidikan.jurusan_s2, 
                             tbl_pendidikan.nama_s3, tbl_pendidikan.lulus_s3, tbl_pendidikan.jurusan_s3, 
                             tbl_keterampilan.keterampilan1, tbl_keterampilan.keterampilan2, tbl_keterampilan.keterampilan3,
-                            tbl_tafiq.level, tbl_tafiq.mulai, tbl_tafiq.selesai, tbl_tafiq.lokasi');
+                            tbl_tafiq.level, tbl_tafiq.mulai1, tbl_tafiq.selesai1, tbl_tafiq.lokasi1,
+                            tbl_tafiq.mulai2, tbl_tafiq.selesai2, tbl_tafiq.lokasi2,
+                            tbl_tafiq.mulai3, tbl_tafiq.selesai3, tbl_tafiq.lokasi3');
         $this->db->from('tbl_anggota');
         $this->db->join('wilayah_provinsi', 'tbl_anggota.pw = wilayah_provinsi.id', 'inner');
         $this->db->join('wilayah_kabupaten', 'tbl_anggota.pd = wilayah_kabupaten.id', 'inner');
@@ -189,6 +191,12 @@ class M_Anggota extends CI_Model {
         // Data Organisasi
         $this->db->where("npa", $npa);
         $this->db->update("tbl_organisasi", $data_organisasi);
+    }
+    
+    public function update_data_tafiq($npa, $data_tafiq) {
+        // Data Tafiq
+        $this->db->where("npa", $npa);
+        $this->db->update("tbl_tafiq", $data_tafiq);
     }
 
     public function check_email_availablity() {
