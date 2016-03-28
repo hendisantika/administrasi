@@ -40,7 +40,9 @@
                 <div class="form-group">
                     <label for="npa" class="col-sm-2 control-label">NPA</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="npa" name="npa" placeholder="NPA" required>
+                        <input type="text" class="form-control" id="npa" name="npa" placeholder="NPA" maxlength="7" pattern="[0-9]{2}[.-][0-9]{4}" required title="Silahkan mengisi NPA dengan benar. Contoh : 03.1042">
+                        <label id="msgNPA"></label>
+                        <span id="ldgNP"><img src="<?php echo base_url(); ?>assets/others/loader.gif" alt="Ajax Indicator" /></span>
                     </div>
                     <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
                     <div class="col-sm-5">
@@ -137,6 +139,8 @@
                     <div class="col-sm-4">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Email">
+                        <label id="message"></label>
+                        <span id="loading"><img src="<?php echo base_url(); ?>assets/others/loader.gif" alt="Ajax Indicator" /></span> </div>
                     </div>
                     <label for="no_telpon" class="col-sm-1 control-label">Nomor Telepon 1</label>
                     <div class="col-sm-2">
@@ -176,7 +180,7 @@
                     <div class="col-sm-4">
 <!--                        <input type="file" id="exampleInputFile" name="foto" size="20" accept="image/">
                         <br>-->
-                         <input id="foto" type="file" name="foto" accept="image/*" class="file-loading">
+                        <input id="foto" type="file" name="foto" accept="image/*" class="file-loading">
                         <p class="help-block">Pilih Foto Avatar antum!</p>
                     </div>
                 </div>
@@ -597,6 +601,8 @@
 <script src="<?php echo base_url('assets/fileinput/js/fileinput_locale_es.js'); ?>" type="text/javascript"></script>
 
 </head>
+
+<!--Chain Selected-->
 <script>
     $(document).ready(function () {
         $("#provinsi").change(function () {
@@ -643,6 +649,45 @@
     });
 </script>
 
+<!--Validasi NPA-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /// make loader hidden in start
+        $('#loading').hide();
+        $('#email').blur(function () {
+            var email_val = $("#email").val();
+            var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
+            if (filter.test(email_val)) {
+                // show loader
+                $('#loading').show();
+                $.post("<?php echo site_url() ?>anggota/cek_akun", {
+                    email: email_val
+                }, function (response) {
+                    $('#loading').hide();
+                    $('#message').html('').html(response.message).show().delay(4000).fadeOut();
+                });
+                return false;
+            }
+        });
+        $('#npa').blur(function () {
+            var npa_val = $("#npa").val();
+            var filter = /([0-9]{2}[.][0-9]{4})$/g;
+            if (filter.test(npa_val)) {
+                // show loader
+                $('#ldgNPA').show();
+                $.post("<?php echo site_url() ?>anggota/cek_akun", {
+                    npa: npa_val
+                }, function (response) {
+                    $('#ldgNPA').hide();
+                    $('#msgNPA').html('').html(response.message).show().delay(4000).fadeOut();
+                });
+                return false;
+            }
+        });
+
+    });
+</script>
+
 <?php $this->load->view('template/jscripts'); ?>
 
 <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
@@ -650,6 +695,5 @@
 <script src="<?php echo base_url('assets/fileinput/js/fileinput.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/fileinput/js/fileinput_locale_es.js'); ?>" type="text/javascript"></script>
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>-->
-
 
 <?php $this->load->view('template/footer'); ?>
