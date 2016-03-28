@@ -267,15 +267,27 @@ class Anggota extends CI_Controller {
 
             // Data TAFIQ
             $level = $this->input->post('level');
-            $mulai = $this->input->post('mulai');
-            $selesai = $this->input->post('selesai');
-            $lokasi = $this->input->post('lokasi');
+            $mulai1 = $this->input->post('mulai1');
+            $selesai1 = $this->input->post('selesai1');
+            $lokasi1 = $this->input->post('lokasi1');
+            $mulai2 = $this->input->post('mulai2');
+            $selesai2 = $this->input->post('selesai2');
+            $lokasi2 = $this->input->post('lokasi2');
+            $mulai3 = $this->input->post('mulai3');
+            $selesai3 = $this->input->post('selesai3');
+            $lokasi3 = $this->input->post('lokasi3');
             $data_tafiq = array(
                 'npa' => $npa,
                 'level' => $level,
-                'mulai' => date('Y-m-d', strtotime($mulai)),
-                'selesai' => date('Y-m-d', strtotime($selesai)),
-                'lokasi' => $lokasi
+                'mulai1' => date('Y-m-d', strtotime($mulai1)),
+                'selesai1' => date('Y-m-d', strtotime($selesai1)),
+                'lokasi1' => $lokasi1,
+                'mulai2' => date('Y-m-d', strtotime($mulai2)),
+                'selesai2' => date('Y-m-d', strtotime($selesai2)),
+                'lokasi2' => $lokasi3,
+                'mulai3' => date('Y-m-d', strtotime($mulai3)),
+                'selesai3' => date('Y-m-d', strtotime($selesai3)),
+                'lokasi3' => $lokasi3
             );
 
 //            echo 'Data Pribadi';
@@ -697,15 +709,27 @@ class Anggota extends CI_Controller {
         // Data TAFIQ
         $npa = $this->input->post('npa');
         $level = $this->input->post('level');
-        $mulai = $this->input->post('mulai');
-        $selesai = $this->input->post('selesai');
-        $lokasi = $this->input->post('lokasi');
+        $mulai1 = $this->input->post('mulai1');
+        $selesai1 = $this->input->post('selesai1');
+        $lokasi1 = $this->input->post('lokasi1');
+        $mulai2 = $this->input->post('mulai2');
+        $selesai2 = $this->input->post('selesai2');
+        $lokasi2 = $this->input->post('lokasi2');
+        $mulai3 = $this->input->post('mulai3');
+        $selesai3 = $this->input->post('selesai3');
+        $lokasi3 = $this->input->post('lokasi3');
         $data_tafiq = array(
             'npa' => $npa,
             'level' => $level,
-            'mulai' => $mulai,
-            'selesai' => $selesai,
-            'lokasi' => $lokasi
+            'mulai1' => $mulai1,
+            'selesai1' => $selesai1,
+            'lokasi1' => $lokasi1,
+            'mulai2' => $mulai2,
+            'selesai2' => $selesai2,
+            'lokasi2' => $lokasi2,
+            'mulai3' => $mulai3,
+            'selesai3' => $selesai3,
+            'lokasi3' => $lokasi3
         );
 
         if (isset($_POST['submit'])) {
