@@ -1,6 +1,11 @@
 <?php $this->load->view('template/header'); ?>
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
+<style>
+    .datepicker {
+        z-index:1051 !important;
+    }
+</style>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -135,7 +140,7 @@
                         <h3><span class="label label-primary col-sm-12 control-label">Data Pendidikan</span></h3>
                         <table class="table-striped">
                             <tr>
-                                <th width="35%">NPA</th>
+                                <th>NPA</th>
                                 <td><?php echo $record['npa'] ?></td>
                             </tr>
                             <tr>
@@ -453,20 +458,48 @@
                                 <td><?php echo $record['nama'] ?></td>
                             </tr>
                             <tr>
-                                <th width="75%">Level </th>
+                                <th width="75%">Level TAFIQ</th>
                                 <td><?php echo $record['level'] ?></td>
                             </tr>
                             <tr>
                                 <th width="75%">Mulai</th>
-                                <td><?php echo $record['mulai'] ?></td>
+                                <td><?php echo $record['mulai1'] ?></td>
                             </tr>
                             <tr>
                                 <th width="75%">Sampai</th>
-                                <td><?php echo $record['selesai'] ?></td>
+                                <td><?php echo $record['selesai1'] ?></td>
                             </tr>
                             <tr>
                                 <th width="75%">Lokasi</th>
-                                <td><?php echo $record['lokasi'] ?></td>
+                                <td><?php echo $record['lokasi1'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Mulai</th>
+                                <td><?php echo $record['mulai2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Sampai</th>
+                                <td><?php echo $record['selesai2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Lokasi</th>
+                                <td><?php echo $record['lokasi2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Mulai</th>
+                                <td><?php echo $record['mulai3'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Sampai</th>
+                                <td><?php echo $record['selesai3'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Lokasi</th>
+                                <td><?php echo $record['lokasi3'] ?></td>
+                            </tr>
+                            <tr>
+                                <th width="75%">Keterangan</th>
+                                <td><?php echo $record['keterangan'] ?></td>
                             </tr>
                         </table>
                     </div>
@@ -1011,16 +1044,71 @@
                         <label class="col-sm-2 control-label">Dari Tanggal</label>
                         <div class="col-sm-3">
                             <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
-                                <input type="text" name="mulai" class="form-control" id="tanggal" placeholder="0000-00-00">
+                                <input type="text" name="mulai1" class="form-control tafiq" id="mulai1" placeholder="0000-00-00" value="<?php echo $record['mulai1'] ?>">
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </div>
                             </div>
                         </div>
                         <label class="col-sm-2 control-label">Sampai Tanggal</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
-                                <input type="text" name="selesai" class="form-control" placeholder="0000-00-00">
+                                <input type="text" name="selesai1" class="form-control tafiq" placeholder="0000-00-00" value="<?php echo $record['selesai1'] ?>">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="lokasi1" placeholder="Lokasi Tafiq I" value="<?php echo $record['lokasi1'] ?>"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Dari Tanggal</label>
+                        <div class="col-sm-3">
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                <input type="text" name="mulai2" class="form-control tafiq" id="tanggal" value="<?php echo $record['mulai2'] ?>">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 control-label">Sampai Tanggal</label>
+                        <div class="col-sm-3">
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                <input type="text" name="selesai2" class="form-control tafiq" value="<?php echo $record['selesai2'] ?>">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="lokasi2" placeholder="Lokasi Tafiq II" value="<?php echo $record['lokasi2'] ?>"> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Dari Tanggal</label>
+                        <div class="col-sm-3">
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                <input type="text" name="mulai3" class="form-control tafiq" id="tanggal" placeholder="0000-00-00" value="<?php echo $record['mulai3'] ?>">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 control-label">Sampai Tanggal</label>
+                        <div class="col-sm-3">
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                <input type="text" name="selesai3" class="form-control tafiq" placeholder="0000-00-00" value="<?php echo $record['selesai3'] ?>">
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </div>
@@ -1029,12 +1117,12 @@
                     </div>
                     <div class="form-group">
                         <label for="lokasi" class="col-sm-2 control-label">Lokasi</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="lokasi" placeholder="Lokasi Tafiq"> 
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="lokasi3" placeholder="Lokasi Tafiq III" value="<?php echo $record['lokasi3'] ?>"> 
                         </div>
                         <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" name="ket_tafiq" placeholder="Keterangan"> 
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="ket_tafiq" placeholder="Keterangan" value="<?php echo $record['keterangan'] ?>"> 
                         </div>
                     </div>
                     <div class="modal-footer">
