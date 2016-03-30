@@ -75,7 +75,12 @@
             removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
             uploadClass: "btn btn-info",
             uploadLabel: "Upload",
-            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i>"
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i>",
+            showUpload: false,
+            overwriteInitial: false,
+            maxFileSize: 2000,
+            allowedFileTypes: ["image"],
+            allowedFileExtensions: ["jpg", "gif", "png"]
         });
     });
 </script>
