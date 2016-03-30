@@ -67,7 +67,7 @@ class Profil extends CI_Controller {
         $data['pendidikan'] = $this->m_jamiyyah->cek_pendidikan_anggota_pc();
         $data['merit'] = $this->m_jamiyyah->cek_status_merital_anggota_pc();
 //        print_r($data['usia']);        die();
-        $this->load->view('lihat_pc_detail2', $data);
+        $this->load->view('lihat_pc_detail', $data);
     }
 
     public function cek_usia() {
