@@ -95,7 +95,11 @@ class Anggota extends CI_Controller {
             $this->upload->initialize($config);
             $this->upload->do_upload('foto');
 //            $foto = $this->upload->data('full_path');
-            $foto = $this->upload->data('file_name');
+            if (isset($_POST['submit']) && ($_FILES['foto']["size"] != 0)) {
+                $foto = $this->upload->data('file_name');
+            }else{
+                $foto = 'avatar.png';
+            }
 
             // Data Pribadi
             $npa = $this->input->post('npa');
@@ -116,6 +120,8 @@ class Anggota extends CI_Controller {
             $email = $this->input->post('email');
             $no_telpon1 = $this->input->post('no_telpon1');
             $no_telpon2 = $this->input->post('no_telpon2');
+            
+            
             $data_pribadi = array(
                 'npa' => $npa,
                 'nama' => $nama,
