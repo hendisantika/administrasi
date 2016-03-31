@@ -145,6 +145,51 @@ class M_Jamiyyah extends CI_Model {
           return $this->db->get();
           
     }
+    function cek_pd($kd_pd) {
+        $param = array('tbl_data_geografis_pd.kd_pd' => $kd_pd);
+        $this->db->select('tbl_data_geografis_pd.kd_pd, tbl_data_geografis_pd.kd_pw, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
+        tbl_data_geografis_pd.pd as nama_pd, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, tbl_data_geografis_pd.alamat_utama, tbl_data_geografis_pd.alamat_alternatif, tbl_data_geografis_pd.no_kontak, tbl_data_geografis_pd.email,
+        tbl_data_geografis_pd.luas, tbl_data_geografis_pd.bw_utara, tbl_data_geografis_pd.bw_selatan, tbl_data_geografis_pd.bw_timur, tbl_data_geografis_pd.bw_barat,
+        tbl_data_geografis_pd.jarak_dari_ibukota_negara, tbl_data_geografis_pd.jarak_dari_ibukota_provinsi, tbl_data_geografis_pd.jarak_dari_ibukota_kabupaten, tbl_data_geografis_pd.foto,
+        tbl_data_kejamiyyahan_pd.penasehat1, tbl_data_kejamiyyahan_pd.penasehat2, tbl_data_kejamiyyahan_pd.penasehat3, tbl_data_kejamiyyahan_pd.penasehat4,   
+        tbl_data_kejamiyyahan_pd.ketua, tbl_data_kejamiyyahan_pd.wkl_ketua, tbl_data_kejamiyyahan_pd.sekretaris, tbl_data_kejamiyyahan_pd.wkl_sekretaris, tbl_data_kejamiyyahan_pd.bendahara, tbl_data_kejamiyyahan_pd.wkl_bendahara,
+        tbl_data_kejamiyyahan_pd.bid_jamiyyah, tbl_data_kejamiyyahan_pd.wkl_bid_jamiyyah, tbl_data_kejamiyyahan_pd.bid_kaderisasi, tbl_data_kejamiyyahan_pd.wkl_bid_kaderisasi,
+        tbl_data_kejamiyyahan_pd.bid_administrasi, tbl_data_kejamiyyahan_pd.wkl_bid_administrasi, tbl_data_kejamiyyahan_pd.bid_pendidikan, tbl_data_kejamiyyahan_pd.wkl_bid_pendidikan,
+        tbl_data_kejamiyyahan_pd.bid_dakwah, tbl_data_kejamiyyahan_pd.wkl_bid_dakwah, tbl_data_kejamiyyahan_pd.bid_humas_publikasi, tbl_data_kejamiyyahan_pd.wkl_bid_humas_publikasi,
+        tbl_data_kejamiyyahan_pd.bid_hal, tbl_data_kejamiyyahan_pd.wkl_bid_hal, tbl_data_kejamiyyahan_pd.bid_or_seni, tbl_data_kejamiyyahan_pd.wkl_bid_or_seni,
+        tbl_data_kejamiyyahan_pd.bid_sosial, tbl_data_kejamiyyahan_pd.wkl_bid_sosial, tbl_data_kejamiyyahan_pd.pembantu_umum1, tbl_data_kejamiyyahan_pd.pembantu_umum2, tbl_data_kejamiyyahan_pd.pembantu_umum3,
+        tbl_data_kejamiyyahan_pd.hari, tbl_data_kejamiyyahan_pd.pukul, tbl_data_kejamiyyahan_pd.musyda_terakhir_m');
+//        $this->db->select('tbl_data_geografis_pd.kd_pd, tbl_data_geografis_pd.kd_pw, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
+//        tbl_data_geografis_pd.pd as nama_pd, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, tbl_data_geografis_pd.alamat_utama, tbl_data_geografis_pd.alamat_alternatif, tbl_data_geografis_pd.no_kontak, tbl_data_geografis_pd.email,
+//        tbl_data_geografis_pd.luas, tbl_data_geografis_pd.bw_utara, tbl_data_geografis_pd.bw_selatan, tbl_data_geografis_pd.bw_timur, tbl_data_geografis_pd.bw_barat,
+//        tbl_data_geografis_pd.jarak_dari_ibukota_negara, tbl_data_geografis_pd.jarak_dari_ibukota_provinsi, tbl_data_geografis_pd.jarak_dari_ibukota_kabupaten, tbl_data_geografis_pd.foto,
+//        tbl_data_kejamiyyahan_pd.penasehat1, tbl_data_kejamiyyahan_pd.penasehat2, tbl_data_kejamiyyahan_pd.penasehat3, tbl_data_kejamiyyahan_pd.penasehat4,   
+//        tbl_data_kejamiyyahan_pd.ketua, tbl_data_kejamiyyahan_pd.wkl_ketua, tbl_data_kejamiyyahan_pd.sekretaris, tbl_data_kejamiyyahan_pd.wkl_sekretaris, tbl_data_kejamiyyahan_pd.bendahara, tbl_data_kejamiyyahan_pd.wkl_bendahara,
+//        tbl_data_kejamiyyahan_pd.bid_jamiyyah, tbl_data_kejamiyyahan_pd.wkl_bid_jamiyyah, tbl_data_kejamiyyahan_pd.bid_kaderisasi, tbl_data_kejamiyyahan_pd.wkl_bid_kaderisasi,
+//        tbl_data_kejamiyyahan_pd.bid_administrasi, tbl_data_kejamiyyahan_pd.wkl_bid_administrasi, tbl_data_kejamiyyahan_pd.bid_pendidikan, tbl_data_kejamiyyahan_pd.wkl_bid_pendidikan,
+//        tbl_data_kejamiyyahan_pd.bid_dakwah, tbl_data_kejamiyyahan_pd.wkl_bid_dakwah, tbl_data_kejamiyyahan_pd.bid_humas_publikasi, tbl_data_kejamiyyahan_pd.wkl_bid_humas_publikasi,
+//        tbl_data_kejamiyyahan_pd.bid_hal, tbl_data_kejamiyyahan_pd.wkl_bid_hal, tbl_data_kejamiyyahan_pd.bid_or_seni, tbl_data_kejamiyyahan_pd.wkl_bid_or_seni,
+//        tbl_data_kejamiyyahan_pd.bid_sosial, tbl_data_kejamiyyahan_pd.wkl_bid_sosial, tbl_data_kejamiyyahan_pd.pembantu_umum1, tbl_data_kejamiyyahan_pd.pembantu_umum2, tbl_data_kejamiyyahan_pd.pembantu_umum3,
+//        tbl_data_kejamiyyahan_pd.hari, tbl_data_kejamiyyahan_pd.pukul, tbl_data_kejamiyyahan_pd.musyda_terakhir_m');
+        $this->db->from('tbl_data_geografis_pd');
+        $this->db->join('wilayah_provinsi', 'tbl_data_geografis_pd.pw = wilayah_provinsi.id', 'inner');
+        $this->db->join('wilayah_kabupaten', 'tbl_data_geografis_pd.pd = wilayah_kabupaten.id', 'inner');
+//        $this->db->join('tbl_data_kejamiyyahan_pd', 'tbl_data_geografis_pd.kd_pd = tbl_data_kejamiyyahan_pd.kd_pd', 'inner');
+        $this->db->where($param);
+//        echo $this->db->last_query();exit;
+        return $this->db->get();
+    }
+
+     function cek_performa_pd($kd_pd) {
+        $param = array('tbl_performa_pd.kd_pd' => $kd_pd);
+//        $query = $this->db->query("SELECT * FROM tbl_performa_pc where kd_pc = '$kd_pc'");
+//        return $query->result();
+          $this->db->select('*');
+          $this->db->from('tbl_performa_pd');
+          $this->db->where($param);
+          return $this->db->get();
+          
+    }
     
     function cek_usia() {
         $query = $this->db->query("SELECT CASE
