@@ -44,12 +44,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Lihat Data Jam'iyyah 2
+            Lihat Data Jam'iyyah
             <small>Administrasi Anggota Pemuda Persis</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php base_url('anggota'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Lihat Detail 2 Data Cabang</li>
+            <li class="active">Lihat Detail Data Cabang</li>
         </ol>
     </section>
 
@@ -455,10 +455,10 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <ol>
-                                                                    <li>Silakan isi data isian di bawah ini dengan klik checkbox <i class=" fa fa-check-circle-o"></i> pada setiap pilihan sesuai dengan kondisi yang sebenarnya.</li>
-                                                                    <li>Prinsip pengisian IPJ ini adalah untuk mengetahui dan memahami kondisi riil dan objektif dari setiap PC, sehingga bisa diketahui potensi kekuatan apa saja yang dimiliki PC juga bisa diidentifikasi masalah dan hambatan yang dihadapi oleh PC sehingga bisa diformulasikan dengan tepat solusi dari setiap permasalahan tersebut.</li>
-                                                                </ol>
+                                                                    <p>Prinsip pengisian IPJ ini adalah untuk mengetahui dan memahami kondisi riil 
+                                                                       dan objektif dari setiap PC, sehingga bisa diketahui potensi kekuatan apa saja 
+                                                                       yang dimiliki PC juga bisa diidentifikasi masalah dan hambatan yang dihadapi oleh 
+                                                                       PC sehingga bisa diformulasikan dengan tepat solusi dari setiap permasalahan tersebut.</p>
                                                             </div>
                                                         </div>
 
@@ -1320,7 +1320,7 @@
                                                             <div class="box-footer">
                                                                 <div class="row">
                                                                     <div class="col-sm-12">
-                                                                        <button type="submit" class="btn btn-success btn-block btn-lg" name="submit"><i class="fa fa-save"> Save Indeks Performa Jam'iyyah PC</i></button>
+                                                                        <button type="submit" class="btn btn-success btn-block btn-lg" name="submit"><i class="fa fa-save"> Edit Indeks Performa Jam'iyyah PC</i></button>
                                                                     </div>
                                                                 </div>
                                                             </div><!-- /.box-footer -->
@@ -1585,8 +1585,6 @@
                 <!-- /.col -->
             </div>
         </div> <!-- /.row -->
-
-
         <!-- END CUSTOM TABS -->
     </section><!-- right col -->
 
