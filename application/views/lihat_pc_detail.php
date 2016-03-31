@@ -371,7 +371,7 @@
                                                             $no = 1;
                                                             foreach ($record2 as $data_jamaah) {
                                                                 ?>
-                                                                <tr>
+                                                            <tr class="pilih">
                                                                     <td><?php echo $no; ?></td>
                                                                     <td><img src="<?php echo base_url('/assets/foto/pj/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
                                                                     <td><?php echo $data_jamaah->kd_pj; ?></td>
@@ -874,20 +874,44 @@
 <script src="<?php echo base_url('assets/datatables/tools/js/dataTables.tableTools.js'); ?>"></script>
 <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 
-
+<!--<script>
+   $(document).ready(function () {
+       $('#data_pj').DataTable({
+           "scrollX": true
+       });
+       $('#data_pc').DataTable({
+           "scrollX": true
+       });
+       $('#data_anggota').DataTable({
+           "scrollX": true
+       });
+   });
+</script>-->
 
 <script>
-                                                                                   $(document).ready(function () {
-                                                                                       $('#data_pj').DataTable({
-                                                                                           "scrollX": true
-                                                                                       });
-                                                                                       $('#data_pc').DataTable({
-                                                                                           "scrollX": true
-                                                                                       });
-                                                                                       $('#data_anggota').DataTable({
-                                                                                           "scrollX": true
-                                                                                       });
-                                                                                   });
+    $(document).ready(function() {
+    var table1 = $('#data_pj').DataTable({ "scrollX" : true });
+    var table2 = $('#data_pc').DataTable({ "scrollX" : true });
+    var table3 = $('#data_anggota').DataTable({ "scrollX" : true });
+     
+    $('#data_pj tbody').on('click', 'tr', function () {
+        var data = table1.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>profil/pj_details/"+data[2]; 
+    } );
+     
+    $('#data_pc tbody').on('click', 'tr', function () {
+        var data = table2.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
+    } );
+     
+    $('#data_anggota tbody').on('click', 'tr', function () {
+        var data = table3.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
+    } );
+} );
 </script>
 <?php $this->load->view('template/jscripts'); ?>
 <?php $this->load->view('template/footer'); ?>
