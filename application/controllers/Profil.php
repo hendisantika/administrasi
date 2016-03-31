@@ -75,6 +75,24 @@ class Profil extends CI_Controller {
 //        print_r($data['performa']);        die();
         $this->load->view('lihat_pc_detail', $data);
     }
+    
+    public function pd_details() {
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
+        $kd_pd = $this->uri->segment(3);
+        $data['record'] = $this->m_jamiyyah->cek_pd($kd_pd)->row_array();
+        print_r("Uzumaki Naruto <br>"); 
+        print_r($data['record']);        die();
+//        $data['performa'] = $this->m_jamiyyah->cek_performa_pc($kd_pd)->row_array();
+//        $data['record2'] = $this->m_jamiyyah->lihat_pc_per_pd($kd_pd);
+//        $kd_kab = $data['record']['nama_pd'];
+//        $data['anggota'] = $this->m_anggota->lihat_anggota_pd($kd_kab);
+//        $data['usia'] = $this->m_jamiyyah->cek_usia_anggota_pd();
+//        $data['pendidikan'] = $this->m_jamiyyah->cek_pendidikan_anggota_pd();
+//        $data['merit'] = $this->m_jamiyyah->cek_status_merital_anggota_pd();
+        $this->load->view('lihat_pd_detail', $data);
+    }
 
     public function cek_usia() {
         $data['usia'] = $this->m_jamiyyah->cek_usia();
