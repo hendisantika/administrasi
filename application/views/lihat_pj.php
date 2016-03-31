@@ -2,6 +2,12 @@
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
 
+<style>
+    .pilih:hover{
+        cursor: pointer;
+    }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,7 +33,7 @@
                 <div class="panel-body">
                     <div class="table-responsive">
                         <div class="dataTable_wrapper">
-                            <table id="data_user" class="table table-bordered table-striped">
+                            <table id="data_pj" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Foto</th>
@@ -44,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($a as $data_jamaah) { ?>
-                                        <tr>
+                                        <tr class="pilih">
                                             <td><img src="<?php echo base_url('/assets/foto/pj/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
                                             <td><?php echo $data_jamaah->kd_pj; ?></td>
                                             <td><?php echo $data_jamaah->nama_jamaah; ?></td>
@@ -107,11 +113,20 @@
 
 
 <script>
-   $(document).ready(function () {
-       $('#data_user').DataTable({
-           "scrollX": true
-       });
-   });
+//   $(document).ready(function () {
+//       $('#data_user').DataTable({
+//           "scrollX": true
+//       });
+//   });
+   $(document).ready(function() {
+    var table = $('#data_pj').DataTable({ "scrollX" : true });
+     
+    $('#data_pj tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>profil/pj_details/"+data[1]; 
+    } );
+} );
 </script>
 
 <?php $this->load->view('template/jscripts'); ?>
