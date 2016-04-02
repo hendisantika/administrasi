@@ -26,7 +26,7 @@
         marker.setMap(map);
 
         var infowindow = new google.maps.InfoWindow({
-            content: "Kantor Sekretariat PC <?php echo $record['pc'] ?>"
+            content: "Kantor Sekretariat PD <?php echo $record['pd'] ?>"
         });
 
         infowindow.open(map, marker);
@@ -69,7 +69,7 @@
                     <ul class="nav nav-tabs form-tabs">
                         <li class="active"><a href="#tab_1" data-toggle="tab">Data Monografi</a></li>
                         <li><a href="#tab_2" data-toggle="tab">Data Kejam'iyyahan</a></li>
-                        <li><a href="#tab_3" data-toggle="tab">Data Jama'ah</a></li>
+                        <li><a href="#tab_3" data-toggle="tab">Data Cabang</a></li>
                         <li><a href="#tab_4" data-toggle="tab">Data Indeks Performa Jam'iyyah</a></li>
                         <li><a href="#tab_5" data-toggle="tab">Data Keanggotaan</a></li>
                         <li><a href="#tab_6" data-toggle="tab">Data Deskriptif Anggota</a></li>
@@ -87,7 +87,7 @@
                             <div class="box-body">
                                 <img class="img-responsive img-rounded center-block" 
                                      src="<?php echo base_url('/assets/admin_lte/img/pemuda persis.jpg'); ?>" width="150"><br />
-                                <h2 align='center'><bold>PROFIL DATA DAERAH <?php echo strtoupper($record['pd']) ?></bold></h2>
+                                <h2 align='center'><bold>PROFIL DATA DAERAH</bold></h2>
                                 <h2 align='center'><bold><?php
                                         echo strtoupper($record['pd']);
                                         echo " PROVINSI " . strtoupper($record['pw'])
@@ -106,16 +106,12 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <img class="img-responsive img-rounded left-oriented" style="width:500px;height:250px;" 
-                                             src="<?php echo base_url('/assets/foto/pc/' . $record['foto']); ?>" width="150"><br />
+                                             src="<?php echo base_url('/assets/foto/pd/' . $record['foto']); ?>" width="150"><br />
 
                                     </div>
                                 </div>
                                 <br>
                                 <table  class="table table-striped">
-                                    <tr>
-                                        <th width="35%">Kode PC</th>
-                                        <td><?php echo $record['kd_pc'] ?></td>
-                                    </tr>
                                     <tr>
                                         <th width="35%">Kode PD</th>
                                         <td><?php echo $record['kd_pd'] ?></td>
@@ -123,10 +119,6 @@
                                     <tr>
                                         <th width="35%">Kode PW</th>
                                         <td><?php echo $record['kd_pw'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th width="35%">Pimpinan Cabang</th>
-                                        <td><?php echo $record['pc'] ?></td>
                                     </tr>
                                     <tr>
                                         <th width="35%">Pimpinan Daerah</th>
@@ -201,7 +193,7 @@
                             <div class="box box-body">
                                 <img class="img-responsive img-rounded center-block" 
                                      src="<?php echo base_url('/assets/admin_lte/img/pemuda persis.jpg'); ?>" width="150"><br />
-                                <h2 align='center'><bold>PROFIL DATA CABANG <?php echo strtoupper($record['pc']) ?></bold></h2>
+                                <h2 align='center'><bold>PROFIL DATA DAERAH</bold></h2>
                                 <h2 align='center'><bold><?php
                                         echo strtoupper($record['pd']);
                                         echo " PROVINSI " . strtoupper($record['pw'])
@@ -319,8 +311,8 @@
                                         <td><?php echo $record['pukul'] ?></td>
                                     </tr>
                                     <tr>
-                                        <th width="35%">Musycab terakhir</th>
-                                        <td><?php echo $record['musycab_terakhir_m'] ?></td>
+                                        <th width="35%">Musyda terakhir</th>
+                                        <td><?php echo $record['musyda_terakhir_m'] ?></td>
                                     </tr>
 
                                 </table>
@@ -333,7 +325,7 @@
                                 <div class="box box-body">
                                     <img class="img-responsive img-rounded center-block" 
                                          src="<?php echo base_url('/assets/admin_lte/img/pemuda persis.jpg'); ?>" width="150"><br />
-                                    <h2 align='center'><bold>PROFIL DATA CABANG <?php echo strtoupper($record['pc']) ?></bold></h2>
+                                    <h2 align='center'><bold>PROFIL DATA DAERAH</bold></h2>
                                     <h2 align='center'><bold><?php
                                             echo strtoupper($record['pd']);
                                             echo " PROVINSI " . strtoupper($record['pw'])
@@ -341,7 +333,7 @@
                                     <h2 align='center'><bold>PEMUDA PERSATUAN ISLAM</bold></h2>
                                     <hr>
                                     <h3 align='center'><span class="label label-success col-sm-12">
-                                            <i class="fa fa-graduation-cap"> Data Jama'ah</i>
+                                            <i class="fa fa-graduation-cap"> Data Cabang</i>
                                         </span>
                                     </h3>
                                     <hr><br>
@@ -349,20 +341,19 @@
                                         <div class="panel-body">
                                             <div class="table-responsive">
                                                 <div class="dataTable_wrapper">
-                                                    <table id="data_pj" class="table table-bordered table-striped">
+                                                    <table id="data_pc" class="table table-bordered table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th>#</th>
+                                                                <th>No</th>
                                                                 <th>Foto</th>
-                                                                <th>Kode PJ</th>
                                                                 <th>Kode PC</th>
                                                                 <th>Kode PD</th>
                                                                 <th>Kode PW</th>
-                                                                <th>Nama Jamaah</th>
-                                                                <th>Musyjam Terakhir</th>
-                                                                <th>Ketua PJ</th>
-                                                                <th>Jml Anggota</th>
-                                                                <th>Alamat</th>
+                                                                <th>PC</th>
+                                                                <th>PD</th>
+                                                                <th>PW</th>
+                                                                <th>No Kontak</th>
+                                                                <th>Email</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -371,30 +362,29 @@
                                                             $no = 1;
                                                             foreach ($record2 as $data_jamaah) {
                                                                 ?>
-                                                            <tr class="pilih">
+                                                                <tr class="pilih">
                                                                     <td><?php echo $no; ?></td>
-                                                                    <td><img src="<?php echo base_url('/assets/foto/pj/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
-                                                                    <td><?php echo $data_jamaah->kd_pj; ?></td>
+                                                                    <td><img src="<?php echo base_url('/assets/foto/pc/' . $data_jamaah->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
                                                                     <td><?php echo $data_jamaah->kd_pc; ?></td>
                                                                     <td><?php echo $data_jamaah->kd_pd; ?></td>
                                                                     <td><?php echo $data_jamaah->kd_pw; ?></td>
-                                                                    <td><?php echo $data_jamaah->nama_jamaah; ?></td>
-                                                                    <td><?php echo $data_jamaah->musyjam_terakhir; ?></td>
-                                                                    <td><?php echo $data_jamaah->ketua_pj; ?></td>
-                                                                    <td><?php echo $data_jamaah->jml_anggota; ?></td>
-                                                                    <td><?php echo $data_jamaah->alamat; ?></td>
+                                                                    <td><?php echo $data_jamaah->pc; ?></td>
+                                                                    <td><?php echo $data_jamaah->pd; ?></td>
+                                                                    <td><?php echo $data_jamaah->pw; ?></td>
+                                                                    <td><?php echo $data_jamaah->no_kontak; ?></td>
+                                                                    <td><?php echo $data_jamaah->email; ?></td>
                                                                     <td>
-                                                                        <a href="<?php echo site_url() ?>profil/pj_details/<?php echo $data_jamaah->kd_pj; ?>" title="Lihat Detail">
+                                                                        <a href="<?php echo site_url() ?>profil/pc_details/<?php echo $data_jamaah->kd_pc; ?>" title="Lihat Detail">
                                                                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
                                                                         <a href="#" title="Tambah Foto">
                                                                             <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
                                                                         </a>
-                                                                        <a href="<?php echo site_url() ?>profil/pj_details/<?php echo $data_jamaah->kd_pj; ?>" title="Edit Data">
+                                                                        <a href="<?php echo site_url() ?>profil/pc_details/<?php echo $data_jamaah->kd_pc; ?>" title="Edit Data">
                                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>
                                                                         </a>  
                                                                         <a href="#" title="Hapus Data" 
                                                                            onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
-                                                                                           return false;">
+                                                                                       return false;">
                                                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
                                                                         </a>
                                                                     </td>
@@ -406,17 +396,16 @@
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
-                                                                <th>#</th>
+                                                                <th>No</th>
                                                                 <th>Foto</th>
-                                                                <th>Kode PJ</th>
                                                                 <th>Kode PC</th>
                                                                 <th>Kode PD</th>
                                                                 <th>Kode PW</th>
-                                                                <th>Nama Jamaah</th>
-                                                                <th>Musyjam Terakhir</th>
-                                                                <th>Ketua PJ</th>
-                                                                <th>Jml Anggota</th>
-                                                                <th>Alamat</th>
+                                                                <th>PC</th>
+                                                                <th>PD</th>
+                                                                <th>PW</th>
+                                                                <th>No Kontak</th>
+                                                                <th>Email</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </tfoot>
@@ -578,13 +567,13 @@
                                                                     </h3>
                                                                     <ol>
                                                                         <div class="col-sm-12">
-                                                                                <li>Bagaimana partisipasi anggota dalam iuran wajib? <b>Jawab : <?php echo $performa['q1f'] ?>.</b></li>
-                                                                                <li>Apakah PC rutin setiap bulan menjemput iuran anggota? <b>Jawab : <?php echo $performa['q2f'] ?>.</b></li>
-                                                                                <li>Apakah PC memiliki catatan lengkap tentang tagihan iuran anggota? <b>Jawab : <?php echo $performa['q3f'] ?>.</b></li>
-                                                                                <li>Apakah PC mengusahakan sumber-sumber pemasukan keuangan lain selain iuran anggota? <b>Jawab : <?php echo $performa['q4f'] ?>.</b></li>
-                                                                                <li>Apakah PC memiliki pembukuan keuangan? <b>Jawab : <?php echo $performa['q5f'] ?>.</b></li>
-                                                                                <li>Apakah sistem pembukuan keuangan jam'iyyah sudah sesuai dengan Pedoman Pembukuan Keuangan Jam'iyyah? <b>Jawab : <?php echo $performa['q6f'] ?>.</b></li>
-                                                                                <li>Bagaimana kondisi neraca/saldo tahunan PC? <b>Jawab : <?php echo $performa['q7f'] ?>.</b></li>
+                                                                            <li>Bagaimana partisipasi anggota dalam iuran wajib? <b>Jawab : <?php echo $performa['q1f'] ?>.</b></li>
+                                                                            <li>Apakah PC rutin setiap bulan menjemput iuran anggota? <b>Jawab : <?php echo $performa['q2f'] ?>.</b></li>
+                                                                            <li>Apakah PC memiliki catatan lengkap tentang tagihan iuran anggota? <b>Jawab : <?php echo $performa['q3f'] ?>.</b></li>
+                                                                            <li>Apakah PC mengusahakan sumber-sumber pemasukan keuangan lain selain iuran anggota? <b>Jawab : <?php echo $performa['q4f'] ?>.</b></li>
+                                                                            <li>Apakah PC memiliki pembukuan keuangan? <b>Jawab : <?php echo $performa['q5f'] ?>.</b></li>
+                                                                            <li>Apakah sistem pembukuan keuangan jam'iyyah sudah sesuai dengan Pedoman Pembukuan Keuangan Jam'iyyah? <b>Jawab : <?php echo $performa['q6f'] ?>.</b></li>
+                                                                            <li>Bagaimana kondisi neraca/saldo tahunan PC? <b>Jawab : <?php echo $performa['q7f'] ?>.</b></li>
                                                                         </div>
                                                                     </ol>
                                                                 </div>  
@@ -665,7 +654,7 @@
                                                                         <?php if ($this->session->level == 'admin') { ?>
                                                                             <a href="<?php echo site_url() ?>anggota/delete/<?php echo $data_anggota->npa; ?>" title="Hapus Data" 
                                                                                onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?'))
-                                                                                                   return false;">
+                                                                                           return false;">
                                                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
                                                                             </a>
                                                                         <?php } ?>
@@ -889,29 +878,29 @@
 </script>-->
 
 <script>
-    $(document).ready(function() {
-    var table1 = $('#data_pj').DataTable({ "scrollX" : true });
-    var table2 = $('#data_pc').DataTable({ "scrollX" : true });
-    var table3 = $('#data_anggota').DataTable({ "scrollX" : true });
-     
-    $('#data_pj tbody').on('click', 'tr', function () {
-        var data = table1.row( this ).data();
+   $(document).ready(function () {
+       var table1 = $('#data_pj').DataTable({"scrollX": true});
+       var table2 = $('#data_pc').DataTable({"scrollX": true});
+       var table3 = $('#data_anggota').DataTable({"scrollX": true});
+
+       $('#data_pc tbody').on('click', 'tr', function () {
+           var data = table1.row(this).data();
 //        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
-        window.location = "<?php echo site_url() ?>profil/pj_details/"+data[2]; 
-    } );
-     
-    $('#data_pc tbody').on('click', 'tr', function () {
-        var data = table2.row( this ).data();
+           window.location = "<?php echo site_url() ?>profil/pc_details/" + data[2];
+       });
+
+       $('#data_pd tbody').on('click', 'tr', function () {
+           var data = table2.row(this).data();
 //        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
-        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
-    } );
-     
-    $('#data_anggota tbody').on('click', 'tr', function () {
-        var data = table3.row( this ).data();
+           window.location = "<?php echo site_url() ?>>profil/pd_details/" + data[2];
+       });
+
+       $('#data_anggota tbody').on('click', 'tr', function () {
+           var data = table3.row(this).data();
 //        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
-        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
-    } );
-} );
+           window.location = "<?php echo site_url() ?>anggota/details/" + data[2];
+       });
+   });
 </script>
 <?php $this->load->view('template/jscripts'); ?>
 <?php $this->load->view('template/footer'); ?>
