@@ -337,11 +337,6 @@ class Jamiyyah extends CI_Controller {
         }
     }
 
-    public function tes() {
-        $kd_pc = $this->input->post('npa');
-        print_r($kd_pc);
-    }
-
     public function save_monografi_pc() {
         if (isset($_POST['submit']) && $_FILES['foto']) {
             $config['upload_path'] = './assets/foto/pc/';
@@ -573,7 +568,6 @@ class Jamiyyah extends CI_Controller {
             $kd_pw = $this->input->post('no_pw');
             $pw = $this->input->post('pw');
             $pd = $this->input->post('pd');
-            $pc = $this->input->post('pc');
             $latitude = $this->input->post('latitude');
             $longitude = $this->input->post('longitude');
             $email = $this->input->post('email');
@@ -593,7 +587,6 @@ class Jamiyyah extends CI_Controller {
                 'kd_pw' => $kd_pw,
                 'pw' => $pw,
                 'pd' => $pd,
-                'pc' => $pc,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
                 'email' => $email,
@@ -693,42 +686,11 @@ class Jamiyyah extends CI_Controller {
                 'pembantu_umum3' => $pembantu_umum3,
                 'hari' => $hari,
                 'pukul' => $pukul,
-                'musycab_terakhir_m' => date('Y-m-d', strtotime($masehi)),
-                'musycab_terakhir_h' => date('Y-m-d', strtotime($hijriah)),
+                'musyda_terakhir_m' => date('Y-m-d', strtotime($masehi)),
+                'musyda_terakhir_h' => date('Y-m-d', strtotime($hijriah)),
                 'last_updated' => date('Y-m-d H:i:sa')
             );
 
-
-            // Data Keanggotaan
-            $biasa = $this->input->post('biasa');
-            $tersiar = $this->input->post('tersiar');
-            $istimewa = $this->input->post('istimewa');
-            $data_keanggotaan = array(
-                'kd_pd' => $kd_pd,
-                'kd_pw' => $kd_pw,
-                'biasa' => $biasa,
-                'tersiar' => $tersiar,
-                'istimewa' => $istimewa,
-            );
-
-            //Data Mantan Anggota
-            $tdk_her = $this->input->post('tdk_her');
-            $mutasi_ke_persis = $this->input->post('mutasi_ke_persis');
-            $mutasi_tempat = $this->input->post('mutasi_tempat');
-            $mengundurkan_diri = $this->input->post('mengundurkan_diri');
-            $meninggal_dunia = $this->input->post('meninggal_dunia');
-            $calon_anggota = $this->input->post('calon_anggota');
-            $data_x_anggota = array(
-                'kd_pd' => $kd_pd,
-                'kd_pw' => $kd_pw,
-                'tdk_her' => $tdk_her,
-                'mutasi_ke_persis' => $mutasi_ke_persis,
-                'mutasi_tempat' => $mutasi_tempat,
-                'mengundurkan_diri' => $mengundurkan_diri,
-                'meninggal_dunia' => $meninggal_dunia,
-                'calon_anggota' => $calon_anggota
-            );
-//            
 //            echo 'Data Geografis';
 //            echo '<br/>';
 //            print_r($data_geografis);
@@ -738,23 +700,13 @@ class Jamiyyah extends CI_Controller {
 //            print_r($data_kejamiyyahan);
 //            echo '<br/>';
 //
-//            echo 'Data Keanggotaan';
-//            echo '<br/>';
-//            print_r($data_keanggotaan);
-//            echo '<br/>';
-//
-//            echo 'Data Mantan Anggota';
-//            echo '<br/>';
-//            print_r($data_x_anggota);
-//            echo '<br/>';
-//
 //            $error = array('error' => $this->upload->display_errors());
 //            print_r($error);
 //            die();
 
-            $this->m_jamiyyah->simpan_monografi_pd($data_geografis, $data_kejamiyyahan, $data_keanggotaan, $data_x_anggota, $data_jamaah);
+            $this->m_jamiyyah->simpan_monografi_pd($data_geografis, $data_kejamiyyahan);
 //            $this->load->view('dashboard1');
-            redirect('Dashboard1');
+            redirect('profil/lihat_pd');
         } else {
             $error = array('error' => $this->upload->display_errors());
             print_r($error);
