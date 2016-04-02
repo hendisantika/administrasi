@@ -155,20 +155,6 @@ $(document).ready(function () {
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="pc" class="col-sm-2 control-label">Kecamatan</label>
-                    <div class="col-sm-10">
-                        <select name="pc" class="form-control" id="kecamatan" required>
-                            <option>- Pilih  Kecamatan -</option>
-                            <?php
-                            foreach ($kecamatan as $kec) {
-                                echo '<option value="' . $kec->id . '">' . $kec->nama . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-
                 <h3 align='center'>
                     <span class="label label-success col-sm-12">
                         <i class="fa fa-user"> DATA GEOGRAFIS</i>
