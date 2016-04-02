@@ -21,12 +21,10 @@ class M_Jamiyyah extends CI_Model {
         $this->db->insert("tbl_data_keanggotaan", $data_keanggotaan);
         $this->db->insert("tbl_data_x_anggota", $data_x_anggota);
     }
-    
-    function simpan_monografi_pd($data_geografis, $data_kejamiyyahan, $data_keanggotaan, $data_x_anggota) {
-        $this->db->insert("tbl_data_geografis_pc", $data_geografis);
-        $this->db->insert("tbl_data_kejamiyyahan", $data_kejamiyyahan);
-        $this->db->insert("tbl_data_keanggotaan", $data_keanggotaan);
-        $this->db->insert("tbl_data_x_anggota", $data_x_anggota);
+
+    function simpan_monografi_pd($data_geografis, $data_kejamiyyahan) {
+        $this->db->insert("tbl_data_geografis_pd", $data_geografis);
+        $this->db->insert("tbl_data_kejamiyyahan_pd", $data_kejamiyyahan);
     }
 
     function add_data_jamaah($data_jamaah) {
@@ -78,11 +76,25 @@ class M_Jamiyyah extends CI_Model {
         INNER JOIN wilayah_kabupaten 
         ON tbl_data_geografis_pc.pd = wilayah_kabupaten.id
         INNER JOIN wilayah_kecamatan 
-        ON tbl_data_geografis_pc.pc = wilayah_kecamatan.id 
-        ;");
+        ON tbl_data_geografis_pc.pc = wilayah_kecamatan.id;");
         return $query->result();
     }
-    
+
+    function lihat_pc_per_pd($kd_pd) {
+        $query = $this->db->query("SELECT tbl_data_geografis_pc.kd_pc, tbl_data_geografis_pc.kd_pd, tbl_data_geografis_pc.kd_pw, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
+        wilayah_kecamatan.nama as pc, tbl_data_geografis_pc.latitude, tbl_data_geografis_pc.longitude, 
+        tbl_data_geografis_pc.no_kontak, tbl_data_geografis_pc.email, tbl_data_geografis_pc.foto
+        FROM tbl_data_geografis_pc
+        INNER JOIN wilayah_provinsi
+        ON tbl_data_geografis_pc.pw = wilayah_provinsi.id
+        INNER JOIN wilayah_kabupaten 
+        ON tbl_data_geografis_pc.pd = wilayah_kabupaten.id
+        INNER JOIN wilayah_kecamatan 
+        ON tbl_data_geografis_pc.pc = wilayah_kecamatan.id
+        WHERE kd_pd = '$kd_pd'");
+        return $query->result();
+    }
+
     function lihat_pd() {
         $query = $this->db->query("SELECT tbl_data_geografis_pd.kd_pd, tbl_data_geografis_pd.kd_pw, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, 
@@ -135,20 +147,20 @@ class M_Jamiyyah extends CI_Model {
         return $this->db->get();
     }
 
-     function cek_performa_pc($kd_pc) {
+    function cek_performa_pc($kd_pc) {
         $param = array('tbl_performa_pc.kd_pc' => $kd_pc);
 //        $query = $this->db->query("SELECT * FROM tbl_performa_pc where kd_pc = '$kd_pc'");
 //        return $query->result();
-          $this->db->select('*');
-          $this->db->from('tbl_performa_pc');
-          $this->db->where($param);
-          return $this->db->get();
-          
+        $this->db->select('*');
+        $this->db->from('tbl_performa_pc');
+        $this->db->where($param);
+        return $this->db->get();
     }
+
     function cek_pd($kd_pd) {
         $param = array('tbl_data_geografis_pd.kd_pd' => $kd_pd);
         $this->db->select('tbl_data_geografis_pd.kd_pd, tbl_data_geografis_pd.kd_pw, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
-        tbl_data_geografis_pd.pd as nama_pd, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, tbl_data_geografis_pd.alamat_utama, tbl_data_geografis_pd.alamat_alternatif, tbl_data_geografis_pd.no_kontak, tbl_data_geografis_pd.email,
+        tbl_data_geografis_pd.pd as nama_pd, tbl_data_geografis_pd.pd as nama_pd, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, tbl_data_geografis_pd.alamat_utama, tbl_data_geografis_pd.alamat_alternatif, tbl_data_geografis_pd.no_kontak, tbl_data_geografis_pd.email,
         tbl_data_geografis_pd.luas, tbl_data_geografis_pd.bw_utara, tbl_data_geografis_pd.bw_selatan, tbl_data_geografis_pd.bw_timur, tbl_data_geografis_pd.bw_barat,
         tbl_data_geografis_pd.jarak_dari_ibukota_negara, tbl_data_geografis_pd.jarak_dari_ibukota_provinsi, tbl_data_geografis_pd.jarak_dari_ibukota_kabupaten, tbl_data_geografis_pd.foto,
         tbl_data_kejamiyyahan_pd.penasehat1, tbl_data_kejamiyyahan_pd.penasehat2, tbl_data_kejamiyyahan_pd.penasehat3, tbl_data_kejamiyyahan_pd.penasehat4,   
@@ -159,38 +171,25 @@ class M_Jamiyyah extends CI_Model {
         tbl_data_kejamiyyahan_pd.bid_hal, tbl_data_kejamiyyahan_pd.wkl_bid_hal, tbl_data_kejamiyyahan_pd.bid_or_seni, tbl_data_kejamiyyahan_pd.wkl_bid_or_seni,
         tbl_data_kejamiyyahan_pd.bid_sosial, tbl_data_kejamiyyahan_pd.wkl_bid_sosial, tbl_data_kejamiyyahan_pd.pembantu_umum1, tbl_data_kejamiyyahan_pd.pembantu_umum2, tbl_data_kejamiyyahan_pd.pembantu_umum3,
         tbl_data_kejamiyyahan_pd.hari, tbl_data_kejamiyyahan_pd.pukul, tbl_data_kejamiyyahan_pd.musyda_terakhir_m');
-//        $this->db->select('tbl_data_geografis_pd.kd_pd, tbl_data_geografis_pd.kd_pw, wilayah_provinsi.nama as provinsi, wilayah_kabupaten.nama as kabupaten, 
-//        tbl_data_geografis_pd.pd as nama_pd, wilayah_kabupaten.nama as pd, wilayah_provinsi.nama as pw, tbl_data_geografis_pd.latitude, tbl_data_geografis_pd.longitude, tbl_data_geografis_pd.alamat_utama, tbl_data_geografis_pd.alamat_alternatif, tbl_data_geografis_pd.no_kontak, tbl_data_geografis_pd.email,
-//        tbl_data_geografis_pd.luas, tbl_data_geografis_pd.bw_utara, tbl_data_geografis_pd.bw_selatan, tbl_data_geografis_pd.bw_timur, tbl_data_geografis_pd.bw_barat,
-//        tbl_data_geografis_pd.jarak_dari_ibukota_negara, tbl_data_geografis_pd.jarak_dari_ibukota_provinsi, tbl_data_geografis_pd.jarak_dari_ibukota_kabupaten, tbl_data_geografis_pd.foto,
-//        tbl_data_kejamiyyahan_pd.penasehat1, tbl_data_kejamiyyahan_pd.penasehat2, tbl_data_kejamiyyahan_pd.penasehat3, tbl_data_kejamiyyahan_pd.penasehat4,   
-//        tbl_data_kejamiyyahan_pd.ketua, tbl_data_kejamiyyahan_pd.wkl_ketua, tbl_data_kejamiyyahan_pd.sekretaris, tbl_data_kejamiyyahan_pd.wkl_sekretaris, tbl_data_kejamiyyahan_pd.bendahara, tbl_data_kejamiyyahan_pd.wkl_bendahara,
-//        tbl_data_kejamiyyahan_pd.bid_jamiyyah, tbl_data_kejamiyyahan_pd.wkl_bid_jamiyyah, tbl_data_kejamiyyahan_pd.bid_kaderisasi, tbl_data_kejamiyyahan_pd.wkl_bid_kaderisasi,
-//        tbl_data_kejamiyyahan_pd.bid_administrasi, tbl_data_kejamiyyahan_pd.wkl_bid_administrasi, tbl_data_kejamiyyahan_pd.bid_pendidikan, tbl_data_kejamiyyahan_pd.wkl_bid_pendidikan,
-//        tbl_data_kejamiyyahan_pd.bid_dakwah, tbl_data_kejamiyyahan_pd.wkl_bid_dakwah, tbl_data_kejamiyyahan_pd.bid_humas_publikasi, tbl_data_kejamiyyahan_pd.wkl_bid_humas_publikasi,
-//        tbl_data_kejamiyyahan_pd.bid_hal, tbl_data_kejamiyyahan_pd.wkl_bid_hal, tbl_data_kejamiyyahan_pd.bid_or_seni, tbl_data_kejamiyyahan_pd.wkl_bid_or_seni,
-//        tbl_data_kejamiyyahan_pd.bid_sosial, tbl_data_kejamiyyahan_pd.wkl_bid_sosial, tbl_data_kejamiyyahan_pd.pembantu_umum1, tbl_data_kejamiyyahan_pd.pembantu_umum2, tbl_data_kejamiyyahan_pd.pembantu_umum3,
-//        tbl_data_kejamiyyahan_pd.hari, tbl_data_kejamiyyahan_pd.pukul, tbl_data_kejamiyyahan_pd.musyda_terakhir_m');
         $this->db->from('tbl_data_geografis_pd');
         $this->db->join('wilayah_provinsi', 'tbl_data_geografis_pd.pw = wilayah_provinsi.id', 'inner');
         $this->db->join('wilayah_kabupaten', 'tbl_data_geografis_pd.pd = wilayah_kabupaten.id', 'inner');
-//        $this->db->join('tbl_data_kejamiyyahan_pd', 'tbl_data_geografis_pd.kd_pd = tbl_data_kejamiyyahan_pd.kd_pd', 'inner');
+        $this->db->join('tbl_data_kejamiyyahan_pd', 'tbl_data_geografis_pd.kd_pd = tbl_data_kejamiyyahan_pd.kd_pd', 'inner');
         $this->db->where($param);
 //        echo $this->db->last_query();exit;
         return $this->db->get();
     }
 
-     function cek_performa_pd($kd_pd) {
+    function cek_performa_pd($kd_pd) {
         $param = array('tbl_performa_pd.kd_pd' => $kd_pd);
 //        $query = $this->db->query("SELECT * FROM tbl_performa_pc where kd_pc = '$kd_pc'");
 //        return $query->result();
-          $this->db->select('*');
-          $this->db->from('tbl_performa_pd');
-          $this->db->where($param);
-          return $this->db->get();
-          
+        $this->db->select('*');
+        $this->db->from('tbl_performa_pd');
+        $this->db->where($param);
+        return $this->db->get();
     }
-    
+
     function cek_usia() {
         $query = $this->db->query("SELECT CASE
                                       WHEN umur < 20 THEN '< 20'
@@ -207,7 +206,7 @@ class M_Jamiyyah extends CI_Model {
                                       ORDER BY range_umur;");
         return $query->result();
     }
-    
+
     function cek_usia_anggota_pc() {
         $query = $this->db->query("SELECT CASE
                                       WHEN umur < 20 THEN '< 20'
@@ -224,7 +223,7 @@ class M_Jamiyyah extends CI_Model {
                                       ORDER BY range_umur;");
         return $query->result();
     }
-    
+
     function cek_usia_anggota_pj() {
         $query = $this->db->query("SELECT CASE
                                       WHEN umur < 20 THEN '< 20'
@@ -241,7 +240,7 @@ class M_Jamiyyah extends CI_Model {
                                       ORDER BY range_umur;");
         return $query->result();
     }
-    
+
     function cek_pendidikan() {
         $query = $this->db->query("SELECT CASE
                                     WHEN level = 'SD' THEN 'SD'
@@ -266,7 +265,7 @@ class M_Jamiyyah extends CI_Model {
                                     GROUP BY level;");
         return $query->result();
     }
-    
+
     function cek_pendidikan_anggota_pc() {
         $query = $this->db->query("SELECT CASE
                                     WHEN level = 'SD' THEN 'SD'
@@ -291,7 +290,7 @@ class M_Jamiyyah extends CI_Model {
                                     GROUP BY level;");
         return $query->result();
     }
-    
+
     function cek_pendidikan_anggota_pj() {
         $query = $this->db->query("SELECT CASE
                                     WHEN level = 'SD' THEN 'SD'
@@ -316,7 +315,7 @@ class M_Jamiyyah extends CI_Model {
                                     GROUP BY level;");
         return $query->result();
     }
-    
+
     function cek_status_merital() {
         $query = $this->db->query("SELECT CASE
                                     WHEN status = 'Single' THEN 'Single'
@@ -331,7 +330,7 @@ class M_Jamiyyah extends CI_Model {
                                     ");
         return $query->result();
     }
-    
+
     function cek_status_merital_anggota_pc() {
         $query = $this->db->query("SELECT CASE
                                     WHEN status = 'Single' THEN 'Single'
@@ -346,7 +345,7 @@ class M_Jamiyyah extends CI_Model {
                                     ");
         return $query->result();
     }
-    
+
     function cek_status_merital_anggota_pj() {
         $query = $this->db->query("SELECT CASE
                                     WHEN status = 'Single' THEN 'Single'
@@ -361,7 +360,7 @@ class M_Jamiyyah extends CI_Model {
                                     ");
         return $query->result();
     }
-    
+
     function cek_status_keanggotaan() {
         $query = $this->db->query("SELECT CASE
                                     WHEN status = 'Biasa' THEN 'Biasa'
@@ -376,7 +375,7 @@ class M_Jamiyyah extends CI_Model {
                                     ");
         return $query->result();
     }
-    
+
     function cek_gol_darah() {
         $query = $this->db->query("SELECT CASE
                                     WHEN gol = 'A' THEN 'A'
@@ -393,6 +392,4 @@ class M_Jamiyyah extends CI_Model {
         return $query->result();
     }
 
-   
-    
 }
