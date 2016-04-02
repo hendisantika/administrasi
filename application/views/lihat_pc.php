@@ -35,6 +35,7 @@
                             <table id="data_pc" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Foto</th>
                                         <th>Kode PC</th>
                                         <th>Kode PD</th>
@@ -48,8 +49,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($a as $data_pc) { ?>
+                                    <?php  $no = 1; foreach ($a as $data_pc) { ?>
                                     <tr class="pilih">
+                                            <td><?php echo $no; ?></td>
                                             <td><img src="<?php echo base_url('/assets/foto/pc/' . $data_pc->foto); ?>" class="img-responsive img-rounded center-block" width="150"></td>
                                             <td><?php echo $data_pc->kd_pc; ?></td>
                                             <td><?php echo $data_pc->kd_pd; ?></td>
@@ -75,10 +77,11 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php $no++; } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>No</th>
                                         <th>Foto</th>
                                         <th>Kode PC</th>
                                         <th>Kode PD</th>
@@ -91,7 +94,6 @@
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
-
                             </table>
                         </div><!-- box-body -->
 
