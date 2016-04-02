@@ -126,7 +126,7 @@
     $('#data_pc tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
 //        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
-        window.location = "<?php echo site_url() ?>profil/pc_details/"+data[1]; 
+        window.location = "<?php echo site_url() ?>profil/pc_details/"+data[2]; 
     } );
 } );
 </script>
