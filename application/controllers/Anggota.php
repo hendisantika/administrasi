@@ -97,7 +97,7 @@ class Anggota extends CI_Controller {
 //            $foto = $this->upload->data('full_path');
             if (isset($_POST['submit']) && ($_FILES['foto']["size"] != 0)) {
                 $foto = $this->upload->data('file_name');
-            }else{
+            } else {
                 $foto = 'avatar.png';
             }
 
@@ -120,8 +120,8 @@ class Anggota extends CI_Controller {
             $email = $this->input->post('email');
             $no_telpon1 = $this->input->post('no_telpon1');
             $no_telpon2 = $this->input->post('no_telpon2');
-            
-            
+
+
             $data_pribadi = array(
                 'npa' => $npa,
                 'nama' => $nama,
@@ -343,8 +343,13 @@ class Anggota extends CI_Controller {
         if ($this->session->status_login != 'logged_in') {
             redirect('auth');
         }
-        $this->load->model('m_anggota');
-        $data_anggota = $this->m_anggota->lihat_anggota();
+//        $this->load->model('m_anggota');
+        $pc = $this->session->pc;
+        if ($this->session->level == 'admin') {
+            $data_anggota = $this->m_anggota->lihat_anggota();
+        } else {
+            $data_anggota = $this->m_anggota->lihat_anggota_pc($pc);
+        }
         $this->load->vars('a', $data_anggota);
         $this->load->view('lihat_anggota');
     }
@@ -808,7 +813,7 @@ class Anggota extends CI_Controller {
         $this->m_anggota->delete($npa);
         redirect('anggota/lihat_anggota');
     }
-    
+
     public function cek_akun() {
         // allow only Ajax request    
         if ($this->input->is_ajax_request()) {
@@ -834,6 +839,5 @@ class Anggota extends CI_Controller {
             }
         }
     }
-
 
 }
