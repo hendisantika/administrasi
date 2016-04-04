@@ -115,7 +115,7 @@
                 <div class="form-group">
                     <label for="pj" class="col-sm-2 control-label">PJ</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="pj" name="pj" placeholder="Pimpinan Jama'ah" required>
+                        <input type="text" class="form-control" id="pj" name="pj" placeholder="Pimpinan Jama'ah">
                     </div>
                     <label for="gol_darah" class="col-sm-2 control-label">Golongan Darah</label>
                     <div class="col-sm-5">
