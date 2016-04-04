@@ -42,7 +42,8 @@ class Auth extends CI_Controller {
                     $sess_data['email']     = $qad->email;
                     $sess_data['reg_date']  = $qad->reg_date;
                     $sess_data['level']     = $qad->level;
-                    $sess_data['foto']     = $qad->foto;
+                    $sess_data['pc']        = $qad->pc;
+                    $sess_data['foto']      = $qad->foto;
                     $sess_data['status_login'] =  'logged_in';
                     $this->db->where('npa', $sess_data['npa']);
                     $this->db->update('tbl_user', array('last_login'=>date('Y-m-d H:i:sa')));
@@ -67,7 +68,8 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('login_state', TRUE);
                 $this->session->userdata('logged_in');
                 $this->session->set_userdata($sess_data);
-                $this->load->view('dashboard1', $sess_data);
+//                $this->load->view('dashboard1', $sess_data);
+                $this->load->view('dashboard3', $sess_data);
 //                $this->load->view('template/sidebar', $sess_data);
 //                $this->load->view('template/topbar', $sess_data);
             } else {
