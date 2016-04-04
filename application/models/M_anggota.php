@@ -50,6 +50,23 @@ class M_Anggota extends CI_Model {
         ON tbl_anggota.desa = wilayah_desa.id;");
         return $query->result();
     }
+    
+    public function lihat_anggota_per_user($pc) {
+        $query = $this->db->query("SELECT tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
+        wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status,
+        tbl_anggota.pekerjaan, tbl_anggota.tempat, tbl_anggota.tanggal_lahir, tbl_anggota.foto
+        FROM tbl_anggota
+        INNER JOIN wilayah_provinsi
+        ON tbl_anggota.pw = wilayah_provinsi.id
+        INNER JOIN wilayah_kabupaten 
+        ON tbl_anggota.pd = wilayah_kabupaten.id
+        INNER JOIN wilayah_kecamatan 
+        ON tbl_anggota.pc = wilayah_kecamatan.id 
+        INNER JOIN wilayah_desa
+        ON tbl_anggota.desa = wilayah_desa.id
+        WHERE tbl_anggota.pc = '$pc';");
+        return $query->result();
+    }
 
     public function lihat_kode_pc($kd_kec) {
         $query = $this->db->query("SELECT kd_pc, pc, pd, pw FROM tbl_data_geografis_pc where kd_pc = '$kd_kec'");
