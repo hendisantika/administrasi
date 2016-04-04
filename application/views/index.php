@@ -194,12 +194,12 @@
                                                                 </a>
                                                             </div>
 
-                                                            <div>
+<!--                                                            <div>
                                                                 <a href="<?php echo site_url('user'); ?>" class="user-signup-link">
                                                                     I want to register
                                                                     <i class="ace-icon fa fa-arrow-right"></i>
                                                                 </a>
-                                                            </div>
+                                                            </div>-->
                                                         </div>
                                                     </div><!-- /.widget-body -->
                                                     </div><!-- /.login-box -->
