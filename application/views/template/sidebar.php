@@ -58,7 +58,7 @@
                         <i class="glyphicon glyphicon-user"></i> <span>Data User</span>
                     </a>
                 </li>
-            <?php } ?>
+            
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
@@ -84,6 +84,7 @@
                     <li><a href="<?php echo base_url('profil/lihat_pd'); ?>"><i class="fa fa-circle-o"></i> Pimpinan Daerah (PD)</a></li>
                 </ul>
             </li>
+            <?php } ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-table"></i> <span>Tables</span>
