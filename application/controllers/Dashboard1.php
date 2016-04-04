@@ -28,7 +28,8 @@ class Dashboard1 extends CI_Controller {
         $data['merit'] = $this->m_jamiyyah->cek_status_merital();
         $data['jenis'] = $this->m_jamiyyah->cek_status_keanggotaan();
         $data['gol_darah'] = $this->m_jamiyyah->cek_gol_darah();
-        $this->load->view('dashboard1', $data);
+//        $this->load->view('dashboard1', $data);
+        $this->load->view('dashboard3');
     }
 
 }
