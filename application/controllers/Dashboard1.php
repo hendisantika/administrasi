@@ -11,7 +11,6 @@ class Dashboard1 extends CI_Controller {
         }
         $this->load->model('m_dashboard1');
         $this->load->model('m_jamiyyah');
-        
     }
 
     public function index() {
@@ -28,8 +27,12 @@ class Dashboard1 extends CI_Controller {
         $data['merit'] = $this->m_jamiyyah->cek_status_merital();
         $data['jenis'] = $this->m_jamiyyah->cek_status_keanggotaan();
         $data['gol_darah'] = $this->m_jamiyyah->cek_gol_darah();
-//        $this->load->view('dashboard1', $data);
-        $this->load->view('dashboard3');
+
+        if ($this->session->level == 'admin') {
+            $this->load->view('dashboard1', $data);
+        } else {
+            $this->load->view('dashboard3');
+        }
     }
 
 }
