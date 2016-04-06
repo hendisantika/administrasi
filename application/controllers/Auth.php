@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
@@ -36,28 +38,28 @@ class Auth extends CI_Controller {
             if ($cek->num_rows() > 0) {
 //                login berhasil, buat session
                 foreach ($cek->result() as $qad) {
-                    $sess_data['npa']       = $qad->npa;
-                    $sess_data['username']  = $qad->username;
-                    $sess_data['nama']      = $qad->nama;
-                    $sess_data['email']     = $qad->email;
-                    $sess_data['reg_date']  = $qad->reg_date;
-                    $sess_data['level']     = $qad->level;
-                    $sess_data['pc']        = $qad->pc;
-                    $sess_data['foto']      = $qad->foto;
-                    $sess_data['status_login'] =  'logged_in';
+                    $sess_data['npa'] = $qad->npa;
+                    $sess_data['username'] = $qad->username;
+                    $sess_data['nama'] = $qad->nama;
+                    $sess_data['email'] = $qad->email;
+                    $sess_data['reg_date'] = $qad->reg_date;
+                    $sess_data['level'] = $qad->level;
+                    $sess_data['pc'] = $qad->pc;
+                    $sess_data['foto'] = $qad->foto;
+                    $sess_data['status_login'] = 'logged_in';
                     $this->db->where('npa', $sess_data['npa']);
-                    $this->db->update('tbl_user', array('last_login'=>date('Y-m-d H:i:sa')));
+                    $this->db->update('tbl_user', array('last_login' => date('Y-m-d H:i:sa')));
                     $this->session->set_userdata($sess_data);
-                    $sess_data['anggota']   = $this->m_dashboard1->count_anggota();
-                    $sess_data['users']     = $this->m_dashboard1->count_users();
-                    $sess_data['jamaah']    = $this->m_dashboard1->count_jamaah();
-                    $sess_data['cabang']    = $this->m_dashboard1->count_cabang();
-                    $sess_data['pd']        = $this->m_dashboard1->count_pd();
-                    $sess_data['usia']      = $this->m_jamiyyah->cek_usia();
+                    $sess_data['anggota'] = $this->m_dashboard1->count_anggota();
+                    $sess_data['users'] = $this->m_dashboard1->count_users();
+                    $sess_data['jamaah'] = $this->m_dashboard1->count_jamaah();
+                    $sess_data['cabang'] = $this->m_dashboard1->count_cabang();
+                    $sess_data['pd'] = $this->m_dashboard1->count_pd();
+                    $sess_data['usia'] = $this->m_jamiyyah->cek_usia();
                     $sess_data['pendidikan'] = $this->m_jamiyyah->cek_pendidikan();
-                    $sess_data['merit']      = $this->m_jamiyyah->cek_status_merital();
-                    $sess_data['jenis']      = $this->m_jamiyyah->cek_status_keanggotaan();
-                    $sess_data['gol_darah']      = $this->m_jamiyyah->cek_gol_darah();
+                    $sess_data['merit'] = $this->m_jamiyyah->cek_status_merital();
+                    $sess_data['jenis'] = $this->m_jamiyyah->cek_status_keanggotaan();
+                    $sess_data['gol_darah'] = $this->m_jamiyyah->cek_gol_darah();
                 }
 //                $sessionData = array( 'username' => $usr);
 //                $this->session->set_userdata($sessionData);
@@ -68,8 +70,12 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('login_state', TRUE);
                 $this->session->userdata('logged_in');
                 $this->session->set_userdata($sess_data);
-//                $this->load->view('dashboard1', $sess_data);
-                $this->load->view('dashboard3', $sess_data);
+                if ($this->session->level == 'admin') {
+                    $this->load->view('dashboard1', $sess_data);
+                } else {
+
+                    $this->load->view('dashboard3', $sess_data);
+                }
 //                $this->load->view('template/sidebar', $sess_data);
 //                $this->load->view('template/topbar', $sess_data);
             } else {
