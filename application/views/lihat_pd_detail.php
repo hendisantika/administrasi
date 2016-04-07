@@ -427,8 +427,7 @@
                                 <img class="img-responsive img-rounded center-block" 
                                      src="<?php echo base_url('/assets/admin_lte/img/pemuda persis.jpg'); ?>" width="150"><br />
                                 <h3 align='center'><bold>INDEKS PERFORMA JAM’IYYAH (IPJ)</bold></h3>
-                                <h3 align='center'><bold>DATA CABANG <?php
-                                        echo strtoupper($record['pc']);
+                                <h3 align='center'><bold>DATA PD <?php
                                         echo " " . strtoupper($record['pd']);
                                         echo " PROVINSI " . strtoupper($record['pw'])
                                         ?></bold></h2>
@@ -602,7 +601,7 @@
                                 <!-- Small boxes (Stat box) -->
                                 <div class="box box-success">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Lihat Data Anggota PC <?php echo $record['pc'] ?></h3>
+                                        <h3 class="box-title">Lihat Data Anggota PD <?php echo $record['pd'] ?></h3>
                                     </div><!-- /.box-header -->
                                     <div class="box-body">
                                         <div class="panel-body">
@@ -620,7 +619,6 @@
                                                                 <th>PC</th>
                                                                 <th>Desa</th>
                                                                 <th>PJ</th>
-                                                                <th>Email</th>
                                                                 <th>Nomor Telpon</th>
                                                                 <th>Action</th>
                                                             </tr>
@@ -640,7 +638,6 @@
                                                                     <td><?php echo $data_anggota->pc; ?></td>
                                                                     <td><?php echo $data_anggota->desa; ?></td>
                                                                     <td><?php echo $data_anggota->pj; ?></td>
-                                                                    <td><?php echo $data_anggota->email; ?></td>
                                                                     <td><?php echo $data_anggota->no_telpon1; ?></td>
                                                                     <td>
                                                                         <a href="<?php echo site_url() ?>anggota/details/<?php echo $data_anggota->npa; ?>" title="Lihat Detail">
@@ -676,7 +673,6 @@
                                                                 <th>PC</th>
                                                                 <th>Desa</th>
                                                                 <th>PJ</th>
-                                                                <th>Email</th>
                                                                 <th>Nomor Telpon</th>
                                                                 <th>Action</th>
                                                             </tr>
