@@ -15,8 +15,8 @@ class M_Anggota extends CI_Model {
             foreach ($query->result_array() as $row) {
                 $new_row['label'] = htmlentities(stripslashes($row['npa']));
                 $new_row['value'] = htmlentities(stripslashes($row['nama']));
-                $new_row['description']=htmlentities(stripslashes($row['nama']));
-                $new_row['pekerjaan']=htmlentities(stripslashes($row['pekerjaan']));
+                $new_row['description'] = htmlentities(stripslashes($row['nama']));
+                $new_row['pekerjaan'] = htmlentities(stripslashes($row['pekerjaan']));
                 $new_row['image'] = htmlentities(stripslashes($row['foto']));
                 $row_set[] = $new_row; //build an array
             }
@@ -50,7 +50,7 @@ class M_Anggota extends CI_Model {
         ON tbl_anggota.desa = wilayah_desa.id;");
         return $query->result();
     }
-    
+
     public function lihat_anggota_per_user($pc) {
         $query = $this->db->query("SELECT tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status,
@@ -89,7 +89,7 @@ class M_Anggota extends CI_Model {
         WHERE tbl_anggota.pc = '$kd_kec';");
         return $query->result();
     }
-    
+
     public function lihat_anggota_pj($nama_pj) {
         $query = $this->db->query("SELECT tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
         wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status,
@@ -104,6 +104,23 @@ class M_Anggota extends CI_Model {
         INNER JOIN wilayah_desa
         ON tbl_anggota.desa = wilayah_desa.id
         WHERE tbl_anggota.pj = '$nama_pj';");
+        return $query->result();
+    }
+    
+    public function lihat_anggota_pd($nama_pd) {
+        $query = $this->db->query("SELECT tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
+        wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pd as nama_pd, tbl_anggota.pj as pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status,
+        tbl_anggota.pekerjaan, tbl_anggota.tempat, tbl_anggota.tanggal_lahir, tbl_anggota.foto
+        FROM tbl_anggota
+        INNER JOIN wilayah_provinsi
+        ON tbl_anggota.pw = wilayah_provinsi.id
+        INNER JOIN wilayah_kabupaten 
+        ON tbl_anggota.pd = wilayah_kabupaten.id
+        INNER JOIN wilayah_kecamatan 
+        ON tbl_anggota.pc = wilayah_kecamatan.id 
+        INNER JOIN wilayah_desa
+        ON tbl_anggota.desa = wilayah_desa.id
+        WHERE tbl_anggota.pd = '$nama_pd';");
         return $query->result();
     }
 
@@ -226,7 +243,7 @@ class M_Anggota extends CI_Model {
         $this->db->where("npa", $npa);
         $this->db->update("tbl_organisasi", $data_organisasi);
     }
-    
+
     public function update_data_tafiq($npa, $data_tafiq) {
         // Data Tafiq
         $this->db->where("npa", $npa);
