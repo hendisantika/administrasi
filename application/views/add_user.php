@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="15" placeholder="Username" autofocus pattern="[a-zA-Z0-9]+" required title="Silahkan mengisi username minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
+                        <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="25" placeholder="Username" autofocus pattern="[a-zA-Z0-9]+" required title="Silahkan mengisi username minimal dengan 6 karakter dan maksimal 15 karakter tanpa spasi">
                     </div>
                 </div>
                 <div class="form-group">
