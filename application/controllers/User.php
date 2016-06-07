@@ -9,10 +9,7 @@ class User extends CI_Controller {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
 
-       $this->session->userdata('logged_in');
-        if($this->session->status_login != 'logged_in'){
-            redirect('auth');
-        }
+
 
         $this->load->model('m_wilayah');
         $this->load->model('m_user');
@@ -28,6 +25,12 @@ class User extends CI_Controller {
     }
 
     public function lihat_user() {
+
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
+
         $this->load->model('m_user');
         $data_user = $this->m_user->index();
         $this->load->vars('u', $data_user);
@@ -165,24 +168,24 @@ class User extends CI_Controller {
     public function kirim_password() {
         $ci = get_instance();
         $ci->load->library('email');
-        $config['protocol']     = "smtp";
-        $config['smtp_host']    = "ssl://srv6.niagahoster.com";
-        $config['smtp_port']    = "465";
-        $config['smtp_user']    = "kominfo@pemuda.persis.or.id";
-        $config['smtp_pass']    = "kominfo33";
-        $config['charset']      = "utf-8";
-        $config['mailtype']     = "html";
-        $config['newline']      = "\r\n";
-        $config['wordwrap']     = TRUE;
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://srv6.niagahoster.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "kominfo@pemuda.persis.or.id";
+        $config['smtp_pass'] = "kominfo33";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $config['wordwrap'] = TRUE;
 
         $ci->email->initialize($config);
 
         $npa = $this->input->post('npa');
         $email = $this->input->post('email');
-        
+
         if (isset($_POST['submit'])) {
             $data = array(
-                'npa'   => $npa,
+                'npa' => $npa,
                 'email' => $email,
             );
 //            print_r('Cek Data : ');
@@ -193,10 +196,10 @@ class User extends CI_Controller {
             $ci->email->from('kominfo@pemuda.persis.or.id', 'Hendi Santika');
 //            $npa        = $data['forgot']['npa'];
 //            $nama       = $data['forgot']['nama'];
-            $alamat     = $data['forgot']['email'];
+            $alamat = $data['forgot']['email'];
 //            $password   = $data['forgot']['password'];
 //            $url        = base_url();
-            
+
             $body = $this->load->view('email_body.php', $data, TRUE);
 
             $list = array($alamat);
@@ -204,7 +207,7 @@ class User extends CI_Controller {
             $ci->email->cc('hendisantika@yahoo.co.id');
             $ci->email->subject('Lupa Password');
             $ci->email->message($body);
-            
+
             $this->email->send();
             $this->load->view('kirim_password', $data);
 
@@ -216,15 +219,19 @@ class User extends CI_Controller {
 //            echo "Alamat Email  : " . $email; echo "<br>";
 //            echo "Password      : " . $password; echo "<br>";
 //            die();
-        }else {
-                print_r('Error Kirim Email');
-                echo "<br>";
-                show_error($this->email->print_debugger());
-                die();
-            }
+        } else {
+            print_r('Error Kirim Email');
+            echo "<br>";
+            show_error($this->email->print_debugger());
+            die();
+        }
     }
 
     public function details() {
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
         $npa = $this->uri->segment(3);
 //            echo $npa; die;
         $data['record'] = $this->m_user->cekNpa($npa)->row_array();
@@ -232,6 +239,10 @@ class User extends CI_Controller {
     }
 
     public function profile() {
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
 //        $npa = $this->uri->segment(3);
         $npa = $nama;
 //            echo $npa; die;
@@ -240,6 +251,10 @@ class User extends CI_Controller {
     }
 
     function edit() {
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
         $data['provinsi'] = $this->m_wilayah->get_all_provinsi();
         $data['kabupaten'] = $this->m_wilayah->get_all_kabupaten();
         $data['kecamatan'] = $this->m_wilayah->get_all_kecamatan();
@@ -276,6 +291,10 @@ class User extends CI_Controller {
     }
 
     public function edit_foto() {
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
         $npa = $this->uri->segment(3);
         if ($npa == NULL) {
             redirect('user/lihat_user');
@@ -362,6 +381,10 @@ class User extends CI_Controller {
     }
 
     public function cek_akun() {
+        $this->session->userdata('logged_in');
+        if ($this->session->status_login != 'logged_in') {
+            redirect('auth');
+        }
         // allow only Ajax request    
         if ($this->input->is_ajax_request()) {
             // grab the email value from the post variable.
@@ -392,7 +415,7 @@ class User extends CI_Controller {
         $this->m_user->delete($npa);
         redirect('user/lihat_user');
     }
-    
+
 }
 
 ?>
