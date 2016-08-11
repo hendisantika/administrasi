@@ -133,7 +133,7 @@ class M_Anggota extends CI_Model {
         $param = array('tbl_anggota.npa' => $npa);
 
         $this->db->select('tbl_anggota.npa, tbl_anggota.nama, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
-                            wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat, tbl_anggota.status, tbl_anggota.last_updated,
+                            wilayah_kecamatan.nama as pc, wilayah_desa.nama as desa,  tbl_anggota.pj, tbl_anggota.gol_darah, tbl_anggota.email, tbl_anggota.no_telpon1, tbl_anggota.no_telpon2, tbl_anggota.alamat as alamat_anggota, tbl_anggota.status, tbl_anggota.last_updated,
                             tbl_anggota.pekerjaan, tbl_anggota.status_merital, tbl_anggota.jenis_keanggotaan, tbl_anggota.tafiq, tbl_anggota.reg_date, tbl_anggota.keterangan as ket_anggota, tbl_anggota.tempat, tbl_anggota.tanggal_lahir, tbl_anggota.foto, 
                             tbl_keluarga.nama_istri, tbl_keluarga.status_istri, tbl_keluarga.jumlah_anak, tbl_keluarga.keterangan, 
                             tbl_orangtua.nama_ayah, tbl_orangtua.nama_ibu, tbl_orangtua.status_ayah, tbl_orangtua.status_ibu, , tbl_orangtua.alamat,
