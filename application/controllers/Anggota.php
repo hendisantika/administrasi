@@ -143,7 +143,8 @@ class Anggota extends CI_Controller {
                 'tafiq' => $tafiq,
                 'jenis_keanggotaan' => $jenis_keanggotaan,
                 'reg_date' => date('Y-m-d H:i:sa'),
-                'foto' => $foto
+                'foto' => $foto,
+                'created_by' => $this->session->username
             );
 
             // Data Keluarga
