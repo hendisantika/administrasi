@@ -120,6 +120,7 @@ class Anggota extends CI_Controller {
             $email = $this->input->post('email');
             $no_telpon1 = $this->input->post('no_telpon1');
             $no_telpon2 = $this->input->post('no_telpon2');
+            $created_by = $this->session->username;
 
 
             $data_pribadi = array(
@@ -144,7 +145,7 @@ class Anggota extends CI_Controller {
                 'jenis_keanggotaan' => $jenis_keanggotaan,
                 'reg_date' => date('Y-m-d H:i:sa'),
                 'foto' => $foto,
-                'created_by' => $this->session->username
+                'created_by' => $created_by 
             );
 
             // Data Keluarga
