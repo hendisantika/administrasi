@@ -273,6 +273,7 @@ class M_Jamiyyah extends CI_Model {
                                     WHEN level = 'S1' THEN 'S1'
                                     WHEN level = 'S2' THEN 'S2'
                                     WHEN level = 'S3' THEN 'S3'
+                                    WHEN level LIKE '%--%' THEN 'Belum Diisi'
                                     WHEN level IS NULL THEN '(NULL)'
                                     END level_pendidikan,
                                     COUNT(*) AS jumlah
@@ -362,6 +363,7 @@ class M_Jamiyyah extends CI_Model {
                                     WHEN status = 'Single' THEN 'Single'
                                     WHEN status = 'Menikah' THEN 'Menikah'
                                     WHEN status = 'Duda' THEN 'Duda'
+                                    WHEN status LIKE '%-%' THEN 'Belum Diisi'
                                     WHEN status IS NULL THEN '(NULL)'
                                     END as status,
                                     COUNT(*) AS jumlah
@@ -377,6 +379,7 @@ class M_Jamiyyah extends CI_Model {
                                     WHEN status = 'Single' THEN 'Single'
                                     WHEN status = 'Menikah' THEN 'Menikah'
                                     WHEN status = 'Duda' THEN 'Duda'
+                                    WHEN status = '- S' THEN 'Duda'
                                     WHEN status IS NULL THEN '(NULL)'
                                     END as status,
                                     COUNT(*) AS jumlah
@@ -421,6 +424,7 @@ class M_Jamiyyah extends CI_Model {
                                     WHEN status = 'Biasa' THEN 'Biasa'
                                     WHEN status = 'Tersiar' THEN 'Tersiar'
                                     WHEN status = 'Istimewa' THEN 'Istimewa'
+                                    WHEN status LIKE '%-%' THEN 'Belum Diisi'
                                     WHEN status IS NULL THEN '(NULL)'
                                     END as status,
                                     COUNT(*) AS jumlah
@@ -437,6 +441,7 @@ class M_Jamiyyah extends CI_Model {
                                     WHEN gol = 'B' THEN 'B'
                                     WHEN gol = 'AB' THEN 'AB'
                                     WHEN gol = 'O' THEN 'O'
+                                    WHEN gol LIKE '%-%' THEN 'Belum Diisi'
                                     WHEN gol IS NULL THEN '(NULL)'
                                     END as gol,
                                     COUNT(*) AS jumlah
