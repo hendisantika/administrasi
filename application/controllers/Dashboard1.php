@@ -17,6 +17,7 @@ class Dashboard1 extends CI_Controller {
         if ($this->session->status_login != 'logged_in') {
             redirect('auth');
         }
+        $data['sudah'] = $this->m_jamiyyah->pc_yg_sudah_input_data();
         $data['jamaah'] = $this->m_dashboard1->count_jamaah();
         $data['cabang'] = $this->m_dashboard1->count_cabang();
         $data['pd'] = $this->m_dashboard1->count_pd();
