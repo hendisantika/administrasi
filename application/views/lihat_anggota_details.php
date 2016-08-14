@@ -96,7 +96,7 @@
                             </tr>
                             <tr>
                                 <th width="25%">Alamat</th>
-                                <td><?php echo $record['alamat'] ?></td>
+                                <td><?php echo $record['alamat_anggota'] ?></td>
                             </tr>
                             <tr>
                                 <th width="35%">Status</th>

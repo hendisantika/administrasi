@@ -152,6 +152,52 @@
             </div><!-- ./col -->
         </div><!-- /.row -->
         <!-- Main row -->
+        
+        <!-- Data PC Yang sudah ada -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box box-warning">
+                    <div class="bo box-header">
+                        <h1 class="box-title">Data Her-Registrasi Anggota Pemuda Persis</h1>
+                    </div><!-- /.box-header -->
+                    <div class="box box-body">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>PW</th>
+                                    <th>PD</th>
+                                    <th>PC</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1; 
+                                $total = 0;
+                                foreach ($sudah as $ada) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $ada->pw; ?></td>
+                                        <td><?php echo $ada->pd; ?></td>
+                                        <td><?php echo $ada->pc; ?></td>
+                                        <td><?php echo $ada->jumlah; ?></td>
+                                    </tr>
+                                    <?php  $total += $ada->jumlah; $no++; }
+                                ?>
+<!--                                <tr>
+                                    <td colspan="2" align="center"><bold>Jumlah Total</bold></td>
+                            <td><?php echo $total; ?></td>
+                            </tr>-->
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Data PC Yang sudah ada -->
+        
         <div class="row">
             <div class="col-lg-6">
                 <div class="box box-info">
