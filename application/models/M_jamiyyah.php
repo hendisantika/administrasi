@@ -30,6 +30,25 @@ class M_Jamiyyah extends CI_Model {
     function add_data_jamaah($data_jamaah) {
         $this->db->insert("tbl_data_jamaah", $data_jamaah);
     }
+    
+    function pc_yg_sudah_input_data(){
+		$query = $this->db->query("SELECT wilayah_provinsi.nama as pw, 
+                    wilayah_kabupaten.nama as pd, wilayah_kecamatan.nama as pc, COUNT(tbl_anggota.npa) as jumlah
+        FROM ((((tbl_anggota
+        INNER JOIN wilayah_provinsi
+        ON tbl_anggota.pw = wilayah_provinsi.id)
+        INNER JOIN wilayah_kabupaten 
+        ON tbl_anggota.pd = wilayah_kabupaten.id)
+        INNER JOIN wilayah_kecamatan 
+        ON tbl_anggota.pc = wilayah_kecamatan.id) 
+        INNER JOIN wilayah_desa
+        ON tbl_anggota.desa = wilayah_desa.id)
+        GROUP BY pw, pd, pc
+        ORDER BY pw, pd, pc ASC;");
+        
+        return $query->result();
+        
+	}
 
     function lihat_pj() {
         $query = $this->db->query("SELECT tbl_data_jamaah.kd_pj, tbl_data_jamaah.nama_jamaah, wilayah_provinsi.nama as pw, wilayah_kabupaten.nama as pd, 
