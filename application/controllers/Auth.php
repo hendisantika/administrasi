@@ -60,6 +60,7 @@ class Auth extends CI_Controller {
                     $sess_data['merit'] = $this->m_jamiyyah->cek_status_merital();
                     $sess_data['jenis'] = $this->m_jamiyyah->cek_status_keanggotaan();
                     $sess_data['gol_darah'] = $this->m_jamiyyah->cek_gol_darah();
+                    $sess_data['sudah'] = $this->m_jamiyyah->pc_yg_sudah_input_data();
                 }
 //                $sessionData = array( 'username' => $usr);
 //                $this->session->set_userdata($sessionData);
