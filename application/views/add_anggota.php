@@ -67,8 +67,8 @@
                 <div class="form-group">
                     <label for="status" class="col-sm-2 control-label">Status Merital</label>
                     <div class="col-sm-3">
-                        <select name="status_merital" class="form-control" id="status_merital">
-                            <option>- Status Merital -</option>
+                        <select name="status_merital" class="form-control" id="status_merital" required>
+                            <option value="">- Status Merital -</option>
                             <option value="Single">Single</option>
                             <option value="Menikah">Menikah</option>
                             <option value="Duda">Duda</option>
@@ -119,8 +119,8 @@
                     </div>
                     <label for="gol_darah" class="col-sm-2 control-label">Golongan Darah</label>
                     <div class="col-sm-5">
-                        <select name="gol_darah" class="form-control">
-                            <option>- Pilih Golongan Darah -</option>
+                        <select name="gol_darah" class="form-control" required>
+                            <option value="">- Pilih Golongan Darah -</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="AB">AB</option>
@@ -160,8 +160,8 @@
                 <div class="form-group">
                     <label for="jenis_keanggotaan" class="col-sm-2 control-label">Jenis Keanggotaan</label>
                     <div class="col-sm-3">
-                        <select name="jenis_keanggotaan" class="form-control">
-                            <option>- Jenis Keanggotaan -</option>
+                        <select name="jenis_keanggotaan" class="form-control" required>
+                            <option value="">- Jenis Keanggotaan -</option>
                             <option value="Biasa">Biasa</option>
                             <option value="Tersiar">Tersiar</option>
                             <option value="Istimewa">Istimewa</option>
@@ -274,7 +274,7 @@
                     <label for="nama_sd" class="col-sm-2 control-label">Pendidikan</label>
                     <div class="col-sm-10">
                         <select name="pendidikan" class="form-control" required>
-                            <option>-- Pilih Level Pendidikan --</option>
+                            <option value="">-- Pilih Level Pendidikan --</option>
                             <option value="SD">Sekolah Dasar (SD)</option>
                             <option value="SMP">Sekolah Menengah Pertama (SMP)</option>
                             <option value="TSN">Tsanawiyyah (Tsn)</option>
