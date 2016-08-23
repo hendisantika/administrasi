@@ -2,12 +2,12 @@
 <?php $this->load->view('template/topbar'); ?>
 <?php $this->load->view('template/sidebar'); ?>
 <style>
-#container {
-    height: 400px; 
-    min-width: 310px; 
-    max-width: 800px;
-    margin: 0 auto;
-}
+    #container {
+        height: 400px; 
+        min-width: 310px; 
+        max-width: 800px;
+        margin: 0 auto;
+    }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper lbl">
@@ -39,7 +39,7 @@
                     <div class="icon">
                         <i class="fa fa-line-chart"></i>
                     </div>
-                    <a href="<?php echo base_url('profil/lihat_pj')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('profil/lihat_pj') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -55,7 +55,7 @@
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="<?php echo base_url('profil/lihat_pc')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('profil/lihat_pc') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -68,7 +68,7 @@
                     <div class="icon">
                         <i class="fa fa-database"></i>
                     </div>
-                    <a href="<?php echo base_url('profil/lihat_pd')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('profil/lihat_pd') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -132,7 +132,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="<?php echo base_url('anggota/lihat_anggota')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('anggota/lihat_anggota') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -147,19 +147,74 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="<?php echo base_url('user/lihat_user')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url('user/lihat_user') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
         </div><!-- /.row -->
         <!-- Main row -->
-        
+
         <!-- Data PC Yang sudah ada -->
-        <div class="row">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Data Her-Registrasi Anggota Pemuda Persis</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <div class="dataTable_wrapper">
+                            <table id="data_pc" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20px">#</th>
+                                        <th>PW</th>
+                                        <th>PD</th>
+                                        <th>PC</th>
+                                        <th>Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    $tot = 0;
+                                    foreach ($sudah as $ada) {
+                                        ?>
+                                        <tr class="pilih">
+                                            <td><?php echo $no; ?></td>
+                                            <td><?php echo $ada->pw; ?></td>
+                                            <td><?php echo $ada->pd; ?></td>
+                                            <td><?php echo $ada->pc; ?></td>
+                                            <td><?php echo $ada->jumlah; ?></td>
+                                        </tr>
+                                         <?php
+                                    $tot += $ada->jumlah;
+                                    $no++;
+                                }
+                                ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th style="width:20px">#</th>
+                                        <th>PW</th>
+                                        <th>PD</th>
+                                        <th>PC</th>
+                                        <th>Jumlah</th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div><!-- box-body -->
+
+                    </div><!-- box -->
+                </div><!-- panel-body -->
+            </div> <!-- panel-body  -->
+        </div> <!-- panel-body --> 
+
+<!--        <div class="row">
             <div class="col-lg-12">
                 <div class="box box-warning">
                     <div class="bo box-header">
                         <h1 class="box-title">Data Her-Registrasi Anggota Pemuda Persis</h1>
-                    </div><!-- /.box-header -->
+                    </div> /.box-header 
                     <div class="box box-body">
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
@@ -173,8 +228,8 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $no = 1; 
-                                $total = 0;
+                                $no = 1;
+                                $tot = 0;
                                 foreach ($sudah as $ada) {
                                     ?>
                                     <tr>
@@ -184,20 +239,23 @@
                                         <td><?php echo $ada->pc; ?></td>
                                         <td><?php echo $ada->jumlah; ?></td>
                                     </tr>
-                                    <?php  $total += $ada->jumlah; $no++; }
+                                    <?php
+                                    $tot += $ada->jumlah;
+                                    $no++;
+                                }
                                 ?>
-<!--                                <tr>
-                                    <td colspan="2" align="center"><bold>Jumlah Total</bold></td>
-                            <td><?php echo $total; ?></td>
-                            </tr>-->
+                    <tr>
+                        <td colspan="4" align="center"><bold>Jumlah Total</bold></td>
+                <td><?php echo $tot; ?></td>
+                </tr> 
                             </tbody>
                         </table> 
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Data PC Yang sudah ada -->
-        
+        </div>-->
+        <!-- END Data PC Yang sudah ada -->
+
         <div class="row">
             <div class="col-lg-6">
                 <div class="box box-info">
@@ -240,16 +298,16 @@
             </div>
             <div class="col-lg-6">
                 <div class="box box-info">
-<!--                    <div class="bo box-header">
-                        <h1 class="box-title">Grafik Usia Anggota Pemuda Persis</h1>
-                    </div> /.box-header -->
+                    <!--                    <div class="bo box-header">
+                                            <h1 class="box-title">Grafik Usia Anggota Pemuda Persis</h1>
+                                        </div> /.box-header -->
                     <div class="box box-body">
                         <!-- fungsi yang ditampilkan dibrowser  -->
                         <div id="cUsia" style="height: 400px"></div>
                     </div>
                 </div>
             </div> <!-- Usia -->
-            
+
         </div>
         <!-- Data  Pendidikan -->
         <div class="row">
@@ -294,9 +352,9 @@
             </div>
             <div class="col-lg-6">
                 <div class="box box-success">
-<!--                    <div class="bo box-header">
-                        <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
-                    </div> /.box-header -->
+                    <!--                    <div class="bo box-header">
+                                            <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
+                                        </div> /.box-header -->
                     <div class="box box-body">
                         <!-- fungsi yang ditampilkan dibrowser  -->
                         <div id="cPendidikan" style="height: 400px"></div> 
@@ -347,9 +405,9 @@
             </div>
             <div class="col-lg-6">
                 <div class="box box-success">
-<!--                    <div class="bo box-header">
-                        <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
-                    </div> /.box-header -->
+                    <!--                    <div class="bo box-header">
+                                            <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
+                                        </div> /.box-header -->
                     <div class="box box-body">
                         <!-- fungsi yang ditampilkan di browser  -->
                         <div id="cMerital" style="height: 400px"></div>
@@ -357,7 +415,7 @@
                 </div>
             </div> <!-- Data Status Merital -->
         </div>
-        
+
         <!-- Data Status Keanggotaan -->
         <div class="row">
             <div class="col-lg-6">
@@ -401,9 +459,9 @@
             </div>
             <div class="col-lg-6">
                 <div class="box box-success">
-<!--                    <div class="bo box-header">
-                        <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
-                    </div> /.box-header -->
+                    <!--                    <div class="bo box-header">
+                                            <h1 class="box-title">Grafik Pendidikan Anggota Pemuda Persis</h1>
+                                        </div> /.box-header -->
                     <div class="box box-body">
                         <!-- fungsi yang ditampilkan di browser  -->
                         <div id="cJenis" style="height: 400px"></div>
@@ -411,7 +469,7 @@
                 </div>
             </div> <!-- Data Status Merital -->
         </div>
-        
+
         <!-- Data Golongan Darah -->
         <div class="row">
             <div class="col-lg-6">
@@ -466,46 +524,41 @@
 </div><!-- /.content-wrapper -->
 
 <?php $this->load->view('template/jscripts'); ?>
-<script src="<?php echo base_url()?>assets/highcharts/highcharts.js"></script>
-<script src="<?php echo base_url()?>assets/highcharts/highcharts-3d.js"></script>
-<script src="<?php echo base_url()?>assets/highcharts/exporting.js"></script>
+<script src="<?php echo base_url() ?>assets/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url() ?>assets/highcharts/highcharts-3d.js"></script>
+<script src="<?php echo base_url() ?>assets/highcharts/exporting.js"></script>
 
 <!--Chart Usia-->
 <script>
-$(function () {
+    $(function () {
     $('#cUsia').highcharts({
-        chart: {
-            type: 'column',
+    chart: {
+    type: 'column',
             options3d: {
-                enabled: true,
-                alpha: 15,
-                beta: 15,
-                viewDistance: 25,
-                depth: 40
+            enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
             }
-        },
-
-        title: {
-            text: 'Grafik Usia Anggota Pemuda Persis'
-        },
-
-        xAxis: {
-            categories: ['Range Usia']
-        },
-
-        yAxis: {
-            allowDecimals: false,
-            min: 0,
+    },
             title: {
-                text: 'Jumlah'
-            }
-        },
-
-        tooltip: {
+            text: 'Grafik Usia Anggota Pemuda Persis'
+            },
+            xAxis: {
+            categories: ['Range Usia']
+            },
+            yAxis: {
+            allowDecimals: false,
+                    min: 0,
+                    title: {
+                    text: 'Jumlah'
+                    }
+            },
+            tooltip: {
             headerFormat: '<b>{point.key}</b><br>',
-            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-        },
-
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
 //        plotOptions: {
 //            column: {
 //                stacking: 'normal',
@@ -513,56 +566,49 @@ $(function () {
 //            }
 //        },
 
-        series: [
-         <?php foreach ($usia as $data) { ?>
-        {
-            name: '<?php echo $data->range_umur; ?>',
-            data: [<?php echo $data->jumlah; ?>],
-            stack: 'usia'
-        },
-         <?php } ?>
-    ]
+            series: [
+<?php foreach ($usia as $data) { ?>
+                {
+                name: '<?php echo $data->range_umur; ?>',
+                        data: [<?php echo $data->jumlah; ?>],
+                        stack: 'usia'
+                },
+<?php } ?>
+            ]
     });
-});
-
-</script>
+    });</script>
 
 <!-- Chart Pendidikan -->
 <script>
-$(function () {
+    $(function () {
     $('#cPendidikan').highcharts({
-        chart: {
-            type: 'column',
+    chart: {
+    type: 'column',
             options3d: {
-                enabled: true,
-                alpha: 15,
-                beta: 15,
-                viewDistance: 25,
-                depth: 40
+            enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
             }
-        },
-
-        title: {
-            text: 'Grafik Pendidikan Anggota Pemuda Persis'
-        },
-
-        xAxis: {
-            categories: ['Level']
-        },
-
-        yAxis: {
-            allowDecimals: false,
-            min: 0,
+    },
             title: {
-                text: 'Jumlah'
-            }
-        },
-
-        tooltip: {
+            text: 'Grafik Pendidikan Anggota Pemuda Persis'
+            },
+            xAxis: {
+            categories: ['Level']
+            },
+            yAxis: {
+            allowDecimals: false,
+                    min: 0,
+                    title: {
+                    text: 'Jumlah'
+                    }
+            },
+            tooltip: {
             headerFormat: '<b>{point.key}</b><br>',
-            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-        },
-
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
 //        plotOptions: {
 //            column: {
 //                stacking: 'normal',
@@ -570,56 +616,49 @@ $(function () {
 //            }
 //        },
 
-        series: [
-         <?php foreach ($pendidikan as $data) { ?>
-        {
-            name: '<?php echo $data->level_pendidikan; ?>',
-            data: [<?php echo $data->jumlah; ?>],
-            stack: 'usia'
-        },
-         <?php } ?>
-    ]
+            series: [
+<?php foreach ($pendidikan as $data) { ?>
+                {
+                name: '<?php echo $data->level_pendidikan; ?>',
+                        data: [<?php echo $data->jumlah; ?>],
+                        stack: 'usia'
+                },
+<?php } ?>
+            ]
     });
-});
-
-</script>
+    });</script>
 
 <!-- Chart Merital -->
 <script>
-$(function () {
+    $(function () {
     $('#cMerital').highcharts({
-        chart: {
-            type: 'column',
+    chart: {
+    type: 'column',
             options3d: {
-                enabled: true,
-                alpha: 15,
-                beta: 15,
-                viewDistance: 25,
-                depth: 40
+            enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
             }
-        },
-
-        title: {
-            text: 'Grafik Status Merital Anggota Pemuda Persis'
-        },
-
-        xAxis: {
-            categories: ['Status']
-        },
-
-        yAxis: {
-            allowDecimals: false,
-            min: 0,
+    },
             title: {
-                text: 'Jumlah'
-            }
-        },
-
-        tooltip: {
+            text: 'Grafik Status Merital Anggota Pemuda Persis'
+            },
+            xAxis: {
+            categories: ['Status']
+            },
+            yAxis: {
+            allowDecimals: false,
+                    min: 0,
+                    title: {
+                    text: 'Jumlah'
+                    }
+            },
+            tooltip: {
             headerFormat: '<b>{point.key}</b><br>',
-            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-        },
-
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
 //        plotOptions: {
 //            column: {
 //                stacking: 'normal',
@@ -627,56 +666,49 @@ $(function () {
 //            }
 //        },
 
-        series: [
-         <?php foreach ($merit as $merital) { ?>
-        {
-            name: '<?php echo $merital->status; ?>',
-            data: [<?php echo $merital->jumlah; ?>],
-            stack: 'usia'
-        },
-         <?php } ?>
-    ]
+            series: [
+<?php foreach ($merit as $merital) { ?>
+                {
+                name: '<?php echo $merital->status; ?>',
+                        data: [<?php echo $merital->jumlah; ?>],
+                        stack: 'usia'
+                },
+<?php } ?>
+            ]
     });
-});
-
-</script>
+    });</script>
 
 <!-- Chart Jenis Keanggotaan -->
 <script>
-$(function () {
+    $(function () {
     $('#cJenis').highcharts({
-        chart: {
-            type: 'column',
+    chart: {
+    type: 'column',
             options3d: {
-                enabled: true,
-                alpha: 15,
-                beta: 15,
-                viewDistance: 25,
-                depth: 40
+            enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
             }
-        },
-
-        title: {
-            text: 'Grafik Jenis Keanggotaan Anggota Pemuda Persis'
-        },
-
-        xAxis: {
-            categories: ['Status']
-        },
-
-        yAxis: {
-            allowDecimals: false,
-            min: 0,
+    },
             title: {
-                text: 'Jumlah'
-            }
-        },
-
-        tooltip: {
+            text: 'Grafik Jenis Keanggotaan Anggota Pemuda Persis'
+            },
+            xAxis: {
+            categories: ['Status']
+            },
+            yAxis: {
+            allowDecimals: false,
+                    min: 0,
+                    title: {
+                    text: 'Jumlah'
+                    }
+            },
+            tooltip: {
             headerFormat: '<b>{point.key}</b><br>',
-            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-        },
-
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
 //        plotOptions: {
 //            column: {
 //                stacking: 'normal',
@@ -684,55 +716,48 @@ $(function () {
 //            }
 //        },
 
-        series: [
-         <?php foreach ($jenis as $data) { ?>
-        {
-            name: '<?php echo $data->status; ?>',
-            data: [<?php echo $data->jumlah; ?>],
-            stack: 'usia'
-        },
-         <?php } ?>
-    ]
+            series: [
+<?php foreach ($jenis as $data) { ?>
+                {
+                name: '<?php echo $data->status; ?>',
+                        data: [<?php echo $data->jumlah; ?>],
+                        stack: 'usia'
+                },
+<?php } ?>
+            ]
     });
-});
-
-</script>
+    });</script>
 <!-- Chart Golongan Darah -->
 <script>
-$(function () {
+    $(function () {
     $('#cDarah').highcharts({
-        chart: {
-            type: 'column',
+    chart: {
+    type: 'column',
             options3d: {
-                enabled: true,
-                alpha: 15,
-                beta: 15,
-                viewDistance: 25,
-                depth: 40
+            enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
             }
-        },
-
-        title: {
-            text: 'Grafik Golongan Darah Anggota Pemuda Persis'
-        },
-
-        xAxis: {
-            categories: ['Status']
-        },
-
-        yAxis: {
-            allowDecimals: false,
-            min: 0,
+    },
             title: {
-                text: 'Jumlah'
-            }
-        },
-
-        tooltip: {
+            text: 'Grafik Golongan Darah Anggota Pemuda Persis'
+            },
+            xAxis: {
+            categories: ['Status']
+            },
+            yAxis: {
+            allowDecimals: false,
+                    min: 0,
+                    title: {
+                    text: 'Jumlah'
+                    }
+            },
+            tooltip: {
             headerFormat: '<b>{point.key}</b><br>',
-            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-        },
-
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
 //        plotOptions: {
 //            column: {
 //                stacking: 'normal',
@@ -740,18 +765,30 @@ $(function () {
 //            }
 //        },
 
-        series: [
-         <?php foreach ($gol_darah as $data) { ?>
-        {
-            name: '<?php echo $data->gol; ?>',
-            data: [<?php echo $data->jumlah; ?>],
-            stack: 'usia'
-        },
-         <?php } ?>
-    ]
+            series: [
+<?php foreach ($gol_darah as $data) { ?>
+                {
+                name: '<?php echo $data->gol; ?>',
+                        data: [<?php echo $data->jumlah; ?>],
+                        stack: 'usia'
+                },
+<?php } ?>
+            ]
     });
-});
+    });
 
+</script>
+
+<script>
+    $(document).ready(function() {
+    var table = $('#data_pc').DataTable({ "scrollX" : true });
+     
+    $('#data_pc tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+//        alert( 'Antum milih data : \n'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]+'|'+data[5]+'|'+data[6]+'|'+data[7]+'|'+data[8]+'|'+data[9]+'|'+data[10]);
+        window.location = "<?php echo site_url() ?>anggota/details/"+data[2]; 
+    } );
+} );
 </script>
 
 <?php $this->load->view('template/footer'); ?>
