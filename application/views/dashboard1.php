@@ -156,7 +156,7 @@
         <!-- Data PC Yang sudah ada -->
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">Data Her-Registrasi Anggota Pemuda Persis</h3>
+                <h3 class="box-title">Data Her-Registrasi Online Anggota Pemuda Persis</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="panel-body">
