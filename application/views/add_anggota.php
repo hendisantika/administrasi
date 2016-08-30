@@ -119,7 +119,7 @@
                     </div>
                     <label for="gol_darah" class="col-sm-2 control-label">Golongan Darah</label>
                     <div class="col-sm-5">
-                        <select name="gol_darah" class="form-control" required>
+                        <select name="gol_darah" class="form-control">
                             <option value="">- Pilih Golongan Darah -</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
