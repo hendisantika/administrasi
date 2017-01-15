@@ -377,15 +377,15 @@
                             </tr>
                             <tr>
                                 <th width="60%">Lokasi Organisasi 2</th>
-                                <td><?php echo $record['lokasi_org1'] ?></td>
+                                <td><?php echo $record['lokasi_org2'] ?></td>
                             </tr>
                             <tr>
                                 <th width="60%">Jabatan Organisasi 2</th>
-                                <td><?php echo $record['jabatan_org1'] ?></td>
+                                <td><?php echo $record['jabatan_org2'] ?></td>
                             </tr>
                             <tr>
                                 <th width="60%">Nama Organisasi 3</th>
-                                <td><?php echo $record['nama_org1'] ?></td>
+                                <td><?php echo $record['nama_org3'] ?></td>
                             </tr>
                             <tr>
                                 <th width="60%">Tahun Organisasi 3</th>
